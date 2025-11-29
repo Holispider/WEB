@@ -10,10 +10,24 @@
 
     <header>
         <h1>Holí Stream Info</h1>
-        <p>Odkazy na profily a sociální sítě. Streamy a nejnovější obsah.</p>
-    </header>
+        </header>
     
     <main>
+
+        <section class="platform-links">
+            <h3>Odkazy na profily a sociální sítě</h3>
+            <div class="link-icons">
+                <a href="mailto:holispider@outlook.cz" class="platform-link email-link">Email</a>
+                <a href="https://www.instagram.com/holispider/" target="_blank" class="platform-link instagram-link">Instagram</a>
+                <a href="https://discord.com/invite/wzCeN6nFKQ" target="_blank" class="platform-link discord-link">Discord</a>
+                <a href="https://www.youtube.com/@holispider" target="_blank" class="platform-link youtube-link">YouTube</a>
+                <a href="https://www.twitch.tv/holispider" target="_blank" class="platform-link twitch-link">Twitch</a>
+                <a href="https://www.tiktok.com/@holispider?lang=cs-CZ" target="_blank" class="platform-link tiktok-link">TikTok</a>
+                <a href="https://kick.com/holispider" target="_blank" class="platform-link kick-link">Kick</a>
+            </div>
+        </section>
+
+        <hr>
 
         <section class="stream-switcher">
             <h2>🔴 Aktuální Streamy</h2>
@@ -73,8 +87,8 @@
         <section id="latest-youtube-video" class="youtube-latest-video">
             <h2>🎬 Nejnovější Video z YouTube</h2>
             <a href="https://www.youtube.com/@holispider/videos" target="_blank" class="youtube-vod-image-link">
-                <img src="img/YT video.jpg" alt="Nejnovější YouTube Videa">
-            </a>
+                            </a>
+            <p class="manual-update-note">Klikněte na obrázek pro zobrazení všech videí!</p>
         </section>
 
         <section class="instagram-embed">
@@ -84,19 +98,6 @@
             </div>
         </section>
 
-        <section class="platform-links">
-            <h3>Odkazy na profily a sociální sítě</h3>
-            <div class="link-icons">
-                <a href="mailto:holispider@outlook.cz" class="platform-link email-link">Email</a>
-                <a href="https://www.instagram.com/holispider/" target="_blank" class="platform-link instagram-link">Instagram</a>
-                <a href="https://discord.com/invite/wzCeN6nFKQ" target="_blank" class="platform-link discord-link">Discord</a>
-                <a href="https://www.youtube.com/@holispider" target="_blank" class="platform-link youtube-link">YouTube</a>
-                <a href="https://www.twitch.tv/holispider" target="_blank" class="platform-link twitch-link">Twitch</a>
-                <a href="https://www.tiktok.com/@holispider?lang=cs-CZ" target="_blank" class="platform-link tiktok-link">TikTok</a>
-                <a href="https://kick.com/holispider" target="_blank" class="platform-link kick-link">Kick</a>
-            </div>
-        </section>
-        
         <hr>
 
         <section class="main-info">
@@ -104,4 +105,60 @@
 
             <div class="content-tabs">
                 <button class="content-button active" data-content="podpora">Podpora a TTS</button>
-                <button class="content-button" data-content="kdo-je-holi
+                <button class="content-button" data-content="kdo-je-holi">Kdo je Holí</button>
+                <button class="content-button" data-content="nabidka">Co nabízí stream</button>
+                <button class="content-button" data-content="navic">Časem něco navíc</button>
+            </div>
+
+            <div class="content-area">
+
+                <div id="podpora" class="content-panel active">
+                    <h3>Děkuji za podporu a TTS ukázky!</h3>
+                    <p>Zde budou informace o tom, jak mě podpořit (donate odkazy, suby, bits, atd.).</p>
+
+                    <h4>Ukázky TTS hlasů</h4>
+                    <p>Zde si můžete poslechnout, jak znějí hlasy Text-to-Speech dostupné za body na streamu:</p>
+                    
+                    <div class="tts-examples">
+                        <label>🎙️ Hlas 1 (Robot):</label>
+                        <audio controls>
+                            <source src="audio/tts_robot.mp3" type="audio/mpeg">
+                            Váš prohlížeč nepodporuje přehrávání zvuku.
+                        </audio>
+                        
+                        <label>🎙️ Hlas 2 (Dámský):</label>
+                        <audio controls>
+                            <source src="audio/tts_damsky.mp3" type="audio/mpeg">
+                            Váš prohlížeč nepodporuje přehrávání zvuku.
+                        </audio>
+                        
+                        <p>Nezapomeňte vytvořit složku **`audio`** a nahrát sem vaše MP3 soubory!</p>
+                    </div>
+                </div>
+
+                <div id="kdo-je-holi" class="content-panel hidden">
+                    <h3>Kdo jsem?</h3>
+                    <p>Jsem [Vaše jméno/nick], nadšený streamer, který se věnuje [žánr/téma] a baví se [vaše zájmy]. Cílem je vytvořit [cíl komunity].</p>
+                </div>
+
+                <div id="nabidka" class="content-panel hidden">
+                    <h3>Stream funkcionality</h3>
+                    <p>Zde vysvětlíte klíčové prvky vašeho streamu: kanálové body, speciální emotikony, pravidla, atd.</p>
+                </div>
+
+                <div id="navic" classem="content-panel hidden">
+                    <h3>Co přijde?</h3>
+                    <p>Sekce pro budoucí plány, jako jsou speciální eventy, turnaje, nové hry nebo další rozšíření komunity.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Holí. Vytvořeno pro komunitu.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

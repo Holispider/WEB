@@ -3,17 +3,15 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    /* --- ZMĚNY PRO OBRÁZEK NA POZADÍ --- */
-    background-image: url('img/background.jpg?v=1'); /* PŘEKONTROLUJTE TUTO CESTU A NÁZEV SOUBORU! */
-    background-size: cover; /* Zajistí pokrytí celé obrazovky */
-    background-attachment: fixed; /* Zabrání posouvání obrázku s obsahem */
-    background-color: #333; /* Náhradní barva, pokud se obrázek nenačte */
-    /* --- KONEC ZMĚN --- */
+    background-image: url('img/background.jpg?v=2'); /* Přidána nová verze pro zrušení cache pozadí */
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-color: #333;
     color: #333;
 }
 
 header {
-    background: #4a148c; /* Tematická barva */
+    background: #4a148c;
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -26,9 +24,7 @@ main {
 }
 
 section {
-    /* --- ZMĚNA PRO TRANSPARENTNOST --- */
-    background: rgba(255, 255, 255, 0.9); /* Poloprůhledná bílá, aby obrázek prosvítal */
-    /* --- KONEC ZMĚNY --- */
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -41,17 +37,15 @@ h2 {
     padding-bottom: 10px;
 }
 
-/* Skrytí neaktivního obsahu */
 .hidden {
     display: none !important;
 }
 
-/* Styly pro tabulátory (Streamy a Obsah) */
 .stream-tabs, .content-tabs {
     display: flex;
     margin-bottom: 15px;
     border-bottom: 1px solid #ddd;
-    overflow-x: auto; /* Pro mobily */
+    overflow-x: auto;
 }
 
 .tab-button, .content-button {
@@ -67,7 +61,7 @@ h2 {
 }
 
 .tab-button.active, .content-button.active {
-    color: #4a148c; /* Aktivní barva */
+    color: #4a148c;
     border-bottom: 3px solid #4a148c;
 }
 
@@ -75,7 +69,6 @@ h2 {
     color: #000;
 }
 
-/* Kontejnery pro Stream a Obsah */
 .stream-content, .content-area {
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -108,4 +101,90 @@ h2 {
     margin-top: 15px;
 }
 
-.platform
+.platform-link {
+    display: inline-block;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s, filter 0.3s;
+}
+
+.platform-link:hover {
+    filter: brightness(1.1);
+}
+
+/* Platform Colors */
+.email-link { background-color: #bb2211; color: white; }
+.instagram-link { background-color: #E1306C; color: white; }
+.discord-link { background-color: #7289da; color: white; }
+.youtube-link { background-color: #FF0000; color: white; }
+.twitch-link { background-color: #9146FF; color: white; }
+.tiktok-link { background-color: #000000; color: white; }
+.kick-link { background-color: #53ec9d; color: black; }
+
+/* Styly pro sekci s TTS audio */
+.tts-examples audio { display: block; width: 100%; margin: 5px 0 15px 0; }
+.tts-examples label { display: block; margin-top: 10px; font-weight: bold; }
+
+
+/* --- YOUTUBE VOD OBRÁZEK STYLY --- */
+.youtube-latest-video { padding-top: 0; }
+.youtube-latest-video h2 { margin-top: 0; }
+
+.youtube-vod-image-link {
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+    line-height: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.youtube-vod-image-link img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.youtube-vod-image-link:hover img {
+    transform: scale(1.05);
+}
+.manual-update-note {
+    text-align: center;
+    color: #cc0000;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+/* --- KONEC YOUTUBE VOD OBRÁZEK STYLY --- */
+
+
+/* Styly pro TikTok záložku jako velký klikací box */
+.tiktok-link-box { cursor: pointer; background: #000000; color: #ffffff; text-align: center; padding: 150px 20px; border-radius: 4px; transition: background 0.3s ease; }
+.tiktok-link-box:hover { background: #333333; }
+.tiktok-link-box p { font-size: 1.5em; font-weight: bold; margin: 0; }
+
+
+/* --- INSTAGRAM WIDGET OPRAVA VELIKOSTI --- */
+.instagram-widget-container {
+    min-height: 250px; 
+    background-color: #f9f9f9;
+    padding: 0;
+}
+
+.instagram-widget-container iframe.snapwidget-widget {
+    width: 100% !important; 
+    height: 600px !important; /* Důležité: Nastaví pevnou výšku, aby se widget nerozpadal */
+    border: none;
+}
+/* --- KONEC INSTAGRAM WIDGET OPRAVA VELIKOSTI --- */
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: #777;
+    border-top: 1px solid #eee;
+}

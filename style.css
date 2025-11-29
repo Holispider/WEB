@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background: #4a148c; /* Tematická barva */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+section {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #4a4a4a;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Skrytí neaktivního obsahu */
+.hidden {
+    display: none !important;
+}
+
+/* Styly pro tabulátory (Streamy a Obsah) */
+.stream-tabs, .content-tabs {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto; /* Pro mobily */
+}
+
+.tab-button, .content-button {
+    flex-shrink: 0; /* Zabrání zmenšování tlačítek */
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.tab-button.active, .content-button.active {
+    color: #4a148c; /* Aktivní barva */
+    border-bottom: 3px solid #4a148c;
+}
+
+.tab-button:hover, .content-button:hover:not(.active) {
+    color: #000;
+}
+
+/* Kontejnery pro Stream a Obsah */
+.stream-content, .content-area {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.stream-content iframe {
+    border: none;
+    display: block;
+}
+
+.placeholder-text {
+    text-align: center;
+    padding: 150px 0;
+    color: #aaa;
+}
+
+/* Odkazy na platformy */
+.platform-links {
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.link-icons {
+    display: flex;
+    flex-wrap: wrap; /* Zalomení na menších obrazovkách */
+    justify-content: center;
+    gap: 15px; 
+    margin-top: 15px;
+}
+
+.platform-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #e0e0e0;
+    color: #333;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.platform-link:hover {
+    background-color: #ccc;
+}
+
+/* Styly pro sekci s TTS audio */
+.tts-examples audio {
+    display: block;
+    width: 100%;
+    margin: 5px 0 15px 0;
+}
+.tts-examples label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Styly pro Instagram Widget */
+.instagram-widget-container {
+    min-height: 250px;
+    background-color: #f9f9f9;
+    border: 1px dashed #ccc;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: #777;
+    border-top: 1px solid #eee;
+}

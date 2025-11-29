@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holí - Multi-Platform Stream Info Web</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Vítejte na stránce streamera Holí!</h1>
+        <p>Zde najdete vše o mém streamu a komunitě. Sledujte mě živě!</p>
+    </header>
+
+    <main>
+        
+        <section class="stream-switcher">
+            <h2>🔴 Aktuální Streamy</h2>
+
+            <div class="stream-tabs">
+                <button class="tab-button active" data-tab="twitch">Twitch</button>
+                <button class="tab-button" data-tab="youtube">YouTube</button>
+                <button class="tab-button" data-tab="kick">Kick</button>
+                <button class="tab-button" data-tab="tiktok">TikTok</button>
+            </div>
+
+            <div class="stream-content">
+                
+                <div id="twitch" class="tab-content active">
+                    <iframe 
+                        src="https://player.twitch.tv/?channel=holispider&parent=**[VAŠE_GITHUB_PAGES_DOMÉNA]**&autoplay=false&muted=true" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allowfullscreen>
+                    </iframe>
+                    <p class="placeholder-text">
+                        **DŮLEŽITÉ:** V `src` výše nahraďte **[VAŠE_GITHUB_PAGES_DOMÉNA]** za skutečnou adresu vašeho webu (např. `holispider.github.io` nebo vaši vlastní doménu bez `https://`).
+                    </p>
+                </div>
+
+                <div id="youtube" class="tab-content hidden">
+                    <iframe 
+                        src="https://www.youtube.com/embed/live_stream?channel=UCFUvfLQBXpSfaSODzzszgmA" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                    <p class="placeholder-text">Sledujte mě na YouTube!</p>
+                </div>
+
+                <div id="kick" class="tab-content hidden">
+                    <iframe 
+                        src="https://player.kick.com/holispider" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allowfullscreen>
+                    </iframe>
+                    <p class="placeholder-text">Sledujte mě na Kicku!</p>
+                </div>
+
+                <div id="tiktok" class="tab-content hidden">
+                    <p class="placeholder-text">TikTok live stream embedding je velmi omezený.</p>
+                    <p style="text-align: center;"><a href="https://www.tiktok.com/@holispider?lang=cs-CZ" target="_blank" style="font-weight: bold; color: #4a148c;">Klikněte zde a přejděte přímo na můj TikTok profil!</a></p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="platform-links">
+            <h3>Odkazy na profily a sociální sítě</h3>
+            <div class="link-icons">
+                <a href="https://www.twitch.tv/holispider" target="_blank" class="platform-link">Twitch</a>
+                <a href="https://www.youtube.com/@holispider" target="_blank" class="platform-link">YouTube</a>
+                <a href="https://kick.com/holispider" target="_blank" class="platform-link">Kick</a>
+                <a href="https://www.tiktok.com/@holispider?lang=cs-CZ" target="_blank" class="platform-link">TikTok</a>
+                <a href="https://www.instagram.com/holispider/" target="_blank" class="platform-link instagram-link">Instagram Profil</a>
+            </div>
+        </section>
+        
+        <section class="instagram-embed">
+            <h2>📸 Nejnovější příspěvky</h2>
+            <div class="instagram-widget-container">
+                <p class="placeholder-text" style="padding: 50px 0;">
+                    **Zde se zobrazí Váš Instagram Widget.**<br>
+                    Musíte si jej nejprve vygenerovat na externí službě a kód sem vložit.
+                </p>
+            </div>
+        </section>
+        <hr>
+
+        <section class="main-info">
+            <h2ℹ️ Detaily o Streamu a komunitě</h2>
+
+            <div class="content-tabs">
+                <button class="content-button active" data-content="podpora">Podpora a TTS</button>
+                <button class="content-button" data-content="kdo-je-holi">Kdo je Holí</button>
+                <button class="content-button" data-content="nabidka">Co nabízí stream</button>
+                <button class="content-button" data-content="navic">Časem něco navíc</button>
+            </div>
+
+            <div class="content-area">
+
+                <div id="podpora" class="content-panel active">
+                    <h3>Děkuji za podporu a TTS ukázky!</h3>
+                    <p>Zde budou informace o tom, jak mě podpořit (donate odkazy, suby, bits, atd.).</p>
+
+                    <h4>Ukázky TTS hlasů</h4>
+                    <p>Zde si můžete poslechnout, jak znějí hlasy Text-to-Speech dostupné za body na streamu:</p>
+                    
+                    <div class="tts-examples">
+                        <label>🎙️ Hlas 1 (Robot):</label>
+                        <audio controls>
+                            <source src="audio/tts_robot.mp3" type="audio/mpeg">
+                            Váš prohlížeč nepodporuje přehrávání zvuku.
+                        </audio>
+                        
+                        <label>🎙️ Hlas 2 (Dámský):</label>
+                        <audio controls>
+                            <source src="audio/tts_damsky.mp3" type="audio/mpeg">
+                            Váš prohlížeč nepodporuje přehrávání zvuku.
+                        </audio>
+                        
+                        <p>Nezapomeňte vytvořit složku **`audio`** a nahrát sem vaše MP3 soubory!</p>
+                    </div>
+                </div>
+
+                <div id="kdo-je-holi" class="content-panel hidden">
+                    <h3>Kdo jsem?</h3>
+                    <p>Jsem [Vaše jméno/nick], nadšený streamer, který se věnuje [žánr/téma] a baví se [vaše zájmy]. Cílem je vytvořit [cíl komunity].</p>
+                </div>
+
+                <div id="nabidka" class="content-panel hidden">
+                    <h3>Stream funkcionality</h3>
+                    <p>Zde vysvětlíte klíčové prvky vašeho streamu: kanálové body, speciální emotikony, pravidla, atd.</p>
+                </div>
+
+                <div id="navic" class="content-panel hidden">
+                    <h3>Co přijde?</h3>
+                    <p>Sekce pro budoucí plány, jako jsou speciální eventy, turnaje, nové hry nebo další rozšíření komunity.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Holí. Vytvořeno pro komunitu.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

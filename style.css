@@ -154,10 +154,12 @@ h2 {
     transform: scale(1.05);
 }
 .manual-update-note {
+    /* TOTO BY SE JIŽ NEMĚLO ZOBRAZOVAT */
     text-align: center;
     color: #cc0000;
     margin-top: 10px;
     font-size: 0.9em;
+    display: none; /* Skryjeme tuto poznámku pro jistotu */
 }
 /* --- KONEC YOUTUBE VOD OBRÁZEK STYLY --- */
 

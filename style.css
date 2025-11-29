@@ -181,20 +181,21 @@ h2 {
 .tiktok-link-box p { font-size: 1.5em; font-weight: bold; margin: 0; }
 
 
-/* --- INSTAGRAM WIDGET OPRAVA VELIKOSTI --- */
+/* --- INSTAGRAM WIDGET STYLY (Pouze pro správné zobrazení) --- */
+.instagram-embed {
+    padding: 20px;
+}
 .instagram-widget-container {
     padding: 0;
-    min-height: 400px;
+    min-height: 400px; /* Aby se nenačetl prázdný */
 }
 
-/* Přepíšeme inline styly SnapWidgetu pro responzivitu */
 .instagram-widget-container iframe.snapwidget-widget {
-    width: 100% !important; 
-    height: 400px !important; 
+    /* Využíváme stávající kódy widgetu */
     border: none;
     display: block;
 }
-/* --- KONEC INSTAGRAM WIDGET OPRAVA VELIKOSTI --- */
+/* --- KONEC INSTAGRAM WIDGET STYLY --- */
 
 
 footer {

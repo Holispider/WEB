@@ -1,217 +1,164 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-image: url('img/background.jpg?v=5'); 
-    background-size: cover; 
-    background-attachment: fixed; 
-    background-color: #333;
-    color: #333;
-}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holí - Multi-Platform Stream Info Web</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-header {
-    background: none; 
-    color: white; 
-    padding: 20px 0;
-    text-align: center;
-}
+    <header>
+        <h1>Holispider</h1>
+    </header>
+    
+    <main>
 
-h1 {
-    font-size: 3.5em;
-    margin: 0;
-    padding: 10px 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
+        <section class="platform-links">
+            <h3>Odkazy na profily a sociální sítě</h3>
+            <div class="link-icons">
+                <a href="mailto:holispider@outlook.cz" class="platform-link email-link">Email</a>
+                <a href="https://www.instagram.com/holispider/" target="_blank" class="platform-link instagram-link">Instagram</a>
+                <a href="https://discord.com/invite/wzCeN6nFKQ" target="_blank" class="platform-link discord-link">Discord</a>
+                <a href="https://www.youtube.com/@holispider" target="_blank" class="platform-link youtube-link">YouTube</a>
+                <a href="https://www.twitch.tv/holispider" target="_blank" class="platform-link twitch-link">Twitch</a>
+                <a href="https://www.tiktok.com/@holispider?lang=cs-CZ" target="_blank" class="platform-link tiktok-link">TikTok</a>
+                <a href="https://kick.com/holispider" target="_blank" class="platform-link kick-link">Kick</a>
+            </div>
+        </section>
 
-main {
-    padding: 20px;
-    max-width: 1000px;
-    margin: auto;
-}
+        <hr>
 
-section {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+        <section class="stream-switcher">
+            <h2>🔴 Aktuální Streamy</h2>
 
-h2 {
-    color: #4a4a4a;
-    border-bottom: none; 
-    padding-bottom: 10px;
-    /* --- OPRAVA: SNÍŽENO ODSADENÍ NA 10PX --- */
-    margin-bottom: 10px; 
-}
+            <div class="stream-tabs">
+                <button class="tab-button active" data-tab="twitch">Twitch</button>
+                <button class="tab-button" data-tab="youtube-live">YouTube</button>
+                <button class="tab-button" data-tab="kick">Kick</button>
+                <button class="tab-button" data-tab="tiktok">TikTok</button>
+            </div>
 
-.hidden {
-    display: none !important;
-}
+            <div class="stream-content">
+                
+                <div id="twitch" class="tab-content active">
+                    <iframe 
+                        src="https://player.twitch.tv/?channel=holispider&parent=holispider.github.io&autoplay=false&muted=true" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div id="youtube-live" class="tab-content hidden">
+                    <iframe 
+                        src="https://www.youtube.com/embed/live_stream?channel=UCFUvfLQBXpSfaSODzzszgmA" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
 
-/* Styly pro tabulátory (Streamy a Obsah) */
-.stream-tabs, .content-tabs {
-    display: flex;
-    margin-bottom: 15px;
-    border-bottom: none; 
-    overflow-x: auto;
-}
+                <div id="kick" class="tab-content hidden">
+                    <iframe 
+                        src="https://player.kick.com/holispider" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
 
-.tab-button, .content-button {
-    flex-shrink: 0; 
-    background: none;
-    border: 1px solid transparent; 
-    padding: 9px 14px; 
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    color: #555;
-    transition: all 0.3s ease; 
-}
+                <div id="tiktok" class="tab-content hidden">
+                    <div class="tiktok-link-box" onclick="window.open('https://www.tiktok.com/@holispider?lang=cs-CZ', '_blank');">
+                        <p>🔴 KLIKNĚTE PRO ZOBRAZENÍ LIVE STREAMU NA TIKTOKU</p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
 
-/* --- AKTIVNÍ STAV: Zvýšený kontrast --- */
-.tab-button.active, .content-button.active {
-    background-color: #ffffff; 
-    border: 2px solid #555; 
-    border-radius: 5px;
-    color: #000000; 
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
-    padding: 8px 13px; 
-}
+        <hr>
 
-.tab-button:hover, .content-button:hover:not(.active) {
-    color: #000;
-}
+        <section id="latest-youtube-video" class="youtube-latest-video">
+            <h2>🎬 Nejnovější Video z YouTube</h2>
+            <a href="https://www.youtube.com/@holispider/videos" target="_blank" class="youtube-vod-image-link">
+                <img src="img/YT%20video.jpg" alt="">
+            </a>
+        </section>
 
-.stream-content, .content-area {
-    border: none; 
-    border-radius: 4px;
-    padding: 15px;
-}
+        <section class="instagram-embed">
+            <h2>📸 Nejnovější příspěvky</h2>
+            <div class="instagram-widget-container">
+                <iframe src="https://snapwidget.com/embed/1113657" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:990px; height:539px" title="Posts from Instagram"></iframe>
+            </div>
+        </section>
 
-.stream-content iframe {
-    border: none;
-    display: block;
-}
+        <hr>
 
-.placeholder-text {
-    text-align: center;
-    padding: 150px 0;
-    color: #aaa;
-}
+        <section class="main-info">
+            <h2>ℹ️ Detaily o Streamu a komunitě</h2>
 
-/* Odkazy na platformy */
-.platform-links {
-    text-align: center;
-    padding: 10px;
-    margin-top: 10px;
-}
+            <div class="content-tabs">
+                <button class="content-button active" data-content="podpora">Podpora a TTS</button>
+                <button class="content-button" data-content="kdo-je-holi">Kdo je Holí</button>
+                <button class="content-button" data-content="nabidka">Co nabízí stream</button>
+                <button class="content-button" data-content="navic">Časem něco navíc</button>
+            </div>
 
-.link-icons {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    gap: 15px; 
-    margin-top: 15px;
-}
+            <div class="content-area">
 
-.platform-link {
-    display: inline-block;
-    padding: 8px 15px;
-    text-decoration: none;
-    border-radius: 20px;
-    font-weight: bold;
-    transition: background-color 0.3s, filter 0.3s;
-}
+                <div id="podpora" class="content-panel active">
+                    <h3>Děkuji za podporu a TTS ukázky!</h3>
+                    <p>Zde budou informace o tom, jak mě podpořit (donate odkazy, suby, bits, atd.).</p>
 
-.platform-link:hover {
-    filter: brightness(1.1);
-}
+                    <h4>Ukázky TTS hlasů</h4>
+                    <p>Zde si můžete poslechnout, jak znějí hlasy Text-to-Speech dostupné za body na streamu:</p>
+                    
+                    <div class="tts-examples">
+                        <label>🎙️ Hlas 1 (Robot):</label>
+                        <audio controls>
+                            <source src="audio/tts_robot.mp3" type="audio/mpeg">
+                            Váš prohlížeč nepodporuje přehrávání zvuku.
+                        </audio>
+                        
+                        <label>🎙️ Hlas 2 (Dámský):</label>
+                        <audio controls>
+                            <source src="audio/tts_damsky.mp3" type="audio/mpeg">
+                            Váš prohlížeč nepodporuje přehrávání zvuku.
+                        </audio>
+                        
+                        <p>Nezapomeňte vytvořit složku **`audio`** a nahrát sem vaše MP3 soubory!</p>
+                    </div>
+                </div>
 
-/* Platform Colors */
-.email-link { background-color: #bb2211; color: white; }
-.instagram-link { background-color: #E1306C; color: white; }
-.discord-link { background-color: #7289da; color: white; }
-.youtube-link { background-color: #FF0000; color: white; }
-.twitch-link { background-color: #9146FF; color: white; }
-.tiktok-link { background-color: #000000; color: white; }
-.kick-link { background-color: #53ec9d; color: black; }
+                <div id="kdo-je-holi" class="content-panel hidden">
+                    <h3>Kdo jsem?</h3>
+                    <p>Jsem [Vaše jméno/nick], nadšený streamer, který se věnuje [žánr/téma] a baví se [vaše zájmy]. Cílem je vytvořit [cíl komunity].</p>
+                </div>
 
-/* Styly pro sekci s TTS audio */
-.tts-examples audio { display: block; width: 100%; margin: 5px 0 15px 0; }
-.tts-examples label { display: block; margin-top: 10px; font-weight: bold; }
+                <div id="nabidka" class="content-panel hidden">
+                    <h3>Stream funkcionality</h3>
+                    <p>Zde vysvětlíte klíčové prvky vašeho streamu: kanálové body, speciální emotikony, pravidla, atd.</p>
+                </div>
 
+                <div id="navic" classem="content-panel hidden">
+                    <h3>Co přijde?</h3>
+                    <p>Sekce pro budoucí plány, jako jsou speciální eventy, turnaje, nové hry nebo další rozšíření komunity.</p>
+                </div>
+            </div>
+        </section>
 
-/* --- YOUTUBE VOD OBRÁZEK STYLY --- */
-.youtube-latest-video { padding-top: 0; }
-.youtube-latest-video h2 { margin-top: 0; }
+    </main>
 
-.youtube-vod-image-link {
-    display: block;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 4px;
-    line-height: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    <footer>
+        <p>&copy; 2025 Holispider. Vytvořeno pro komunitu.</p>
+    </footer>
 
-.youtube-vod-image-link img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.youtube-vod-image-link:hover img {
-    transform: scale(1.05);
-}
-.manual-update-note {
-    text-align: center;
-    color: #cc0000;
-    margin-top: 10px;
-    font-size: 0.9em;
-    display: none;
-}
-/* --- KONEC YOUTUBE VOD OBRÁZEK STYLY --- */
-
-
-/* Styly pro TikTok záložku jako velký klikací box */
-.tiktok-link-box { cursor: pointer; background: #000000; color: #ffffff; text-align: center; padding: 150px 20px; border-radius: 4px; transition: background 0.3s ease; }
-.tiktok-link-box:hover { background: #333333; }
-.tiktok-link-box p { font-size: 1.5em; font-weight: bold; margin: 0; }
-
-
-/* --- INSTAGRAM ODKAZ BOX --- */
-.instagram-embed {
-    padding: 20px;
-}
-.instagram-vod-link-box {
-    display: block;
-    cursor: pointer;
-    background: #E1306C;
-    color: white;
-    text-align: center;
-    padding: 100px 20px;
-    border-radius: 4px;
-    transition: background 0.3s ease;
-    text-decoration: none;
-}
-.instagram-vod-link-box:hover {
-    background: #b82655;
-}
-.instagram-vod-link-box p {
-    font-size: 1.8em;
-    font-weight: bold;
-    margin: 0;
-}
-/* --- KONEC INSTAGRAM ODKAZ BOX --- */
-
-
-footer {
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    color: #777;
-    border-top: none;
-}
+    <script src="script.js"></script>
+</body>
+</html>

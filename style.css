@@ -3,7 +3,6 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    /* Opraveno pozadí a cache */
     background-image: url('img/background.jpg?v=5'); 
     background-size: cover; 
     background-attachment: fixed; 
@@ -16,6 +15,13 @@ header {
     color: white; 
     padding: 20px 0;
     text-align: center;
+}
+
+h1 {
+    font-size: 3.5em;
+    margin: 0;
+    padding: 10px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 main {
@@ -34,7 +40,7 @@ section {
 
 h2 {
     color: #4a4a4a;
-    border-bottom: none; /* Odstraněna čára */
+    border-bottom: none; 
     padding-bottom: 10px;
 }
 
@@ -46,25 +52,30 @@ h2 {
 .stream-tabs, .content-tabs {
     display: flex;
     margin-bottom: 15px;
-    border-bottom: none; /* Odstraněna čára */
+    border-bottom: none; 
     overflow-x: auto;
 }
 
 .tab-button, .content-button {
     flex-shrink: 0; 
     background: none;
-    border: none;
-    padding: 10px 15px;
+    border: 1px solid transparent; /* Přidán transparentní rámeček, aby se prvek při aktivaci neposunul */
+    padding: 9px 14px; /* Upraveno odsazení pro kompenzaci rámečku */
     cursor: pointer;
     font-size: 1em;
     font-weight: bold;
     color: #555;
-    transition: color 0.3s, border-bottom 0.3s;
+    transition: all 0.3s ease; /* Změněno na all pro plynulejší přechod */
 }
 
+/* --- AKTIVNÍ STAV: Vizuální indikátor --- */
 .tab-button.active, .content-button.active {
-    color: #4a148c; 
-    border-bottom: none; /* Odstraněna čára */
+    background-color: #f0f0f0; /* Jemně šedé pozadí */
+    border: 1px solid #ddd; /* Jemný rámeček */
+    border-radius: 5px;
+    color: #4a4a4a; /* Tmavší text pro lepší čitelnost */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Efekt stlačení/aktivace */
+    /* Původní border-bottom: none je nahrazeno novými styly */
 }
 
 .tab-button:hover, .content-button:hover:not(.active) {
@@ -72,7 +83,7 @@ h2 {
 }
 
 .stream-content, .content-area {
-    border: none; /* Odstraněny rámečky */
+    border: none; 
     border-radius: 4px;
     padding: 15px;
 }
@@ -130,7 +141,7 @@ h2 {
 .tts-examples label { display: block; margin-top: 10px; font-weight: bold; }
 
 
-/* --- YOUTUBE VOD OBRÁZEK STYLY (Finalizováno) --- */
+/* --- YOUTUBE VOD OBRÁZEK STYLY --- */
 .youtube-latest-video { padding-top: 0; }
 .youtube-latest-video h2 { margin-top: 0; }
 
@@ -154,12 +165,11 @@ h2 {
     transform: scale(1.05);
 }
 .manual-update-note {
-    /* TOTO BY SE JIŽ NEMĚLO ZOBRAZOVAT */
     text-align: center;
     color: #cc0000;
     margin-top: 10px;
     font-size: 0.9em;
-    display: none; /* Skryjeme tuto poznámku pro jistotu */
+    display: none;
 }
 /* --- KONEC YOUTUBE VOD OBRÁZEK STYLY --- */
 
@@ -170,14 +180,14 @@ h2 {
 .tiktok-link-box p { font-size: 1.5em; font-weight: bold; margin: 0; }
 
 
-/* --- INSTAGRAM ODKAZ BOX (Finalizováno) --- */
+/* --- INSTAGRAM ODKAZ BOX --- */
 .instagram-embed {
     padding: 20px;
 }
 .instagram-vod-link-box {
     display: block;
     cursor: pointer;
-    background: #E1306C; /* Instagram color */
+    background: #E1306C;
     color: white;
     text-align: center;
     padding: 100px 20px;
@@ -201,5 +211,5 @@ footer {
     padding: 10px;
     margin-top: 20px;
     color: #777;
-    border-top: none; /* Odstraněna čára */
+    border-top: none;
 }

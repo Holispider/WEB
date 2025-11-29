@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     /* --- ZMĚNY PRO OBRÁZEK NA POZADÍ --- */
-    background-image: url('img/background.jpg'); /* DŮLEŽITÉ: Zkontrolujte cestu k vašemu obrázku */
+    background-image: url('img/background.jpg'); /* PŘEKONTROLUJTE TUTO CESTU! */
     background-size: cover; /* Zajistí pokrytí celé obrazovky */
     background-attachment: fixed; /* Zabrání posouvání obrázku s obsahem */
     background-color: #333; /* Náhradní barva, pokud se obrázek nenačte */

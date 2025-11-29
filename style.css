@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -109,16 +108,13 @@ h2 {
     border-radius: 20px;
     font-weight: bold;
     transition: background-color 0.3s, filter 0.3s;
-    /* Reset default styling */
-    background-color: #e0e0e0;
-    color: #333;
 }
 
 .platform-link:hover {
     filter: brightness(1.1); /* Mírné zesvětlení při najetí */
 }
 
-/* Platform Colors - Nově přidané */
+/* Platform Colors - BARVY PRO KAŽDOU PLATFORMU */
 .email-link {
     background-color: #bb2211; /* Outlook red */
     color: white;
@@ -160,24 +156,35 @@ h2 {
     font-weight: bold;
 }
 
-/* Úpravy YouTube VOD sekce (ZMENŠENO) */
+/* Úpravy YouTube VOD sekce (POUZE KLIKACÍ ODKAZ) */
 .youtube-latest-video {
     padding-top: 0;
 }
 .youtube-latest-video h2 {
     margin-top: 0;
 }
-/* Nastavení stejné výšky jako Live streamy (400px) */
-.youtube-latest-video iframe {
-    height: 400px !important;
+
+.youtube-vod-link-box {
+    display: block;
+    cursor: pointer;
+    background: #FF0000; /* YouTube Red */
+    color: white;
+    text-align: center;
+    padding: 100px 20px; /* Zmenšeno oproti původnímu boxu */
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    text-decoration: none;
 }
 
-.manual-update-note {
-    text-align: center;
-    color: #cc0000;
-    margin-top: 10px;
-    font-size: 0.9em;
+.youtube-vod-link-box:hover {
+    background: #cc0000;
 }
+.youtube-vod-link-box p {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0;
+}
+
 
 /* Styly pro TikTok záložku jako velký klikací box */
 .tiktok-link-box {

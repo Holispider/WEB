@@ -46,7 +46,6 @@
                         frameborder="0" 
                         allowfullscreen>
                     </iframe>
-                    <p class="placeholder-text">Sledujte mě živě na YouTube!</p>
                 </div>
 
                 <div id="kick" class="tab-content hidden">
@@ -58,13 +57,11 @@
                         scrolling="no" 
                         allowfullscreen>
                     </iframe>
-                    <p class="placeholder-text">Sledujte mě na Kicku!</p>
                 </div>
 
                 <div id="tiktok" class="tab-content hidden">
                     <div class="tiktok-link-box" onclick="window.open('https://www.tiktok.com/@holispider?lang=cs-CZ', '_blank');">
                         <p>🔴 KLIKNĚTE PRO ZOBRAZENÍ LIVE STREAMU NA TIKTOKU</p>
-                        <small>TikTok neumožňuje embedování živého videa. Otevřete stream přímo v prohlížeči!</small>
                     </div>
                 </div>
             </div>
@@ -75,16 +72,17 @@
 
         <section id="latest-youtube-video" class="youtube-latest-video">
             <h2>🎬 Nejnovější Video z YouTube</h2>
-            <iframe width="100%" height="400" src="https://www.youtube.com/embed/**[ID_NEJNOVĚJŠÍHO_VIDEA]**?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <p class="manual-update-note">**DŮLEŽITÉ:** Zobrazuje chybu, dokud ručně nevložíte ID nového videa. Nezapomeňte kód měnit po nahrání nového non-short/non-stream videa.</p>
+            <a href="https://www.youtube.com/@holispider/videos" target="_blank" class="youtube-vod-link-box">
+                <p>KLIKNĚTE ZDE PRO NEJNOVĚJŠÍ VIDEA</p>
+                <small>(Přesměruje vás na YouTube sekci 'Videa')</small>
+            </a>
         </section>
 
         <section class="instagram-embed">
             <h2>📸 Nejnovější příspěvky</h2>
             <div class="instagram-widget-container">
                 <p class="placeholder-text" style="padding: 50px 0;">
-                    **Zde se zobrazí Váš Instagram Widget.**<br>
-                    Musíte si jej nejprve vygenerovat na externí službě a kód sem vložit.
+                    **Jak zobrazit příspěvky:** Musíte se zaregistrovat na službě jako je **SnapWidget** nebo **LightWidget**. Tam si vygenerujete kód pro zobrazení vašich příspěvků a ten kód vložíte sem.
                 </p>
             </div>
         </section>

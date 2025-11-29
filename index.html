@@ -13,14 +13,22 @@
         <p>Zde najdete vše o mém streamu a komunitě. Sledujte mě živě!</p>
     </header>
 
+    <section id="latest-youtube-video" class="youtube-latest-video">
+        <h2>🎬 Nejnovější Video z YouTube</h2>
+        <div class="video-container">
+            <iframe width="100%" height="500" src="https://www.youtube.com/embed/**[ID_NEJNOVĚJŠÍHO_VIDEA]**?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p class="manual-update-note">**DŮLEŽITÉ:** Nezapomeňte ručně měnit ID videa v odkazu výše po nahrání nového non-short/non-stream videa.</p>
+        </div>
+    </section>
+    
+    <hr>
     <main>
-        
+
         <section class="stream-switcher">
             <h2>🔴 Aktuální Streamy</h2>
 
             <div class="stream-tabs">
                 <button class="tab-button active" data-tab="twitch">Twitch</button>
-                <button class="tab-button" data-tab="youtube">YouTube</button>
                 <button class="tab-button" data-tab="kick">Kick</button>
                 <button class="tab-button" data-tab="tiktok">TikTok</button>
             </div>
@@ -29,27 +37,13 @@
                 
                 <div id="twitch" class="tab-content active">
                     <iframe 
-                        src="https://player.twitch.tv/?channel=holispider&parent=**[VAŠE_GITHUB_PAGES_DOMÉNA]**&autoplay=false&muted=true" 
+                        src="https://player.twitch.tv/?channel=holispider&parent=holispider.github.io&autoplay=false&muted=true" 
                         width="100%" 
                         height="400" 
                         frameborder="0" 
                         scrolling="no" 
                         allowfullscreen>
                     </iframe>
-                    <p class="placeholder-text">
-                        **DŮLEŽITÉ:** V `src` výše nahraďte **[VAŠE_GITHUB_PAGES_DOMÉNA]** za skutečnou adresu vašeho webu (např. `holispider.github.io` nebo vaši vlastní doménu bez `https://`).
-                    </p>
-                </div>
-
-                <div id="youtube" class="tab-content hidden">
-                    <iframe 
-                        src="https://www.youtube.com/embed/live_stream?channel=UCFUvfLQBXpSfaSODzzszgmA" 
-                        width="100%" 
-                        height="400" 
-                        frameborder="0" 
-                        allowfullscreen>
-                    </iframe>
-                    <p class="placeholder-text">Sledujte mě na YouTube!</p>
                 </div>
 
                 <div id="kick" class="tab-content hidden">
@@ -65,8 +59,10 @@
                 </div>
 
                 <div id="tiktok" class="tab-content hidden">
-                    <p class="placeholder-text">TikTok live stream embedding je velmi omezený.</p>
-                    <p style="text-align: center;"><a href="https://www.tiktok.com/@holispider?lang=cs-CZ" target="_blank" style="font-weight: bold; color: #4a148c;">Klikněte zde a přejděte přímo na můj TikTok profil!</a></p>
+                    <div class="tiktok-link-box" onclick="window.open('https://www.tiktok.com/@holispider?lang=cs-CZ', '_blank');">
+                        <p>🔴 KLIKNĚTE PRO ZOBRAZENÍ LIVE STREAMU NA TIKTOKU</p>
+                        <small>TikTok neumožňuje embedování živého videa. Otevřete stream přímo v prohlížeči!</small>
+                    </div>
                 </div>
             </div>
             
@@ -75,6 +71,7 @@
         <section class="platform-links">
             <h3>Odkazy na profily a sociální sítě</h3>
             <div class="link-icons">
+                <a href="https://discord.com/invite/wzCeN6nFKQ" target="_blank" class="platform-link discord-link">Discord</a>
                 <a href="https://www.twitch.tv/holispider" target="_blank" class="platform-link">Twitch</a>
                 <a href="https://www.youtube.com/@holispider" target="_blank" class="platform-link">YouTube</a>
                 <a href="https://kick.com/holispider" target="_blank" class="platform-link">Kick</a>
@@ -82,7 +79,7 @@
                 <a href="https://www.instagram.com/holispider/" target="_blank" class="platform-link instagram-link">Instagram Profil</a>
             </div>
         </section>
-        
+
         <section class="instagram-embed">
             <h2>📸 Nejnovější příspěvky</h2>
             <div class="instagram-widget-container">
@@ -92,10 +89,11 @@
                 </p>
             </div>
         </section>
+
         <hr>
 
         <section class="main-info">
-            <h2ℹ️ Detaily o Streamu a komunitě</h2>
+            <h2>ℹ️ Detaily o Streamu a komunitě</h2>
 
             <div class="content-tabs">
                 <button class="content-button active" data-content="podpora">Podpora a TTS</button>

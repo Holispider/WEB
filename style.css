@@ -48,7 +48,7 @@ h2 {
 }
 
 .tab-button, .content-button {
-    flex-shrink: 0; /* Zabrání zmenšování tlačítek */
+    flex-shrink: 0; 
     background: none;
     border: none;
     padding: 10px 15px;
@@ -95,7 +95,7 @@ h2 {
 
 .link-icons {
     display: flex;
-    flex-wrap: wrap; /* Zalomení na menších obrazovkách */
+    flex-wrap: wrap; 
     justify-content: center;
     gap: 15px; 
     margin-top: 15px;
@@ -128,18 +128,64 @@ h2 {
     font-weight: bold;
 }
 
+/* Nové styly pro Discord a YouTube sekci */
+.discord-link {
+    background-color: #7289da; /* Discord barva */
+    color: white;
+}
+
+.youtube-latest-video {
+    padding-top: 0;
+}
+.youtube-latest-video h2 {
+    margin-top: 0;
+}
+
+/* Kontejner pro zajištění poměru stran 16:9 pro video */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.manual-update-note {
+    text-align: center;
+    color: #cc0000;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Styly pro TikTok záložku jako velký klikací box */
+.tiktok-link-box {
+    cursor: pointer;
+    background: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 150px 20px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.tiktok-link-box:hover {
+    background: #333333;
+}
+
+.tiktok-link-box p {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+}
+
 /* Styly pro Instagram Widget */
 .instagram-widget-container {
     min-height: 250px;
     background-color: #f9f9f9;
     border: 1px dashed #ccc;
-}
-
-
-footer {
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    color: #777;
-    border-top: 1px solid #eee;
 }

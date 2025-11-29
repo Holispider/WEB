@@ -31,5 +31,3 @@ setupTabs('.stream-tabs .tab-button', '.stream-content .tab-content');
 
 // Nastavení přepínání pro Hlavní obsah
 setupTabs('.content-tabs .content-button', '.content-area .content-panel');
-
-// Statické audio ukázky nepotřebují žádný další JavaScript.

@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -104,16 +105,47 @@ h2 {
 .platform-link {
     display: inline-block;
     padding: 8px 15px;
-    background-color: #e0e0e0;
-    color: #333;
     text-decoration: none;
     border-radius: 20px;
     font-weight: bold;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, filter 0.3s;
+    /* Reset default styling */
+    background-color: #e0e0e0;
+    color: #333;
 }
 
 .platform-link:hover {
-    background-color: #ccc;
+    filter: brightness(1.1); /* Mírné zesvětlení při najetí */
+}
+
+/* Platform Colors - Nově přidané */
+.email-link {
+    background-color: #bb2211; /* Outlook red */
+    color: white;
+}
+.instagram-link {
+    background-color: #E1306C; /* Instagram */
+    color: white;
+}
+.discord-link {
+    background-color: #7289da; /* Discord blue */
+    color: white;
+}
+.youtube-link {
+    background-color: #FF0000; /* YouTube red */
+    color: white;
+}
+.twitch-link {
+    background-color: #9146FF; /* Twitch purple */
+    color: white;
+}
+.tiktok-link {
+    background-color: #000000; /* TikTok black */
+    color: white;
+}
+.kick-link {
+    background-color: #53ec9d; /* Kick green */
+    color: black;
 }
 
 /* Styly pro sekci s TTS audio */
@@ -128,33 +160,18 @@ h2 {
     font-weight: bold;
 }
 
-/* Nové styly pro Discord a YouTube sekci */
-.discord-link {
-    background-color: #7289da; /* Discord barva */
-    color: white;
-}
-
+/* Úpravy YouTube VOD sekce (ZMENŠENO) */
 .youtube-latest-video {
     padding-top: 0;
 }
 .youtube-latest-video h2 {
     margin-top: 0;
 }
+/* Nastavení stejné výšky jako Live streamy (400px) */
+.youtube-latest-video iframe {
+    height: 400px !important;
+}
 
-/* Kontejner pro zajištění poměru stran 16:9 pro video */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-}
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 .manual-update-note {
     text-align: center;
     color: #cc0000;
@@ -188,4 +205,13 @@ h2 {
     min-height: 250px;
     background-color: #f9f9f9;
     border: 1px dashed #ccc;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: #777;
+    border-top: 1px solid #eee;
 }

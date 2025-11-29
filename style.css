@@ -3,7 +3,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-image: url('img/background.jpg?v=2'); /* Přidána nová verze pro zrušení cache pozadí */
+    background-image: url('img/background.jpg?v=3'); /* Aktualizováno pro vynucení cache */
     background-size: cover; 
     background-attachment: fixed; 
     background-color: #333;
@@ -11,8 +11,8 @@ body {
 }
 
 header {
-    background: #4a148c;
-    color: #fff;
+    background: none; 
+    color: white; 
     padding: 20px 0;
     text-align: center;
 }
@@ -33,7 +33,7 @@ section {
 
 h2 {
     color: #4a4a4a;
-    border-bottom: 2px solid #eee;
+    border-bottom: none; 
     padding-bottom: 10px;
 }
 
@@ -61,7 +61,7 @@ h2 {
 }
 
 .tab-button.active, .content-button.active {
-    color: #4a148c;
+    color: #4a148c; 
     border-bottom: 3px solid #4a148c;
 }
 
@@ -166,19 +166,25 @@ h2 {
 .tiktok-link-box p { font-size: 1.5em; font-weight: bold; margin: 0; }
 
 
-/* --- INSTAGRAM WIDGET OPRAVA VELIKOSTI --- */
+/* --- INSTAGRAM WIDGET OPRAVA VELIKOSTI A ZAROVNÁNÍ --- */
 .instagram-widget-container {
+    display: flex; /* Důležité pro vycentrování */
+    justify-content: center; /* Vycentrování horizontálně */
+    align-items: center; /* Vycentrování vertikálně (pokud má kontejner pevnou výšku) */
     min-height: 250px; 
     background-color: #f9f9f9;
     padding: 0;
 }
 
-.instagram-widget-container iframe.snapwidget-widget {
-    width: 100% !important; 
-    height: 600px !important; /* Důležité: Nastaví pevnou výšku, aby se widget nerozpadal */
+.instagram-widget-container iframe.lightwidget-widget {
+    width: 100% !important; /* DŮLEŽITÉ: Přepíše inline styl */
+    height: 350px !important; /* Můžete upravit výšku dle potřeby, LightWidget se lépe přizpůsobuje */
     border: none;
+    /* --- Přidáno pro vycentrování iframe --- */
+    display: block; 
+    margin: 0 auto; 
 }
-/* --- KONEC INSTAGRAM WIDGET OPRAVA VELIKOSTI --- */
+/* --- KONEC INSTAGRAM WIDGET OPRAVA VELIKOSTI A ZAROVNÁNÍ --- */
 
 
 footer {

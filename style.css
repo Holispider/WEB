@@ -3,7 +3,8 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-image: url('img/background.jpg?v=3'); /* Aktualizováno pro vynucení cache */
+    /* Opraveno pozadí a cache */
+    background-image: url('img/background.jpg?v=5'); 
     background-size: cover; 
     background-attachment: fixed; 
     background-color: #333;
@@ -33,7 +34,7 @@ section {
 
 h2 {
     color: #4a4a4a;
-    border-bottom: none; 
+    border-bottom: none; /* Odstraněna čára */
     padding-bottom: 10px;
 }
 
@@ -41,10 +42,11 @@ h2 {
     display: none !important;
 }
 
+/* Styly pro tabulátory (Streamy a Obsah) */
 .stream-tabs, .content-tabs {
     display: flex;
     margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: none; /* Odstraněna čára */
     overflow-x: auto;
 }
 
@@ -62,7 +64,7 @@ h2 {
 
 .tab-button.active, .content-button.active {
     color: #4a148c; 
-    border-bottom: 3px solid #4a148c;
+    border-bottom: none; /* Odstraněna čára */
 }
 
 .tab-button:hover, .content-button:hover:not(.active) {
@@ -70,7 +72,7 @@ h2 {
 }
 
 .stream-content, .content-area {
-    border: 1px solid #ddd;
+    border: none; /* Odstraněny rámečky */
     border-radius: 4px;
     padding: 15px;
 }
@@ -128,7 +130,7 @@ h2 {
 .tts-examples label { display: block; margin-top: 10px; font-weight: bold; }
 
 
-/* --- YOUTUBE VOD OBRÁZEK STYLY --- */
+/* --- YOUTUBE VOD OBRÁZEK STYLY (Finalizováno) --- */
 .youtube-latest-video { padding-top: 0; }
 .youtube-latest-video h2 { margin-top: 0; }
 
@@ -166,25 +168,30 @@ h2 {
 .tiktok-link-box p { font-size: 1.5em; font-weight: bold; margin: 0; }
 
 
-/* --- INSTAGRAM WIDGET OPRAVA VELIKOSTI A ZAROVNÁNÍ --- */
-.instagram-widget-container {
-    display: flex; /* Důležité pro vycentrování */
-    justify-content: center; /* Vycentrování horizontálně */
-    align-items: center; /* Vycentrování vertikálně (pokud má kontejner pevnou výšku) */
-    min-height: 250px; 
-    background-color: #f9f9f9;
-    padding: 0;
+/* --- INSTAGRAM ODKAZ BOX (Finalizováno) --- */
+.instagram-embed {
+    padding: 20px;
 }
-
-.instagram-widget-container iframe.lightwidget-widget {
-    width: 100% !important; /* DŮLEŽITÉ: Přepíše inline styl */
-    height: 350px !important; /* Můžete upravit výšku dle potřeby, LightWidget se lépe přizpůsobuje */
-    border: none;
-    /* --- Přidáno pro vycentrování iframe --- */
-    display: block; 
-    margin: 0 auto; 
+.instagram-vod-link-box {
+    display: block;
+    cursor: pointer;
+    background: #E1306C; /* Instagram color */
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    text-decoration: none;
 }
-/* --- KONEC INSTAGRAM WIDGET OPRAVA VELIKOSTI A ZAROVNÁNÍ --- */
+.instagram-vod-link-box:hover {
+    background: #b82655;
+}
+.instagram-vod-link-box p {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0;
+}
+/* --- KONEC INSTAGRAM ODKAZ BOX --- */
 
 
 footer {
@@ -192,5 +199,5 @@ footer {
     padding: 10px;
     margin-top: 20px;
     color: #777;
-    border-top: 1px solid #eee;
+    border-top: none; /* Odstraněna čára */
 }

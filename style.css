@@ -32,8 +32,8 @@ main {
 
 section {
     background: rgba(255, 255, 255, 0.9);
-    padding: 20px; /* Jednotné odsazení shora, zdola a z boku */
-    margin-bottom: 30px; /* Jednotná mezera mezi sekcemi */
+    padding: 20px;
+    margin-bottom: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -42,9 +42,7 @@ h2 {
     color: #4a4a4a;
     border-bottom: none; 
     padding-bottom: 10px;
-    /* --- OPRAVA: Jednotné odsazení H2 od obsahu pod ním --- */
     margin-bottom: 10px; 
-    /* --- OPRAVA: Zajištění, že H2 je správně odsazeno od horního okraje sekce --- */
     margin-top: 0; 
 }
 
@@ -146,11 +144,8 @@ h2 {
 
 
 /* --- YOUTUBE VOD OBRÁZEK STYLY --- */
-.youtube-latest-video { 
-    /* --- OPRAVENO: Odstraněno rušivé padding-top: 0, aby se dodrželo obecné odsazení sekce --- */
-    /* padding-top: 0; */ 
-}
-.youtube-latest-video h2 { margin-top: 0; } /* Toto zajistí, že nadpis neudělá velkou mezeru */
+.youtube-latest-video { padding-top: 0; }
+.youtube-latest-video h2 { margin-top: 0; }
 
 .youtube-vod-image-link {
     display: block;
@@ -193,14 +188,12 @@ h2 {
 }
 .instagram-widget-container {
     padding: 0;
-    /* --- OPRAVENO: Nastavíme minimální výšku a zajistíme 100% šířku pro iframe --- */
-    min-height: 400px; 
-    width: 100%; /* Kontejner se roztáhne na 100% */
+    min-height: 400px;
 }
 
 .instagram-widget-container iframe.snapwidget-widget {
-    width: 100% !important; /* Důležité: Přepisujeme inline styl */
-    height: 500px !important; /* Důležité: Přepisujeme inline styl, nastavíme pevnou rozumnou výšku */
+    width: 100% !important; 
+    height: 400px !important; 
     border: none;
     display: block;
 }

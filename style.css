@@ -32,8 +32,8 @@ main {
 
 section {
     background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    margin-bottom: 30px;
+    padding: 20px; /* JEDNOTNÉ ODSZENÍ SHORA/ZDOLA/ZBOKU */
+    margin-bottom: 30px; 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -46,13 +46,13 @@ h2 {
     margin-top: 0; 
 }
 
-/* --- NOVÝ STYL PRO ROZVRH --- */
+/* --- NOVÝ STYL PRO ROZVRH (OPRAVÍ VIZUÁLNÍ MEZERU POD H2) --- */
 .stream-schedule {
     font-weight: bold;
-    color: #4a148c; /* Fialová pro důležitost */
+    color: #4a148c; 
     font-size: 1.1em;
-    margin-top: -10px; /* Přitažení k H2 */
-    margin-bottom: 25px; /* Oddělení od tabulátorů */
+    margin-top: -10px; /* Přitáhne text k h2 */
+    margin-bottom: 25px; 
 }
 /* --- KONEC NOVÉHO STYLU --- */
 
@@ -115,7 +115,8 @@ h2 {
 /* Odkazy na platformy */
 .platform-links {
     text-align: center;
-    padding: 0 10px 10px 10px;
+    /* Změněno, aby odsazení shora a zdola bylo sjednocené */
+    padding: 10px 10px 10px 10px; 
     margin-top: 10px;
 }
 

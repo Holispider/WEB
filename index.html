@@ -26,128 +26,222 @@
             </ul>
         </nav>
 
-        <section class="stream-switcher">
-            <h2>🔴 Aktuální Streamy</h2>
-            
-            <p class="stream-schedule">Strým je na všech platformách PO-PÁ od 17:30. Většinou se ve stejný čas vidíme i o víkendu, ale ne vždy.</p>
-            
-            <p class="stream-recommendation">
-                Nevíš přes jakou platformu koukat? Primárně si vyber tu co ti nejvíce vyhovuje, ale pokud řešíš jaká je nejlepší pro mě, tak si vyber **YouTube**.
-            </p>
+        <div class="split-content">
 
-            <div class="stream-tabs">
-                <button class="tab-button active" data-tab="kick">Kick</button>
-                <button class="tab-button" data-tab="youtube-live">YouTube</button>
-                <button class="tab-button" data-tab="twitch">Twitch</button>
-                <button class="tab-button" data-tab="tiktok">TikTok</button>
-            </div>
-
-            <div class="stream-content">
-                
-                <div id="kick" class="tab-content active">
-                    <iframe 
-                        src="https://player.kick.com/holispider" 
-                        width="100%" 
-                        height="400" 
-                        frameborder="0" 
-                        scrolling="no" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-
-                <div id="youtube-live" class="tab-content hidden">
-                    <iframe 
-                        src="https://www.youtube.com/embed/live_stream?channel=UCFUvfLQBXpSfaSODzzszgmA" 
-                        width="100%" 
-                        height="400" 
-                        frameborder="0" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                
-                <div id="twitch" class="tab-content hidden">
-                    <iframe 
-                        src="https://player.twitch.tv/?channel=holispider&parent=holispider.github.io" 
-                        width="100%" 
-                        height="400" 
-                        frameborder="0" 
-                        scrolling="no" 
-                        allowfullscreen 
-                        allow="autoplay; fullscreen">
-                    </iframe>
-                </div>
-
-                <div id="tiktok" class="tab-content hidden">
-                    <div class="tiktok-link-box" onclick="window.open('https://www.tiktok.com/@holispider?lang=cs-CZ', '_blank');">
-                        <p>🔴 KLIKNĚTE PRO ZOBRAZENÍ LIVE STREAMU NA TIKTOKU</p>
+            <div class="sidebar-left">
+                <section class="instagram-banner black-bg">
+                    <h2>📸 Mrkni i na Instagram!</h2>
+                    <p class="banner-info">Aktuální příspěvky z Instagramu:</p>
+                    <div class="instagram-widget-container">
+                        <iframe src="https://snapwidget.com/embed/1113657" 
+                            id="instagram-iframe"
+                            class="snapwidget-widget" 
+                            allowtransparency="true" 
+                            frameborder="0" 
+                            scrolling="no" 
+                            style="border:none; overflow:hidden; width:330px; height:10780px" 
+                            title="Posts from Instagram">
+                        </iframe>
                     </div>
-                </div>
+                    <a href="https://www.instagram.com/holispider/" target="_blank" class="instagram-all-posts-link">Zobrazit vše na Instagramu</a>
+                </section>
             </div>
             
-        </section>
+            <div class="main-stream-area">
 
-        <section id="latest-youtube-video" class="youtube-latest-video">
-            <h2>🎥 Koukni i na videa!</h2>
-            <a href="https://www.youtube.com/@holispider/videos" target="_blank" class="youtube-vod-image-link">
-                <img src="img/YT%20video.jpg" alt="Zástupný obrázek, který vede na všechna videa YouTube kanálu Holispider">
-            </a>
-        </section>
+                <section class="stream-switcher">
+                    <h2>🔴 Aktuální Streamy</h2>
+                    
+                    <p class="stream-schedule">Strým je na všech platformách PO-PÁ od 17:30. Většinou se ve stejný čas vidíme i o víkendu, ale ne vždy.</p>
+                    
+                    <p class="stream-recommendation">
+                        Nevíš přes jakou platformu koukat? Primárně si vyber tu co ti nejvíce vyhovuje, ale pokud řešíš jaká je nejlepší pro mě, tak si vyber **YouTube**.
+                    </p>
 
-        <section class="instagram-embed">
-            <h2>📸 Mrkni i na Instagram! Kde se dozvíš aktuality!</h2>
-            <div class="instagram-widget-container">
-                <iframe src="https://snapwidget.com/embed/1113657" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:990px; height:3234px" title="Posts from Instagram"></iframe>
-            </div>
-        </section>
-
-        <section class="main-info">
-            <h2>ℹ️ Detaily o Streamu a komunitě</h2>
-            <div class="content-tabs">
-                <button class="content-button active" data-content="podpora">Podpora a TTS</button>
-                <button class="content-button" data-content="kdo-je-holi">Kdo je Holí</button>
-                <button class="content-button" data-content="nabidka">Co nabízí stream</button>
-                <button class="content-button" data-content="navic">Časem něco navíc</button>
-            </div>
-
-            <div class="content-area">
-                <div id="podpora" class="content-panel active">
-                    <h3>Děkuji za podporu a TTS ukázky!</h3>
-                    <p>Zde budou informace o tom, jak mě podpořit (donate odkazy, suby, bits, atd.).</p>
-                    <h4>Ukázky TTS hlasů</h4>
-                    <p>Zde si můžete poslechnout, jak znějí hlasy Text-to-Speech dostupné za body na streamu:</p>
-                    <div class="tts-examples">
-                        <label>🎙️ Hlas 1 (Robot):</label>
-                        <audio controls aria-label="Ukázka hlasu Robot">
-                            <source src="audio/tts_robot.mp3" type="audio/mpeg">
-                            Váš prohlížeč nepodporuje přehrávání zvuku.
-                        </audio>
-                        <label>🎙️ Hlas 2 (Dámský):</label>
-                        <audio controls aria-label="Ukázka Dámského hlasu">
-                            <source src="audio/tts_damsky.mp3" type="audio/mpeg">
-                            Váš prohlížeč nepodporuje přehrávání zvuku.
-                        </audio>
-                        <p>Nezapomeňte vytvořit složku **`audio`** a nahrát sem vaše MP3 soubory!</p>
+                    <div class="stream-tabs">
+                        <button class="tab-button active" data-tab="kick">Kick</button>
+                        <button class="tab-button" data-tab="youtube-live">YouTube</button>
+                        <button class="tab-button" data-tab="twitch">Twitch</button>
+                        <button class="tab-button" data-tab="tiktok">TikTok</button>
                     </div>
-                </div>
 
-                <div id="kdo-je-holi" class="content-panel hidden">
-                    <h3>Kdo jsem?</h3>
-                    <p>Jsem [Vaše jméno/nick], nadšený streamer, který se věnuje [žánr/téma] a baví se [vaše zájmy]. Cílem je vytvořit [cíl komunity].</p>
-                </div>
+                    <div class="stream-content">
+                        
+                        <div id="kick" class="tab-content active">
+                            <iframe 
+                                src="https://player.kick.com/holispider" 
+                                width="100%" 
+                                height="400" 
+                                frameborder="0" 
+                                scrolling="no" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
 
-                <div id="nabidka" class="content-panel hidden">
-                    <h3>Stream funkcionality</h3>
-                    <p>Zde vysvětlíte klíčové prvky vašeho streamu: kanálové body, speciální emotikony, pravidla, atd.</p>
-                </div>
+                        <div id="youtube-live" class="tab-content hidden">
+                            <iframe 
+                                src="https://www.youtube.com/embed/live_stream?channel=UCFUvfLQBXpSfaSODzzszgmA" 
+                                width="100%" 
+                                height="400" 
+                                frameborder="0" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <div id="twitch" class="tab-content hidden">
+                            <iframe 
+                                src="https://player.twitch.tv/?channel=holispider&parent=holispider.github.io" 
+                                width="100%" 
+                                height="400" 
+                                frameborder="0" 
+                                scrolling="no" 
+                                allowfullscreen 
+                                allow="autoplay; fullscreen">
+                            </iframe>
+                        </div>
 
-                <div id="navic" class="content-panel hidden">
-                    <h3>Co přijde?</h3>
-                    <p>Sekce pro budoucí plány, jako jsou speciální eventy, turnaje, nové hry nebo další rozšíření komunity.</p>
-                </div>
+                        <div id="tiktok" class="tab-content hidden">
+                            <div class="tiktok-link-box" onclick="window.open('https://www.tiktok.com/@holispider?lang=cs-CZ', '_blank');">
+                                <p>🔴 KLIKNĚTE PRO ZOBRAZENÍ LIVE STREAMU NA TIKTOKU</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </section>
+
+                <section id="latest-youtube-video" class="youtube-latest-video">
+                    <h2>🎥 Koukni i na videa!</h2>
+                    <a href="https://www.youtube.com/@holispider/videos" target="_blank" class="youtube-vod-image-link">
+                        <img src="img/YT%20video.jpg" alt="Zástupný obrázek, který vede na všechna videa YouTube kanálu Holispider">
+                    </a>
+                </section>
+
+                <section class="main-info">
+                    <h2>ℹ️ Detaily o Streamu a komunitě</h2>
+
+                    <div class="content-tabs">
+                        <button class="content-button active" data-content="kdo-je-holi">Kdo je Holí</button>
+                        <button class="content-button" data-content="nabidka">Co nabízí stream</button>
+                        <button class="content-button" data-content="navic">Časem něco navíc</button>
+                        <button class="content-button" data-content="tts-kody">TTS Kódy a Ukázky</button>
+                    </div>
+
+                    <div class="content-area">
+                        <div id="kdo-je-holi" class="content-panel active">
+                            <h3>Kdo jsem?</h3>
+                            <p>Jsem [Vaše jméno/nick], nadšený streamer, který se věnuje [žánr/téma] a baví se [vaše zájmy]. Cílem je vytvořit [cíl komunity].</p>
+                        </div>
+
+                        <div id="nabidka" class="content-panel hidden">
+                            <h3>Stream funkcionality</h3>
+                            <p>Zde vysvětlíte klíčové prvky vašeho streamu: kanálové body, speciální emotikony, pravidla, atd.</p>
+                        </div>
+
+                        <div id="navic" class="content-panel hidden">
+                            <h3>Co přijde?</h3>
+                            <p>Sekce pro budoucí plány, jako jsou speciální eventy, turnaje, nové hry nebo další rozšíření komunity.</p>
+                        </div>
+
+                        <div id="tts-kody" class="content-panel hidden">
+                            <h3>📢 Zvukové Alerty a TTS</h3>
+                            
+                            <h4>⭐ Zvukové Alerty za Donaty</h4>
+                            <p>Zde si můžete poslechnout ukázky zvukových alertů, které se přehrají na streamu po odeslání Donatu v dané výši:</p>
+                            <ul class="tts-list-grid wide-grid">
+                                <li><label>25 Kč – Deam</label><audio controls><source src="audio/alert_25.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>50 Kč – Ber to pozitivně</label><audio controls><source src="audio/alert_50.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>100 Kč – Borat pes</label><audio controls><source src="audio/alert_100.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>200 Kč – Tornádo siréna</label><audio controls><source src="audio/alert_200.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>400 Kč – Levantense</label><audio controls><source src="audio/alert_400.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>750 Kč – SK Přátelé</label><audio controls><source src="audio/alert_750.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>1000 Kč – Ahoj holoubku</label><audio controls><source src="audio/alert_1000.mp3" type="audio/mpeg"></audio></li>
+                            </ul>
+                            <p>Nezapomeňte nahrát všechny MP3 soubory pro alerty (např. alert_25.mp3) do složky **`audio`**!</p>
+                            
+                            <h4>🎙️ Hlasové Kódy (TTS) a Ukázky</h4>
+                            <p class="tts-explanation">
+                                Vylepši svůj donate hlasem nebo zvukem! Na začátek části textu napiš kód hlasu (např. <code>!h1</code>) a zbytek se přečte vybraným hlasem. Hlasy můžeš kombinovat a opakovat.
+                            </p>
+                            <p>Příklad: <code>!h1</code> Kdo vypnul server? <code>!h2</code> Určitě ty. <code>!h3</code> Ne, to byl on! <code>!h4</code> Ehm… myslel jsem, že je to vypínač světla.</p>
+                            
+                            <h5>Hlavní hlasy:</h5>
+                            <ul class="tts-list-grid wide-grid">
+                                <li><label>!h1 Mimon</label><audio controls><source src="audio/h1.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h2 Elektrický</label><audio controls><source src="audio/h2.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h3 Kočka</label><audio controls><source src="audio/h3.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h4 Pan kočka</label><audio controls><source src="audio/h4.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h5 Pan pes</label><audio controls><source src="audio/h5.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h6 Čikámnek</label><audio controls><source src="audio/h6.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h7 Démonka</label><audio controls><source src="audio/h7.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h8 Zombie</label><audio controls><source src="audio/h8.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h9 Ogr</label><audio controls><source src="audio/h9.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h10 Děsivý tel.</label><audio controls><source src="audio/h10.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h11 Děsivá panenka</label><audio controls><source src="audio/h11.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h12 Démon</label><audio controls><source src="audio/h12.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h13 Bitevní droid</label><audio controls><source src="audio/h13.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h14 Robot</label><audio controls><source src="audio/h14.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h15 Cyberpunk</label><audio controls><source src="audio/h15.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h16 Rytíř</label><audio controls><source src="audio/h16.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h17 Pirát</label><audio controls><source src="audio/h17.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h18 Anime dívka</label><audio controls><source src="audio/h18.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h19 Crime vypravěč</label><audio controls><source src="audio/h19.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h20 Sci-fi vypravěč</label><audio controls><source src="audio/h20.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h21 Božský vypravěč</label><audio controls><source src="audio/h21.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h22 Demonické rádio</label><audio controls><source src="audio/h22.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h23 Policejní hlášení</label><audio controls><source src="audio/h23.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h24 Párty vypravěč</label><audio controls><source src="audio/h24.mp3" type="audio/mpeg"></audio></li>
+                            </ul>
+                            
+                            <h5>Tématické / Zvukové efekty:</h5>
+                            <ul class="tts-list-grid wide-grid">
+                                <li><label>!h25 Vánoční</label><audio controls><source src="audio/h25.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h26 Párty</label><audio controls><source src="audio/h26.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h27 Narozeniny</label><audio controls><source src="audio/h27.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h28 Pospěš si</label><audio controls><source src="audio/h28.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h29 Zvuky příšery</label><audio controls><source src="audio/h29.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h30 Zvuky myšáka</label><audio controls><source src="audio/h30.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h31 Zvuk děsu</label><audio controls><source src="audio/h31.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h32 Zvuk prasete</label><audio controls><source src="audio/h32.mp3" type="audio/mpeg"></audio></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
             </div>
-        </section>
+            
+            <div class="sidebar-right">
+                <section class="support-banner black-bg">
+                    <h2>💰 Podpoř Stream</h2>
+                    
+                    <div class="support-info">
+                        <p>Nejlepší způsob podpory mé tvorby je <strong>likovat, komentovat</strong> a co nejdéle sledovat <strong>streamy a videa</strong>.</p>
+                        <p>Pokud chceš ale podpořit moji tvorbu ještě více, nejlepší je to formou <strong>Donatu</strong>.</p>
+                        
+                        <a href="https://streamelements.com/holispider/tip" target="_blank" class="donate-link">
+                            ➡️ POŠLI DONATE ZDE ⬅️
+                        </a>
+                        <p class="donate-note">U Donatu můžeš poslat i hlasovou zprávu.</p>
+                    </div>
 
-    </main>
+                    <h3 class="tts-header">📢 Zvukové Alerty</h3>
+                    
+                    <a href="#tts-kody" class="tts-proklik-link" onclick="handleTTSLinkClick(event)">
+                        ➡️ ZOBRAZIT VŠECHNY TTS KÓDY ⬅️
+                    </a>
+                    
+                    <h3 class="subs-header">🔗 Subscribce / Členství</h3>
+                    <div class="subscription-info">
+                        <p>Pokud chceš zvolit <strong>Suba</strong> nebo <strong>člena</strong>, na každé platformě to je trochu jinak:</p>
+                        <ul class="platform-subs">
+                            <li><strong>Kick:</strong> Dostanu <strong>100%</strong> příjmů.</li>
+                            <li><strong>YouTube</strong> (<a href="https://www.youtube.com/channel/UCFUvfLQBXpSfaSODzzszgmA/join" target="_blank">připojit se</a>): Dostanu <strong>70%</strong> (od T2 máš videa s předstihem).</li>
+                            <li><strong>Twitch:</strong> Dostanu <strong>30%</strong> (ale nemáš reklamy).</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+        </div> </main>
 
     <footer>
         <p>&copy; 2025 Holispider. Vytvořeno pro komunitu.</p>

@@ -27,12 +27,15 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+/* ÚPRAVA: HLAVNÍ KONTEJNER PRO GRID (Mírně zvětšen pro širší střed) */
 main {
     padding: 20px;
-    max-width: 1000px;
+    max-width: 1500px; /* Povoluje širší layout pro Grid */
     margin: auto;
+    position: relative;
 }
 
+/* Bílý box pro hlavní sekce (streamy, videa, detaily) */
 section {
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
@@ -42,7 +45,7 @@ section {
 }
 
 h2, h3, h4 {
-    color: #333333; 
+    color: #333333;
     margin-top: 10px; 
     margin-bottom: 10px;
 }
@@ -61,23 +64,20 @@ h2 {
 }
 
 /* ========================================================== */
-/* ODKAZY NA PLATFORMY (NAV) - BEZ RÁMEČKU */
+/* ODKAZY NA PLATFORMY (NAV) */
 /* ========================================================== */
 .platform-links {
+    padding: 20px 20px;
+    margin-bottom: 30px; 
+    border-radius: 8px;
     text-align: center;
-    background: none; 
-    box-shadow: none;
-    border-radius: 0;
-    
-    padding: 20px 20px 40px 20px; 
-    margin-bottom: 0; 
 }
 
 .link-icons {
     display: flex;
     flex-wrap: wrap; 
     justify-content: center; 
-    gap: 15px; 
+    gap: 15px;
     list-style: none; 
     padding: 0;
     margin: 0;
@@ -85,12 +85,13 @@ h2 {
 
 .platform-link {
     display: inline-block;
-    padding: 10px 20px; 
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 20px;
     font-weight: bold;
     transition: background-color 0.3s, filter 0.3s;
-    font-size: 1.1em; 
+    font-size: 1.1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .platform-link:hover {
@@ -107,8 +108,342 @@ h2 {
 
 
 /* ========================================================== */
-/* SEKCE STREAMY (ROZVRH A DOPORUČENÍ) */
+/* ROZDĚLENÍ OBSAHU (GRID LAYOUT) */
 /* ========================================================== */
+.split-content {
+    display: grid;
+    /* Pevné šířky pro stabilní střed 800px a bannery 330px */
+    grid-template-columns: 330px 800px 330px; 
+    gap: 20px; 
+    margin-bottom: 30px;
+    
+    /* Vycentrování celého gridu */
+    width: 1500px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hlavní obsah uprostřed (Střed je stabilní) */
+.main-stream-area {
+    width: 800px; /* Pevná šířka pro širší střed (800px) */
+    margin: 0;
+    padding: 0;
+}
+
+/* ========================================================== */
+/* POSTRANNÍ BANNERY (GRID A VERTKÁLNÍ POSUN) */
+/* ========================================================== */
+
+/* Bannery se posouvají s obsahem, ale začínají níže */
+.sidebar-left, .sidebar-right {
+    padding-top: 0; 
+    height: 100%; 
+    /* Používáme margin-top k posunutí dolů v toku Gridu */
+    margin-top: 150px; /* Začíná kus pod 'Aktuální Streamy' */
+}
+
+/* Pevná výška sekce pro vyplnění prázdného prostoru */
+.sidebar-left section {
+    margin-bottom: 0;
+    height: 860px; /* Pevná výška 860px */
+}
+.sidebar-right section {
+    margin-bottom: 0;
+    height: 860px; /* Pevná výška 860px */
+}
+
+
+/* Udržujeme margin na hlavních sekcích v prostředním sloupci */
+.main-stream-area section {
+    margin-bottom: 30px;
+}
+.main-stream-area section:last-child {
+    margin-bottom: 0;
+}
+
+/* Černé pozadí pro bannery */
+.black-bg {
+    background: rgba(0, 0, 0, 0.8) !important;
+    color: #f0f0f0 !important;
+    padding: 15px;
+    height: 100%; 
+}
+
+.black-bg h2, .black-bg h3, .black-bg h4 {
+    color: white !important;
+}
+
+.black-bg a {
+    color: #53ec9d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- NOVÉ/UPRAVENÉ STYLY PRO SEKCI PODPORY --- */
+
+.donate-link {
+    display: block;
+    text-align: center;
+    background-color: #FF0000;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 10px 0 5px 0;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.donate-link:hover {
+    background-color: #cc0000;
+}
+
+.donate-note {
+    font-size: 0.9em;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* NOVÉ: Tlačítko pro proklik na TTS kódy v banneru */
+.tts-proklik-link {
+    display: block;
+    text-align: center;
+    background-color: #53ec9d; 
+    color: #000000; /* KONTRAST: Černý text na zeleném pozadí */
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 10px 0 15px 0;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.tts-proklik-link:hover {
+    background-color: #33c77d;
+}
+
+.subs-header {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* VYNUCENÍ TUČNÉHO PÍSMA A ZALOMENÍ V BANNERU */
+.support-info p, .subscription-info p, .platform-subs li, .donation-tiers li {
+    word-wrap: break-word; 
+    line-height: 1.4; 
+}
+.support-info strong, .subscription-info strong, .platform-subs strong, .donation-tiers strong {
+    font-weight: 900 !important; /* Vynucení tučného písma */
+    color: #53ec9d; 
+}
+
+/* SEZNAMY V ČERNÉM BANNERU */
+.donation-tiers { /* Nový styl pro Alerty */
+    list-style: none;
+    padding-left: 0;
+    margin-top: 5px;
+    padding-left: 10px; 
+}
+.donation-tiers li {
+    margin-bottom: 5px;
+    color: #ccc;
+    font-size: 0.95em;
+    list-style-type: none; 
+}
+
+.platform-subs {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 5px;
+}
+
+.platform-subs li {
+    margin-bottom: 5px;
+    color: #ccc;
+    font-size: 0.95em;
+    word-wrap: break-word; 
+}
+/* ------------------------------------- */
+
+
+/* ========================================================== */
+/* STYLY PRO TTS KÓDY V HLAVNÍ SEKCI (main-info) */
+/* ========================================================== */
+
+.tts-explanation code {
+    background-color: #f0f0f0; 
+    color: #1a1a1a;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* NOVÝ FLEXIBILNÍ GRID PRO SEZNAM TTS HLASŮ (v hlavním obsahu) */
+.tts-list-grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+/* Pro širší obsah se roztáhneme na dva sloupce */
+.tts-list-grid.wide-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+}
+
+.tts-list-grid li {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+}
+.tts-list-grid label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Audio přehrávače */
+.tts-list-grid audio {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+}
+/* ------------------------------------- */
+
+
+/* ========================================================== */
+/* INSTAGRAM WIDGET (PŘÍPRAVA NA ROTACI BEZ SCROLLU) */
+/* ========================================================== */
+.instagram-widget-container {
+    padding: 0;
+    min-height: 400px; 
+    /* SKRYJE PŘESAHUJÍCÍ OBSAH (ODSTRANĚNÍ SCROLL BARU) */
+    overflow-y: hidden;
+    /* ZMĚNA: Pevná výška, která bude sloužit jako výřez pro rotující obsah */
+    height: 760px; 
+    max-height: 760px;
+    position: relative; 
+}
+
+.instagram-widget-container iframe.snapwidget-widget {
+    width: 330px !important; 
+    height: 10780px !important; 
+    border: none;
+    display: block;
+    transform: translateY(0); 
+    transition: transform 1s ease-in-out; 
+}
+
+/* Odkaz "Zobrazit vše" */
+.instagram-all-posts-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    padding: 5px;
+    border: 1px solid #E1306C;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+.instagram-all-posts-link:hover {
+    background-color: #E1306C;
+}
+
+
+/* ========================================================== */
+/* RESPONSIVITA (ÚPRAVA PRO NOVÝ GRID) */
+/* ========================================================== */
+
+@media (min-width: 1201px) {
+    /* Ujistíme se, že ve velkém obsahu je TTS grid ve dvou sloupcích */
+    .main-info #tts-kody .tts-list-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 1550px) { /* Když se monitor zmenší, zmenšujeme mezery a šířky */
+    .split-content {
+        grid-template-columns: 330px 800px 330px; 
+        width: 1400px;
+    }
+}
+
+@media (max-width: 1450px) {
+    .split-content {
+        grid-template-columns: 250px 750px 250px; 
+        width: 1300px; 
+    }
+}
+
+@media (max-width: 1350px) {
+    .split-content {
+        grid-template-columns: 200px 700px 200px; 
+        width: 1140px; 
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .split-content {
+        grid-template-columns: 1fr; /* Přejdeme na jeden sloupec */
+        width: 100%;
+    }
+    .sidebar-left, .sidebar-right {
+        margin-top: 0; /* Zrušit vertikální posun */
+        padding-top: 0;
+    }
+    .sidebar-left section, .sidebar-right section {
+        height: auto; /* Zrušit pevnou výšku */
+        margin-bottom: 30px;
+    }
+    
+    /* Na mobilu, kde je TTS v hlavním sloupci, se roztáhne na 100% */
+    .main-info #tts-kody .tts-list-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ... (zbytek mobilních stylů pro 900px dolů beze změny) ... */
+
+@media (max-width: 900px) {
+    main {
+        max-width: 600px;
+    }
+
+    .split-content {
+        grid-template-columns: 1fr;
+        gap: 0; 
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .sidebar-left, .sidebar-right {
+        padding-top: 0; 
+    }
+    .sidebar-left section, 
+    .sidebar-right section {
+        margin-bottom: 30px;
+        height: auto;
+    }
+    
+    .instagram-widget-container {
+        overflow-y: visible; 
+        max-height: none;
+        height: auto;
+    }
+    .instagram-widget-container iframe.snapwidget-widget {
+        width: 100% !important; 
+        transform: none; 
+    }
+}
+
+
+/* ========================================================== */
+/* ZBYTEK STYLŮ (TABULÁTORY, STREAMY, WIDGETY) */
+/* ========================================================== */
+
 .stream-schedule {
     font-weight: bold;
     color: #333;
@@ -132,97 +467,52 @@ h2 {
     color: #FF0000;
 }
 
-/* Styly pro tabulátory (opravené styly) */
+/* OPRAVA ROZBITÝCH TLAČÍTEK - ZNOVU PŘIDÁVÁM ZÁKLADNÍ STYLY */
 .stream-tabs, .content-tabs {
     display: flex;
     margin-bottom: 15px;
-    border-bottom: none;    
+    border-bottom: none;     
     overflow-x: auto;
 }
 
 .tab-button, .content-button {
-    flex-shrink: 0;    
+    flex-shrink: 0;     
     background: none;
-    border: 1px solid transparent;
-    padding: 9px 14px;
+    border: 1px solid #ccc; /* Vizuální oprava */
+    padding: 9px 14px; 
     cursor: pointer;
     font-size: 1em;
     font-weight: bold;
     color: #555;
     transition: all 0.3s ease;
+    white-space: nowrap; 
 }
 
 .tab-button.active, .content-button.active {
-    background-color: #ffffff;    
+    background-color: #ffffff;     
     border: 2px solid #555; 
     border-radius: 5px;
-    color: #000000;    
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);    
+    color: #000000;     
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);     
     padding: 8px 13px;
 }
+/* Konec opravy tlačítek */
 
 .tab-button:hover, .content-button:hover:not(.active) {
     color: #000;
 }
 
 .stream-content, .content-area {
-    border: none;    
+    border: none;     
     border-radius: 4px;
     padding: 15px;
 }
 
-/* ========================================================== */
-/* DYNAMICKÉ ROZVRŽENÍ PRO DESKTOP (Grid Layout) - OPRAVENO */
-/* ========================================================== */
-@media (min-width: 900px) {
-    main {
-        display: grid;
-        grid-template-columns: 2fr 1fr; /* Levý širší, Pravý užší */
-        gap: 30px; 
-        grid-auto-rows: min-content; 
-    }
-
-    /* Navigace přes celou šířku */
-    nav.platform-links {
-        grid-column: 1 / -1; 
-        padding-bottom: 20px;
-    }
-
-    /* LEVÝ SLOUPEC (2fr) - Streamy nahoře, Videa dole */
-    .stream-switcher { 
-        grid-column: 1 / 2; 
-        grid-row: 2; 
-    } 
-    #latest-youtube-video { 
-        grid-column: 1 / 2; 
-        grid-row: 3; 
-    } 
-    
-    /* PRAVÝ SLOUPEC (1fr) - Instagram nahoře, Detaily dole */
-    .instagram-embed { 
-        grid-column: 2 / 3; 
-        grid-row: 2; 
-    } 
-    .main-info { 
-        grid-column: 2 / 3; 
-        grid-row: 3; 
-    }
-    
-    /* Zajištění, že Instagram IFRAME má novou pevnou výšku */
-    .instagram-widget-container iframe.snapwidget-widget {
-        height: 3234px !important;
-        min-height: 400px;
-    }
-}
-
-
-/* ========================================================== */
-/* WIDGETS A PŘETÉKÁNÍ */
-/* ========================================================== */
+/* OPRAVA SEKCE KOUKNI I NA VIDEA */
 .youtube-vod-image-link {
     display: block;
     cursor: pointer;
-    overflow: hidden; 
+    overflow: hidden;
     border-radius: 4px;
     line-height: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -235,24 +525,10 @@ h2 {
     transition: transform 0.3s ease;
 }
 
-.instagram-widget-container {
-    padding: 0;
-    min-height: 400px;
+.youtube-vod-image-link:hover img {
+    transform: scale(1.03); 
 }
-
-.instagram-widget-container iframe.snapwidget-widget {
-    width: 100% !important; 
-    height: 3234px !important;
-    border: none;
-    display: block;
-}
-
-@media (max-width: 600px) {
-    /* Na mobilu by měl být Instagram kratší, aby se tolik nescrolovalo */
-    .instagram-widget-container iframe.snapwidget-widget {
-        height: 400px !important; 
-    }
-}
+/* Konec opravy sekce videa */
 
 footer {
     text-align: center;
@@ -260,5 +536,4 @@ footer {
     margin-top: 20px;
     color: #777;
     border-top: none;
-    grid-column: 1 / -1;
 }

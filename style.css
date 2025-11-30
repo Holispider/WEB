@@ -42,7 +42,7 @@ h2 {
     color: #4a4a4a;
     border-bottom: none; 
     padding-bottom: 10px;
-    margin-bottom: 10px; 
+    margin-bottom: 10px; /* Odsazení pod H2 */
     margin-top: 0; 
 }
 
@@ -104,7 +104,7 @@ h2 {
 /* Odkazy na platformy */
 .platform-links {
     text-align: center;
-    padding: 10px;
+    padding: 0 10px 10px 10px; /* Upraveno odsazení po odstranění h3 */
     margin-top: 10px;
 }
 

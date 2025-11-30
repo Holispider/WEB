@@ -42,20 +42,11 @@ h2 {
     color: #4a4a4a;
     border-bottom: none; 
     padding-bottom: 10px;
+    /* --- OPRAVA: Odsazení pod H2 sníženo --- */
     margin-bottom: 10px; 
-    margin-top: 0; 
+    /* --- OPRAVA: Jednotná horní mezera pro všechny H2 --- */
+    margin-top: 5px; 
 }
-
-/* --- STYL PRO ROZVRH (OPRAVA MEZERY) --- */
-.stream-schedule {
-    font-weight: bold;
-    color: #4a148c; 
-    font-size: 1.1em;
-    margin-top: -10px; 
-    margin-bottom: 25px; 
-}
-/* --- KONEC STYLU ROZVRHU --- */
-
 
 .hidden {
     display: none !important;
@@ -115,16 +106,15 @@ h2 {
 /* Odkazy na platformy */
 .platform-links {
     text-align: center;
-    /* OPRAVA: Odsazení shora a zdola sjednoceno */
-    padding: 10px 10px 10px 10px; 
+    padding: 0 10px 10px 10px;
     margin-top: 10px;
 }
 
 .link-icons {
     display: flex;
     flex-wrap: wrap; 
-    justify-content: space-evenly; /* ZMĚNA: Používáme space-evenly pro rovnoměrné rozdělení */
-    gap: 0; /* Zajišťujeme, že gap neruší space-evenly */
+    justify-content: space-evenly; 
+    gap: 0; 
     margin-top: 15px;
 }
 

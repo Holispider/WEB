@@ -33,7 +33,6 @@ main {
     margin: auto;
 }
 
-/* Opraveno: Sekce by měly mít bílé pozadí (stejně jako nav, pokud má bílý rámeček) */
 section {
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
@@ -42,9 +41,8 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* ÚPRAVA: Tmavší barva a sjednocené odsazení pro všechny H2, H3, H4 */
 h2, h3, h4 {
-    color: #333333; /* Tmavší šedá */
+    color: #333333; 
     margin-top: 10px; 
     margin-bottom: 10px;
 }
@@ -54,7 +52,6 @@ h2 {
     padding-bottom: 10px;
 }
 
-/* LOKÁLNÍ ÚPRAVA: Pro kompaktnost se sekcí streamů */
 .stream-switcher h2 {
     margin-top: 0;
 }
@@ -64,24 +61,23 @@ h2 {
 }
 
 /* ========================================================== */
-/* ODKAZY NA PLATFORMY (NAV) */
+/* ODKAZY NA PLATFORMY (NAV) - BEZ RÁMEČKU */
 /* ========================================================== */
-
-/* Přenesení stylu sekce na nav (protože nav nahradil section) */
 .platform-links {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px 20px;
-    margin-bottom: 30px; 
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    background: none; 
+    box-shadow: none;
+    border-radius: 0;
+    
+    padding: 20px 20px 40px 20px; 
+    margin-bottom: 0; 
 }
 
 .link-icons {
     display: flex;
     flex-wrap: wrap; 
     justify-content: center; 
-    gap: 15px; /* ZMĚNA: Zvětšeno na 15px */
+    gap: 15px; 
     list-style: none; 
     padding: 0;
     margin: 0;
@@ -89,19 +85,18 @@ h2 {
 
 .platform-link {
     display: inline-block;
-    padding: 10px 20px; /* ZMĚNA: Zvětšeno pro větší tlačítka */
+    padding: 10px 20px; 
     text-decoration: none;
     border-radius: 20px;
     font-weight: bold;
     transition: background-color 0.3s, filter 0.3s;
-    font-size: 1.1em; /* ZMĚNA: Větší text */
+    font-size: 1.1em; 
 }
 
 .platform-link:hover {
     filter: brightness(1.1);
 }
 
-/* Platform Colors (beze změny) */
 .email-link { background-color: #bb2211; color: white; }
 .instagram-link { background-color: #E1306C; color: white; }
 .discord-link { background-color: #7289da; color: white; }
@@ -137,7 +132,7 @@ h2 {
     color: #FF0000;
 }
 
-/* Styly pro tabulátory (vráceno k původnímu/funkčnímu stavu) */
+/* Styly pro tabulátory (opravené styly) */
 .stream-tabs, .content-tabs {
     display: flex;
     margin-bottom: 15px;
@@ -148,8 +143,8 @@ h2 {
 .tab-button, .content-button {
     flex-shrink: 0;    
     background: none;
-    border: 1px solid transparent; /* Původní border */
-    padding: 9px 14px; /* Původní padding */
+    border: 1px solid transparent;
+    padding: 9px 14px;
     cursor: pointer;
     font-size: 1em;
     font-weight: bold;
@@ -157,14 +152,13 @@ h2 {
     transition: all 0.3s ease;
 }
 
-/* Aktivní stav (vráceno k původnímu/funkčnímu stavu) */
 .tab-button.active, .content-button.active {
     background-color: #ffffff;    
     border: 2px solid #555; 
     border-radius: 5px;
     color: #000000;    
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);    
-    padding: 8px 13px; /* Kompenzace 2px borderu */
+    padding: 8px 13px;
 }
 
 .tab-button:hover, .content-button:hover:not(.active) {
@@ -178,12 +172,57 @@ h2 {
 }
 
 /* ========================================================== */
-/* WIDGETS A YOUTUBE (OPRAVA PŘETÉKÁNÍ) */
+/* DYNAMICKÉ ROZVRŽENÍ PRO DESKTOP (Grid Layout) - OPRAVENO */
+/* ========================================================== */
+@media (min-width: 900px) {
+    main {
+        display: grid;
+        grid-template-columns: 2fr 1fr; /* Levý širší, Pravý užší */
+        gap: 30px; 
+        grid-auto-rows: min-content; 
+    }
+
+    /* Navigace přes celou šířku */
+    nav.platform-links {
+        grid-column: 1 / -1; 
+        padding-bottom: 20px;
+    }
+
+    /* LEVÝ SLOUPEC (2fr) - Streamy nahoře, Videa dole */
+    .stream-switcher { 
+        grid-column: 1 / 2; 
+        grid-row: 2; 
+    } 
+    #latest-youtube-video { 
+        grid-column: 1 / 2; 
+        grid-row: 3; 
+    } 
+    
+    /* PRAVÝ SLOUPEC (1fr) - Instagram nahoře, Detaily dole */
+    .instagram-embed { 
+        grid-column: 2 / 3; 
+        grid-row: 2; 
+    } 
+    .main-info { 
+        grid-column: 2 / 3; 
+        grid-row: 3; 
+    }
+    
+    /* Zajištění, že Instagram IFRAME má novou pevnou výšku */
+    .instagram-widget-container iframe.snapwidget-widget {
+        height: 3234px !important;
+        min-height: 400px;
+    }
+}
+
+
+/* ========================================================== */
+/* WIDGETS A PŘETÉKÁNÍ */
 /* ========================================================== */
 .youtube-vod-image-link {
     display: block;
     cursor: pointer;
-    overflow: hidden; /* Důležité pro oříznutí transformace při hoveru */
+    overflow: hidden; 
     border-radius: 4px;
     line-height: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -196,20 +235,24 @@ h2 {
     transition: transform 0.3s ease;
 }
 
-/* Oprava přetékání widgetu Instagramu */
 .instagram-widget-container {
     padding: 0;
     min-height: 400px;
 }
 
 .instagram-widget-container iframe.snapwidget-widget {
-    width: 100% !important; /* Zajišťuje, že se iframe vejde */
-    height: 400px !important;
+    width: 100% !important; 
+    height: 3234px !important;
     border: none;
     display: block;
 }
 
-/* ... (zbytek stylů beze změny) ... */
+@media (max-width: 600px) {
+    /* Na mobilu by měl být Instagram kratší, aby se tolik nescrolovalo */
+    .instagram-widget-container iframe.snapwidget-widget {
+        height: 400px !important; 
+    }
+}
 
 footer {
     text-align: center;
@@ -217,4 +260,5 @@ footer {
     margin-top: 20px;
     color: #777;
     border-top: none;
+    grid-column: 1 / -1;
 }

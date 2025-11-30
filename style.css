@@ -42,7 +42,9 @@ h2 {
     color: #4a4a4a;
     border-bottom: none; 
     padding-bottom: 10px;
-    margin-bottom: 30px; 
+    /* --- OPRAVENO: Nastavíme jednotnou mezeru (10px) --- */
+    margin-bottom: 10px; 
+    margin-top: 0; /* Zajištění, že se H2 nepropadne */
 }
 
 .hidden {
@@ -181,21 +183,22 @@ h2 {
 .tiktok-link-box p { font-size: 1.5em; font-weight: bold; margin: 0; }
 
 
-/* --- INSTAGRAM WIDGET STYLY (Pouze pro správné zobrazení) --- */
+/* --- INSTAGRAM WIDGET OPRAVA VELIKOSTI --- */
 .instagram-embed {
     padding: 20px;
 }
 .instagram-widget-container {
     padding: 0;
-    min-height: 400px; /* Aby se nenačetl prázdný */
+    min-height: 400px;
 }
 
 .instagram-widget-container iframe.snapwidget-widget {
-    /* Využíváme stávající kódy widgetu */
+    width: 100% !important; 
+    height: 400px !important; 
     border: none;
     display: block;
 }
-/* --- KONEC INSTAGRAM WIDGET STYLY --- */
+/* --- KONEC INSTAGRAM WIDGET OPRAVA VELIKOSTI --- */
 
 
 footer {

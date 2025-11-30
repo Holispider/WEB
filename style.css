@@ -101,6 +101,24 @@ h2 {
     color: #aaa;
 }
 
+/* --- TWITCH DUAL EMBED FIX --- */
+.twitch-embed-container {
+    display: flex;
+    width: 100%;
+    /* Odstraní zbytečné mezery pod chatem */
+    line-height: 0;
+}
+.twitch-embed-container iframe {
+    /* Standardní výška pro oba prvky */
+    height: 400px;
+    min-width: 300px; 
+    width: 30%; /* Výchozí šířka */
+}
+#twitch .twitch-embed-container iframe:first-child {
+    width: 70%; /* Video zabírá 70% místa */
+}
+/* --- KONEC TWITCH DUAL EMBED FIX --- */
+
 /* Odkazy na platformy */
 .platform-links {
     text-align: center;

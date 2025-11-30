@@ -36,26 +36,25 @@
             </p>
 
             <div class="stream-tabs">
-                <button class="tab-button active" data-tab="twitch">Twitch</button>
+                <button class="tab-button active" data-tab="kick">Kick</button>
                 <button class="tab-button" data-tab="youtube-live">YouTube</button>
-                <button class="tab-button" data-tab="kick">Kick</button>
+                <button class="tab-button" data-tab="twitch">Twitch</button>
                 <button class="tab-button" data-tab="tiktok">TikTok</button>
             </div>
 
             <div class="stream-content">
                 
-                <div id="twitch" class="tab-content active">
+                <div id="kick" class="tab-content active">
                     <iframe 
-                        src="https://player.twitch.tv/?channel=holispider&parent=holispider.github.io" 
+                        src="https://player.kick.com/holispider" 
                         width="100%" 
                         height="400" 
                         frameborder="0" 
                         scrolling="no" 
-                        allowfullscreen 
-                        allow="autoplay; fullscreen">
+                        allowfullscreen>
                     </iframe>
                 </div>
-                
+
                 <div id="youtube-live" class="tab-content hidden">
                     <iframe 
                         src="https://www.youtube.com/embed/live_stream?channel=UCFUvfLQBXpSfaSODzzszgmA" 
@@ -65,15 +64,16 @@
                         allowfullscreen>
                     </iframe>
                 </div>
-
-                <div id="kick" class="tab-content hidden">
+                
+                <div id="twitch" class="tab-content hidden">
                     <iframe 
-                        src="https://player.kick.com/holispider" 
+                        src="https://player.twitch.tv/?channel=holispider&parent=holispider.github.io" 
                         width="100%" 
                         height="400" 
                         frameborder="0" 
                         scrolling="no" 
-                        allowfullscreen>
+                        allowfullscreen 
+                        allow="autoplay; fullscreen">
                     </iframe>
                 </div>
 
@@ -89,7 +89,7 @@
         <section id="latest-youtube-video" class="youtube-latest-video">
             <h2>🎥 Koukni i na videa!</h2>
             <a href="https://www.youtube.com/@holispider/videos" target="_blank" class="youtube-vod-image-link">
-                <img src="img/YT%20video.jpg" alt="Nejnovější video na YouTube kanálu Holispider">
+                <img src="img/YT%20video.jpg" alt="Zástupný obrázek, který vede na všechna videa YouTube kanálu Holispider">
             </a>
         </section>
 
@@ -111,27 +111,22 @@
             </div>
 
             <div class="content-area">
-
                 <div id="podpora" class="content-panel active">
                     <h3>Děkuji za podporu a TTS ukázky!</h3>
                     <p>Zde budou informace o tom, jak mě podpořit (donate odkazy, suby, bits, atd.).</p>
-
                     <h4>Ukázky TTS hlasů</h4>
                     <p>Zde si můžete poslechnout, jak znějí hlasy Text-to-Speech dostupné za body na streamu:</p>
-                    
                     <div class="tts-examples">
                         <label>🎙️ Hlas 1 (Robot):</label>
                         <audio controls aria-label="Ukázka hlasu Robot">
                             <source src="audio/tts_robot.mp3" type="audio/mpeg">
                             Váš prohlížeč nepodporuje přehrávání zvuku.
                         </audio>
-                        
                         <label>🎙️ Hlas 2 (Dámský):</label>
                         <audio controls aria-label="Ukázka Dámského hlasu">
                             <source src="audio/tts_damsky.mp3" type="audio/mpeg">
                             Váš prohlížeč nepodporuje přehrávání zvuku.
                         </audio>
-                        
                         <p>Nezapomeňte vytvořit složku **`audio`** a nahrát sem vaše MP3 soubory!</p>
                     </div>
                 </div>

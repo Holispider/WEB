@@ -8,17 +8,13 @@
  * @param {string} contentSelector CSS selektor pro všechny panely obsahu v dané skupině.
  */
 function setupTabs(buttonSelector, contentSelector) {
-    // Získání všech tlačítek a obsahu pro danou skupinu
     const buttons = document.querySelectorAll(buttonSelector);
     const contents = document.querySelectorAll(contentSelector);
 
-    // Přidání posluchače událostí na každé tlačítko
     buttons.forEach(button => {
         button.addEventListener('click', () => {
-            // Získání cílového ID obsahu (podporuje data-tab nebo data-content)
             const targetId = button.getAttribute('data-tab') || button.getAttribute('data-content');
 
-            // Kontrola, zda existuje platné cílové ID (pro robustnost)
             if (!targetId) {
                 console.warn('Tlačítko nemá definovaný cíl (data-tab/data-content).');
                 return; 

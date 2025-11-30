@@ -101,24 +101,6 @@ h2 {
     color: #aaa;
 }
 
-/* --- TWITCH DUAL EMBED FIX --- */
-.twitch-embed-container {
-    display: flex;
-    width: 100%;
-    line-height: 0;
-}
-.twitch-embed-container iframe {
-    height: 400px;
-    box-sizing: border-box; /* Zajistí, že padding/border se započítají do 100% */
-}
-#twitch .twitch-embed-container iframe:first-child {
-    width: 68%; /* Sníženo z 70% */
-}
-#twitch .twitch-embed-container iframe:last-child {
-    width: 30%; /* Sníženo z 30%, celková šířka 98% */
-}
-/* --- KONEC TWITCH DUAL EMBED FIX --- */
-
 /* Odkazy na platformy */
 .platform-links {
     text-align: center;

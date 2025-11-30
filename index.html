@@ -14,21 +14,26 @@
     
     <main>
 
-        <section class="platform-links">
-            <div class="link-icons">
-                <a href="mailto:holispider@outlook.cz" class="platform-link email-link">Email</a>
-                <a href="https://www.instagram.com/holispider/" target="_blank" class="platform-link instagram-link">Instagram</a>
-                <a href="https://discord.com/invite/wzCeN6nFKQ" target="_blank" class="platform-link discord-link">Discord</a>
-                <a href="https://www.youtube.com/@holispider" target="_blank" class="platform-link youtube-link">YouTube</a>
-                <a href="https://www.twitch.tv/holispider" target="_blank" class="platform-link twitch-link">Twitch</a>
-                <a href="https://www.tiktok.com/@holispider?lang=cs-CZ" target="_blank" class="platform-link tiktok-link">TikTok</a>
-                <a href="https://kick.com/holispider" target="_blank" class="platform-link kick-link">Kick</a>
-            </div>
-        </section>
+        <nav class="platform-links">
+            <ul class="link-icons">
+                <li><a href="mailto:holispider@outlook.cz" target="_blank" class="platform-link email-link">Email</a></li>
+                <li><a href="https://www.instagram.com/holispider/" target="_blank" class="platform-link instagram-link">Instagram</a></li>
+                <li><a href="https://discord.com/invite/wzCeN6nFKQ" target="_blank" class="platform-link discord-link">Discord</a></li>
+                <li><a href="https://www.youtube.com/@holispider" target="_blank" class="platform-link youtube-link">YouTube</a></li>
+                <li><a href="https://www.twitch.tv/holispider" target="_blank" class="platform-link twitch-link">Twitch</a></li>
+                <li><a href="https://www.tiktok.com/@holispider?lang=cs-CZ" target="_blank" class="platform-link tiktok-link">TikTok</a></li>
+                <li><a href="https://kick.com/holispider" target="_blank" class="platform-link kick-link">Kick</a></li>
+            </ul>
+        </nav>
 
         <section class="stream-switcher">
             <h2>🔴 Aktuální Streamy</h2>
+            
             <p class="stream-schedule">Strým je na všech platformách PO-PÁ od 17:30. Většinou se ve stejný čas vidíme i o víkendu, ale ne vždy.</p>
+            
+            <p class="stream-recommendation">
+                Nevíš přes jakou platformu koukat? Primárně si vyber tu co ti nejvíce vyhovuje, ale pokud řešíš jaká je nejlepší pro mě, tak si vyber **YouTube**.
+            </p>
 
             <div class="stream-tabs">
                 <button class="tab-button active" data-tab="twitch">Twitch</button>
@@ -84,7 +89,7 @@
         <section id="latest-youtube-video" class="youtube-latest-video">
             <h2>🎥 Koukni i na videa!</h2>
             <a href="https://www.youtube.com/@holispider/videos" target="_blank" class="youtube-vod-image-link">
-                <img src="img/YT%20video.jpg" alt="">
+                <img src="img/YT%20video.jpg" alt="Nejnovější video na YouTube kanálu Holispider">
             </a>
         </section>
 
@@ -96,7 +101,7 @@
         </section>
 
         <section class="main-info">
-            <h2ℹ️ Detaily o Streamu a komunitě</h2>
+            <h2>ℹ️ Detaily o Streamu a komunitě</h2>
 
             <div class="content-tabs">
                 <button class="content-button active" data-content="podpora">Podpora a TTS</button>
@@ -116,13 +121,13 @@
                     
                     <div class="tts-examples">
                         <label>🎙️ Hlas 1 (Robot):</label>
-                        <audio controls>
+                        <audio controls aria-label="Ukázka hlasu Robot">
                             <source src="audio/tts_robot.mp3" type="audio/mpeg">
                             Váš prohlížeč nepodporuje přehrávání zvuku.
                         </audio>
                         
                         <label>🎙️ Hlas 2 (Dámský):</label>
-                        <audio controls>
+                        <audio controls aria-label="Ukázka Dámského hlasu">
                             <source src="audio/tts_damsky.mp3" type="audio/mpeg">
                             Váš prohlížeč nepodporuje přehrávání zvuku.
                         </audio>
@@ -141,7 +146,7 @@
                     <p>Zde vysvětlíte klíčové prvky vašeho streamu: kanálové body, speciální emotikony, pravidla, atd.</p>
                 </div>
 
-                <div id="navic" classem="content-panel hidden">
+                <div id="navic" class="content-panel hidden">
                     <h3>Co přijde?</h3>
                     <p>Sekce pro budoucí plány, jako jsou speciální eventy, turnaje, nové hry nebo další rozšíření komunity.</p>
                 </div>

@@ -42,10 +42,9 @@ h2 {
     color: #4a4a4a;
     border-bottom: none; 
     padding-bottom: 10px;
-    /* --- OPRAVA: Odsazení pod H2 sníženo --- */
+    /* --- Sjednocení odsazení všech H2 --- */
+    margin-top: 0; /* Zarovnání k horní hranici sekce paddingu */
     margin-bottom: 10px; 
-    /* --- OPRAVA: Jednotná horní mezera pro všechny H2 --- */
-    margin-top: 5px; 
 }
 
 .hidden {
@@ -106,8 +105,9 @@ h2 {
 /* Odkazy na platformy */
 .platform-links {
     text-align: center;
-    padding: 0 10px 10px 10px;
-    margin-top: 10px;
+    /* --- Odsazení shora a zdola sjednoceno pro centrování --- */
+    padding: 30px 20px; 
+    margin-top: 0; 
 }
 
 .link-icons {
@@ -115,7 +115,7 @@ h2 {
     flex-wrap: wrap; 
     justify-content: space-evenly; 
     gap: 0; 
-    margin-top: 15px;
+    margin-top: 0; 
 }
 
 .platform-link {
@@ -140,14 +140,23 @@ h2 {
 .tiktok-link { background-color: #000000; color: white; }
 .kick-link { background-color: #53ec9d; color: black; }
 
+/* --- STYL PRO ROZVRH (Opravené odsazení) --- */
+.stream-schedule {
+    font-weight: bold;
+    color: #333; 
+    font-size: 1.1em;
+    margin-top: 0; /* Eliminuje rušivou mezeru k H2 */
+    margin-bottom: 25px; 
+}
+/* --- KONEC STYLU ROZVRHU --- */
+
 /* Styly pro sekci s TTS audio */
 .tts-examples audio { display: block; width: 100%; margin: 5px 0 15px 0; }
 .tts-examples label { display: block; margin-top: 10px; font-weight: bold; }
 
 
 /* --- YOUTUBE VOD OBRÁZEK STYLY --- */
-.youtube-latest-video { padding-top: 0; }
-.youtube-latest-video h2 { margin-top: 0; }
+.youtube-latest-video h2 { margin-top: 0; } 
 
 .youtube-vod-image-link {
     display: block;

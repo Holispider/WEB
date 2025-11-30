@@ -32,7 +32,7 @@ main {
 
 section {
     background: rgba(255, 255, 255, 0.9);
-    padding: 20px; /* JEDNOTNÉ ODSZENÍ SHORA/ZDOLA/ZBOKU */
+    padding: 20px; 
     margin-bottom: 30px; 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -46,15 +46,15 @@ h2 {
     margin-top: 0; 
 }
 
-/* --- NOVÝ STYL PRO ROZVRH (OPRAVÍ VIZUÁLNÍ MEZERU POD H2) --- */
+/* --- STYL PRO ROZVRH (OPRAVA MEZERY) --- */
 .stream-schedule {
     font-weight: bold;
     color: #4a148c; 
     font-size: 1.1em;
-    margin-top: -10px; /* Přitáhne text k h2 */
+    margin-top: -10px; 
     margin-bottom: 25px; 
 }
-/* --- KONEC NOVÉHO STYLU --- */
+/* --- KONEC STYLU ROZVRHU --- */
 
 
 .hidden {
@@ -115,7 +115,7 @@ h2 {
 /* Odkazy na platformy */
 .platform-links {
     text-align: center;
-    /* Změněno, aby odsazení shora a zdola bylo sjednocené */
+    /* OPRAVA: Odsazení shora a zdola sjednoceno */
     padding: 10px 10px 10px 10px; 
     margin-top: 10px;
 }
@@ -123,8 +123,8 @@ h2 {
 .link-icons {
     display: flex;
     flex-wrap: wrap; 
-    justify-content: center;
-    gap: 15px; 
+    justify-content: space-evenly; /* ZMĚNA: Používáme space-evenly pro rovnoměrné rozdělení */
+    gap: 0; /* Zajišťujeme, že gap neruší space-evenly */
     margin-top: 15px;
 }
 

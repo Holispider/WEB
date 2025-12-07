@@ -297,6 +297,10 @@ h5 { font-size: 1.3em; }
     width: 100%;
     height: 100%;
     background-color: #87CEEB; 
+    
+    /* === TOTO JE TA KLÍČOVÁ OPTIMALIZACE PRO SAFARI === */
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
 }
 
 /* === FULLSCREEN REŽIM === */

@@ -394,7 +394,70 @@ h5 { font-size: 1.3em; }
 .game-backdrop.active { display: block; }
 
 /* ========================================================== */
-/* GAME OVERLAY - MATEMATICKY PŘESNÉ ZMENŠOVÁNÍ */
+/* STYLY PRO HRU (KONTEJNER) */
+/* ========================================================== */
+.game-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    /* Aktivuje container queries */
+    container-type: inline-size; 
+    
+    aspect-ratio: 2 / 1; 
+    
+    margin: 0 auto;
+    border: 4px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    background: transparent;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+    box-sizing: content-box;
+}
+
+.game-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #87CEEB; 
+    
+    /* === FIX PRO SAFARI (iOS) === */
+    /* Vynutí použití grafické karty (GPU) */
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+/* === FULLSCREEN REŽIM === */
+.game-container.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-shadow: 0 0 100px rgba(0,0,0,0.9);
+    border-color: #ffd700; 
+    
+    width: min(95vw, 190vh);
+    height: auto;
+    aspect-ratio: 2 / 1;
+    max-width: none;
+}
+
+.game-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 9998;
+    backdrop-filter: blur(5px);
+}
+.game-backdrop.active { display: block; }
+
+/* ========================================================== */
+/* GAME OVERLAY */
 /* ========================================================== */
 #gameOverlay {
     position: absolute;
@@ -409,149 +472,152 @@ h5 { font-size: 1.3em; }
     justify-content: center;
     color: white;
     z-index: 10;
-    /* Padding se zmenší, pokud je okno malé */
-    padding: min(20px, 3cqi);
+    gap: min(15px, 2cqi);
+    padding: min(20px, 4cqi);
+    padding-bottom: min(40px, 8cqi); 
     box-sizing: border-box;
-    /* Zajištění, aby se prvky neslepily k sobě */
-    gap: min(10px, 1.5cqi);
 }
 
-#gameOverlay h2 { 
-    margin: 0; 
-    padding: 0; 
-    border: none; 
-    text-align: center; 
-    line-height: 1.1; 
-}
+#gameOverlay h2 { margin: 0; padding: 0; border: none; text-align: center; line-height: 1.1; }
 
 #gameTitle { 
-    /* Původně cca 45px. Na mobilu to bude 7% šířky hry. */
-    /* min() vybere to menší -> na PC 45px, na mobilu se zmenší */
-    font-size: min(45px, 7cqi); 
+    font-size: min(2.8em, 8cqi); 
     color: #ffd700; 
-    text-shadow: min(3px, 0.5cqi) min(3px, 0.5cqi) 0 #000; 
-    
-    /* Aby se dlouhý text "Bobr je v pasti..." zalomil a neutekl */
+    text-shadow: 3px 3px 0 #000; 
+    margin: 0;
     max-width: 95%;
-    word-wrap: break-word;
 }
 
 .score-info { 
-    /* Původně cca 20px */
-    font-size: min(20px, 4cqi); 
+    font-size: min(1.2em, 5cqi); 
+    margin: 0;
     text-shadow: 1px 1px 2px black; 
     text-align: center; 
-    margin: 0;
 }
 
 #gameScoreDisplay { 
-    /* Původně cca 28px */
-    font-size: min(28px, 5cqi); 
+    font-size: min(1.8em, 7cqi); 
+    margin: 0;
     color: #fff; 
     font-weight: bold; 
     display: none; 
-    margin: 0;
 }
 
 #playerNick {
     display: block; 
-    /* Input má fixně 250px. To je 32% z 800px. */
-    width: min(250px, 32cqi);
-    
-    padding: min(12px, 2cqi);
-    font-size: min(20px, 4cqi);
-    
+    width: 250px; 
+    max-width: 70%; 
+    padding: min(10px, 2cqi);
+    font-size: min(1.2em, 5cqi);
     text-align: center;
     border-radius: 8px;
-    border: min(3px, 0.5cqi) solid #fff;
+    border: 3px solid #fff;
     background: rgba(255, 255, 255, 0.95);
     color: #000;
     outline: none;
-    margin: min(10px, 2cqi) 0;
+    margin: 0;
 }
 #playerNick:focus { border-color: #ffd700; transform: scale(1.05); }
 
 #startGameBtn {
-    /* Původně cca 22px */
-    font-size: min(22px, 4.5cqi);
-    padding: min(12px, 2cqi) min(40px, 6cqi);
-    
+    font-size: min(1.4em, 6cqi);
+    padding: min(10px, 2cqi) min(30px, 6cqi);
     cursor: pointer;
     border: none;
     border-radius: 50px;
     background-color: #53FC18; 
     color: black;
     font-weight: bold;
-    box-shadow: 0 min(4px, 1cqi) min(15px, 3cqi) rgba(0,0,0,0.5);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     transition: transform 0.1s;
-    
-    /* Odsazení od prvků nad ním */
-    margin-top: min(5px, 1cqi);
+    margin: 0;
 }
 #startGameBtn:hover { transform: scale(1.05); background-color: #40c912; }
 
-#fullscreenBtn {
+/* Tlačítka v rozích */
+#fullscreenBtn, #settingsBtn {
     position: absolute;
-    top: min(15px, 3cqi);
-    right: min(15px, 3cqi);
+    top: 15px;
     background: rgba(255,255,255,0.2);
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: 50%;
-    
-    /* Fixní 40px, nebo 8% šířky na mobilu */
-    width: min(40px, 8cqi);
-    height: min(40px, 8cqi);
-    font-size: min(20px, 4cqi);
-    
+    width: min(40px, 10cqi);
+    height: min(40px, 10cqi);
+    font-size: min(20px, 5cqi);
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
 }
-#fullscreenBtn:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
+#fullscreenBtn { right: 15px; }
+#settingsBtn { left: 15px; }
+
+#fullscreenBtn:hover, #settingsBtn:hover { 
+    background: rgba(255,255,255,0.4); 
+    transform: scale(1.1); 
+}
+
+/* Panel nastavení (uvnitř overlaye) */
+.hidden-settings { display: none !important; }
+#settingsPanel {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.95);
+    border: 2px solid #ffd700;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 20;
+    width: 80%;
+    max-width: 300px;
+}
+#settingsPanel h3 { margin-top: 0; color: #ffd700; font-size: 1.2em; }
+#settingsPanel p { font-size: 0.9em; margin-bottom: 15px; color: #ccc; }
+#settingsPanel button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+#qualityToggleBtn { background: #007bff; color: white; }
+#closeSettingsBtn { background: #444; color: white; }
 
 .volume-control {
     position: absolute;
-    bottom: min(15px, 3cqi);
-    right: min(15px, 3cqi);
+    bottom: 15px;
+    right: 15px;
     display: flex;
     align-items: center;
-    gap: min(10px, 2cqi);
+    gap: 10px;
     background: rgba(0,0,0,0.5);
-    padding: min(5px, 1cqi) min(10px, 2cqi);
+    padding: 5px 10px;
     border-radius: 20px;
-    
-    /* Zmenšení celého ovladače, pokud je obrazovka malá */
     transform-origin: bottom right;
 }
-/* Pokud je hra velmi malá (mobil), zmenši volume control na 70% */
-@container (max-width: 500px) {
+@container (max-width: 450px) {
     .volume-control { transform: scale(0.7); }
 }
 
-.volume-control label { 
-    font-size: min(14px, 3.5cqi); 
-    font-weight: bold; 
-    color: white; 
-}
-.volume-control input { 
-    width: min(80px, 15cqi); 
-}
+.volume-control label { font-size: 14px; font-weight: bold; color: white; }
+.volume-control input { width: 80px; }
 
 .record-banner {
     background: #222; 
     color: #ffd700; 
     text-align: center; 
-    padding: min(10px, 1.5cqi);
+    padding: min(8px, 1.5cqi);
     border: 2px solid #ffd700; 
-    
-    /* Font cca 20px */
-    font-size: min(20px, 4cqi);
     text-transform: uppercase; 
     font-weight: bold;
+    font-size: min(1.3em, 5cqi);
     letter-spacing: 1px;
-    margin-bottom: min(15px, 3cqi);
+    margin: 0;
 }
 
 /* ========================================================== */

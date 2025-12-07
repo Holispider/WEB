@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. FIREBASE CONFIG ---
+    // --- FIREBASE ---
     const firebaseConfig = {
         apiKey: "AIzaSyCG86336uqHVxmv3f95ES41hZsGbuBnz1A",
         authDomain: "web-holispider.firebaseapp.com",
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- DOM PRVKY ---
     const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     const overlay = document.getElementById('gameOverlay');
     const startBtn = document.getElementById('startGameBtn');
     const scoreDisplay = document.getElementById('gameScoreDisplay');
@@ -34,11 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const champScoreEl = document.getElementById('champScore');
     const externalRecordEl = document.getElementById('externalHighScore');
 
-    // --- DETEKCE MOBILU (PRO OPTIMALIZACI) ---
-    // Pokud je obrazovka užší než 900px nebo je to dotykové zařízení, považujeme to za mobil/tablet
-    const isMobile = window.innerWidth < 900 || 'ontouchstart' in window;
+    // NASTAVENÍ (Tlačítka)
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const qualityToggleBtn = document.getElementById('qualityToggleBtn');
+    const closeSettingsBtn = document.getElementById('closeSettingsBtn');
 
-    // --- PROMĚNNÉ ---
+    // --- STAV KVALITY ---
+    // true = Vysoká (stíny, retina), false = Nízká (bez stínů, 1x res)
+    let isHighQuality = true; 
+
+    // --- VARS ---
     let globalHighScore = 0;
     let globalChampionName = "Nikdo";
     let currentPlayerNick = "";
@@ -49,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let animationId;
     let lastObstacleType = null; 
 
-    // --- NAČTENÍ DAT Z FIREBASE ---
+    // --- FIREBASE LISTENERS ---
     if (db) {
         const scoreRef = db.ref('bobri_utek_rekord');
         scoreRef.on('value', (snapshot) => {
@@ -69,11 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- AUDIO ---
+    // --- AUDIO & GRAFIKA ---
     const bgMusic = new Audio('hra/music.mp3');
     bgMusic.loop = true; bgMusic.volume = 0.4;  
 
-    // --- GRAFIKA ---
     const imgBackground = new Image(); imgBackground.src = 'hra/pozadí.png';
     const imgGround = new Image(); imgGround.src = 'hra/podlaha.png';
     const imgTrap1 = new Image(); imgTrap1.src = 'hra/past1.png'; 
@@ -87,20 +92,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const randomBeaverIndex = Math.floor(Math.random() * 46) + 1;
     const imgBeaver = new Image(); imgBeaver.src = `img/bobri/${randomBeaverIndex}.png`;
 
-    // === OPTIMALIZACE 1: Vypnutí stínů na mobilech ===
+    // FUNKCE PRO STÍNY (ŘÍZENÉ KVALITOU)
     function setGlow(color = 'white', blur = 20) { 
-        if (isMobile) return; // Na mobilu stíny nevykreslujeme (zvyšuje to výkon o 300%)
-        ctx.shadowColor = color; 
-        ctx.shadowBlur = blur; 
+        if (!isHighQuality) return; 
+        ctx.shadowColor = color; ctx.shadowBlur = blur; 
     }
     function resetGlow() { 
-        if (isMobile) return;
+        if (!isHighQuality) return;
         ctx.shadowBlur = 0; 
     }
-    
     function safeDrawImage(img, x, y, w, h) {
         if (img && img.complete && img.naturalWidth !== 0) ctx.drawImage(img, x, y, w, h);
     }
+
+    // --- OVLÁDÁNÍ KVALITY ---
+    function updateQualityButton() {
+        if (isHighQuality) {
+            qualityToggleBtn.innerText = "Kvalita: VYSOKÁ (PC)";
+            qualityToggleBtn.style.background = "#007bff";
+        } else {
+            qualityToggleBtn.innerText = "Kvalita: NÍZKÁ (Mobil)";
+            qualityToggleBtn.style.background = "#555";
+        }
+    }
+
+    qualityToggleBtn.addEventListener('click', () => {
+        isHighQuality = !isHighQuality;
+        updateQualityButton();
+        resizeCanvas(); // Překreslit canvas s novým nastavením
+    });
+
+    settingsBtn.addEventListener('click', () => {
+        settingsPanel.classList.remove('hidden-settings');
+    });
+
+    closeSettingsBtn.addEventListener('click', () => {
+        settingsPanel.classList.add('hidden-settings');
+    });
 
     // --- RESIZE A DRAW ---
     const BASE_WIDTH = 800; 
@@ -108,16 +136,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const GROUND_HEIGHT = 50; 
     const FLOOR_Y = BASE_HEIGHT - GROUND_HEIGHT; 
 
-    // === OPTIMALIZACE 2: Omezení rozlišení na mobilech ===
     function resizeCanvas() {
         const width = gameContainer.clientWidth; 
         const height = gameContainer.clientHeight;
         
         if (width === 0 || height === 0) return;
         
-        // Na PC použijeme jemné rozlišení (Retina), na mobilu stačí 1.0 (kvůli rychlosti)
-        // iPhony mají běžně dpr 3, což je pro canvas hru zbytečně náročné na výpočet.
-        const dpr = isMobile ? 1 : (window.devicePixelRatio || 1);
+        // Pokud je vysoká kvalita, použijeme Retina rozlišení (max 2x). 
+        // Pokud nízká, použijeme 1x (rychlé).
+        const dpr = isHighQuality ? Math.min(window.devicePixelRatio || 1, 2) : 1;
         
         canvas.width = width * dpr; 
         canvas.height = height * dpr;
@@ -125,8 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.setTransform(1, 0, 0, 1, 0, 0); 
         ctx.scale(dpr, dpr);
         
-        const scale = width / BASE_WIDTH;
-        ctx.scale(scale, scale);
+        const scaleX = width / BASE_WIDTH;
+        const scaleY = height / BASE_HEIGHT;
+        ctx.scale(scaleX, scaleY);
 
         if (!gameRunning) drawStaticScene();
     }
@@ -354,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startBtn.innerText = "ZKUSIT ZNOVU";
         
         fullscreenBtn.style.display = 'inline-block';
+        settingsBtn.style.display = 'inline-block'; // Zobrazit i settings
     }
 
     // --- RESET A START ---

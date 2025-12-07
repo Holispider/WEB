@@ -4,13 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holispider</title>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div id="gameBackdrop" class="game-backdrop"></div>
+
     <header>
         <h1>Holispider</h1>
     </header>
+
+    <div id="desktop-banner-left" class="desktop-only desktop-banner">
+        <iframe 
+            src="https://streamelements.com/overlay/6933f8727fbcba050ed48580/tT9_qHc1ClpXqOm1Lnh1wAWvY10zYBRb-maVWO7-w8suHXH5" 
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            allowtransparency="true"
+            style="background: transparent; pointer-events: auto;">
+        </iframe>
+    </div>
+
+    <div id="desktop-banner-right" class="desktop-only desktop-banner">
+        <iframe 
+            src="https://streamelements.com/overlay/69343b11ce2a54169763261d/tT9_qHc1ClpXqOm1Lnh1wAWvY10zYBRb-maVWO7-w8suHXH5" 
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            allowtransparency="true"
+            style="background: transparent; pointer-events: auto;">
+        </iframe>
+    </div>
     
     <main>
 
@@ -29,9 +57,27 @@
         <div class="split-content">
 
             <div class="sidebar-left">
+                
+                <div class="mobile-only se-banner-mobile">
+                    <div class="banner-scaler">
+                        <iframe 
+                            src="https://streamelements.com/overlay/6933f8727fbcba050ed48580/tT9_qHc1ClpXqOm1Lnh1wAWvY10zYBRb-maVWO7-w8suHXH5" 
+                            width="100%" 
+                            height="100%" 
+                            frameborder="0" 
+                            allowtransparency="true"
+                            style="background: transparent;">
+                        </iframe>
+                    </div>
+                </div>
+                
                 <section class="instagram-banner black-bg">
-                    <h2>📸 Mrkni i na Instagram!</h2>
+                    
+                    <a href="https://www.instagram.com/holispider/" target="_blank" class="full-link-overlay"></a>
+
+                    <h2>📸 Mrkni na Instagram!</h2> 
                     <p class="banner-info">Aktuální příspěvky z Instagramu:</p>
+                    
                     <div class="instagram-widget-container">
                         <iframe src="https://snapwidget.com/embed/1113657" 
                             id="instagram-iframe"
@@ -39,11 +85,11 @@
                             allowtransparency="true" 
                             frameborder="0" 
                             scrolling="no" 
-                            style="border:none; overflow:hidden; width:330px; height:10780px" 
+                            style="border:none; overflow:hidden; width:100%; height:10780px" 
                             title="Posts from Instagram">
                         </iframe>
                     </div>
-                    <a href="https://www.instagram.com/holispider/" target="_blank" class="instagram-all-posts-link">Zobrazit vše na Instagramu</a>
+                    
                 </section>
             </div>
             
@@ -52,17 +98,19 @@
                 <section class="stream-switcher">
                     <h2>🔴 Aktuální Streamy</h2>
                     
-                    <p class="stream-schedule">Strým je na všech platformách PO-PÁ od 17:30. Většinou se ve stejný čas vidíme i o víkendu, ale ne vždy.</p>
+                    <p class="stream-schedule">Stream je na všech platfomách PO-PÁ od 17:30. Většinou se ve stejný čas vidíme i o víkendu, ale ne vždy.</p>
                     
                     <p class="stream-recommendation">
-                        Nevíš přes jakou platformu koukat? Primárně si vyber tu co ti nejvíce vyhovuje, ale pokud řešíš jaká je nejlepší pro mě, tak si vyber **YouTube**.
+                        Nevíš, přes jakou platformu koukat? Primárně si vyber tu, která ti nejvíce vyhovuje, ale pokud řešíš, která je nejlepší pro mě, tak sáhni po <span style="color: #FF0000; text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);">YouTube</span>.
                     </p>
 
                     <div class="stream-tabs">
-                        <button class="tab-button active" data-tab="kick">Kick</button>
-                        <button class="tab-button" data-tab="youtube-live">YouTube</button>
-                        <button class="tab-button" data-tab="twitch">Twitch</button>
-                        <button class="tab-button" data-tab="tiktok">TikTok</button>
+                        <div class="button-wrapper">
+                            <button class="tab-button active" data-tab="kick">Kick</button>
+                            <button class="tab-button" data-tab="youtube-live">YouTube</button>
+                            <button class="tab-button" data-tab="twitch">Twitch</button>
+                            <button class="tab-button" data-tab="tiktok">TikTok</button>
+                        </div>
                     </div>
 
                     <div class="stream-content">
@@ -102,7 +150,7 @@
 
                         <div id="tiktok" class="tab-content hidden">
                             <div class="tiktok-link-box" onclick="window.open('https://www.tiktok.com/@holispider?lang=cs-CZ', '_blank');">
-                                <p>🔴 KLIKNĚTE PRO ZOBRAZENÍ LIVE STREAMU NA TIKTOKU</p>
+                                <p>🔴 Klikni pro zobrazení live streamu na TikToku</p>
                             </div>
                         </div>
                     </div>
@@ -120,116 +168,317 @@
                     <h2>ℹ️ Detaily o Streamu a komunitě</h2>
 
                     <div class="content-tabs">
-                        <button class="content-button active" data-content="kdo-je-holi">Kdo je Holí</button>
-                        <button class="content-button" data-content="nabidka">Co nabízí stream</button>
-                        <button class="content-button" data-content="navic">Časem něco navíc</button>
-                        <button class="content-button" data-content="tts-kody">TTS Kódy a Ukázky</button>
+                        <div class="button-wrapper">
+                            <button class="content-button active" data-content="kdo-je-holi">Kdo je Holi</button>
+                            <button class="content-button" data-content="nabidka">Co nabízí stream</button>
+                            <button class="content-button" data-content="navic">Setup</button>
+                            <button class="content-button" data-content="tts-kody">Jak vylepšit donate?</button>
+                            <button class="content-button" data-content="hra">Hra</button>
+                            <button class="content-button" data-content="faq">FAQ</button>
+                        </div>
                     </div>
 
                     <div class="content-area">
                         <div id="kdo-je-holi" class="content-panel active">
                             <h3>Kdo jsem?</h3>
-                            <p>Jsem [Vaše jméno/nick], nadšený streamer, který se věnuje [žánr/téma] a baví se [vaše zájmy]. Cílem je vytvořit [cíl komunity].</p>
+                            <p>Ahoj! Já jsem Holi, ten pepega, co vytvořil tenhle web 🙂. Hry hraju už od dětství a nejvíc času jsem bezpochyby strávil u WoWka. Miluju RTS hry, hlavně Warcraft III nebo Robina Hooda: Legends of Sherwood.</p>
+                            <p>Když se na YouTube začaly objevovat první let's playe, hned jsem věděl, že to chci dělat taky. Někteří z vás mě možná znají pod přezdívkou Moonlight, pod kterou jsem od roku 2012 dělal na YouTube let’s playe a streamy z ARKu. Kanál jsem ale později přestal používat kvůli pracovním povinnostem a vstupu do „dospělého“ života.</p>
+                            <p>Teď, když mám zase trochu prostoru a času, jsem se k téhle dětské vášni mohl vrátit. Aktuálně hlavně streamuju – je to časově efektivnější než let’s playe a hlavně je tu přímý kontakt s vámi!</p>
+                            <p>A popravdě? Vy jste důvod, proč u toho pořád jsem. Jste skvělá komunita a moc vám děkuju za podporu! 💛</p>
                         </div>
 
                         <div id="nabidka" class="content-panel hidden">
                             <h3>Stream funkcionality</h3>
-                            <p>Zde vysvětlíte klíčové prvky vašeho streamu: kanálové body, speciální emotikony, pravidla, atd.</p>
+                            <p>Můj stream není úplně běžný. Ať už si vyberete kteroukoliv z platforem – <strong style="color: #fff;">YouTube, Kick nebo Twitch</strong> (TikTok bohužel tyto možnosti nemá, protože nemá veřejné API) – kromě klasických příkazů <strong>!com</strong> u mě najdete hlavně několik miniher, které stream dělají zábavnější.</p>
+                            
+                            <h4>🎮 Pointy – hlavní měna streamu</h4>
+                            <p>Pointy získáváte automaticky:</p>
+                            <ul>
+                                <li>za první návštěvu každého streamu</li>
+                                <li>a každou minutu dostanete 1 point</li>
+                            </ul>
+                            <p>Přítomnost na streamu se počítá podle aktivity v chatu, takže je dobré každých 5–10 minut napsat alespoň jednu zprávu, aby se vám pointy správně připisovaly.</p>
+                            <p>Není nijak zakázáno mít zapnutý stream na více platforem zároveň, takže pokud chcete nafarmit co nejvíce pointů například kvůli soutěži, můžete si tak zisk pointů až ztrojnásobit.</p>
+
+                            <h5>🗡️ Výpravy – příkaz <strong>!výprava</strong></h5>
+                            <p>Za 50 pointů si koupíte vstup na výpravu. Můžete si to představit jako malé Dračí doupě – do chatu se vám vypíše zábavný průběh vaší výpravy. Podle toho, jak dopadne, můžete získat více pointů nebo o část přijít, ale hlavně se u toho pobavíte!</p>
+                            <p>Šance na výhru je asi 70 %, takže většinou vyděláte.</p>
+
+                            <h5>🎁 Soutěže – příkaz <strong>!soutěž</strong></h5>
+                            <p>Pointy můžete používat jako vstupy do soutěží. Napsáním <strong>!soutěž</strong> zobrazíte aktuální soutěž.</p>
+                            <p>Počet vstupů není omezený, takže čím více pointů vložíte, tím větší máte šanci vyhrát.</p>
+
+                            <h5>🤠 Duely – příkaz <strong>!duel</strong></h5>
+                            <p>Pomocí <strong>!duel</strong> můžete vyzvat jiného hráče a vsadit libovolný počet pointů. Duely fungují jako kovbojský souboj:</p>
+                            <ul>
+                                <li>počkáte na signál od bota</li>
+                                <li>kdo jako první napíše <strong>!shoot</strong>, ten vyhraje</li>
+                                <li>pokud vystřelíte dřív, automaticky prohráváte</li>
+                            </ul>
+
+                            <h5>😂 Memes na streamu – příkaz <strong>!shop</strong></h5>
+                            <p>Za pointy můžete pouštět memes přímo na obrazovku streamu. Je to skvělý způsob, jak zareagovat na momentální situaci. Seznam dostupných meme efektů zobrazíte pomocí <strong>!shop</strong>.</p>
+
+                            <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
+
+                            <h4>🦫 Lov bobrů</h4>
+                            <p>Na streamu můžeš také chytat bobry. Čas od času se objeví divoký bobr – přímo na obrazovce a jeho příchod také oznámí bot v chatu.</p>
+                            <p>Na bobra můžeš zkusit hodit uspávací granát příkazem <strong>!catch</strong>.</p>
+                            <ul>
+                                <li>Bobra může lovit vždy jen jeden lovec, a to ten, kdo granát hodí jako první.</li>
+                                <li>Při neúspěšném pokusu může znovu hodit granát ten nejrychlejší.</li>
+                                <li>Pokud se ti ho podaří chytit, stane se členem tvé bobří armády <strong>!boberarmy</strong>.</li>
+                            </ul>
+                            <p>Pokud nechceš čekat, až se bobr objeví, můžeš použít <strong>!návnada</strong>, která ale stojí pointy. Bobr se objeví hned a nikdo jiný ho nemůže chytit – pouze ty.</p>
+
+                            <h4 style="margin-top: 40px; text-align: center;">📚 Encyklopedie známých bobrů</h4>
+                            
+                            <div class="beaver-gallery">
+                                <div class="beaver-item"><img src="img/bobri/1.png" alt="Průzkumník" loading="lazy"><p class="beaver-name">Průzkumník</p></div>
+                                <div class="beaver-item"><img src="img/bobri/2.png" alt="Geolog" loading="lazy"><p class="beaver-name">Geolog</p></div>
+                                <div class="beaver-item"><img src="img/bobri/3.png" alt="Inženýr" loading="lazy"><p class="beaver-name">Inženýr</p></div>
+                                <div class="beaver-item"><img src="img/bobri/4.png" alt="Vědec" loading="lazy"><p class="beaver-name">Vědec</p></div>
+                                <div class="beaver-item"><img src="img/bobri/5.png" alt="Lékař" loading="lazy"><p class="beaver-name">Lékař</p></div>
+                                <div class="beaver-item"><img src="img/bobri/6.png" alt="Mechanik" loading="lazy"><p class="beaver-name">Mechanik</p></div>
+                                <div class="beaver-item"><img src="img/bobri/7.png" alt="Lovec odměn" loading="lazy"><p class="beaver-name">Lovec odměn</p></div>
+                                <div class="beaver-item"><img src="img/bobri/8.png" alt="Záchranář" loading="lazy"><p class="beaver-name">Záchranář</p></div>
+                                <div class="beaver-item"><img src="img/bobri/9.png" alt="Chirurg" loading="lazy"><p class="beaver-name">Chirurg</p></div>
+                                <div class="beaver-item"><img src="img/bobri/10.png" alt="Zápasník" loading="lazy"><p class="beaver-name">Zápasník</p></div>
+                                <div class="beaver-item"><img src="img/bobri/11.png" alt="Kuchař" loading="lazy"><p class="beaver-name">Kuchař</p></div>
+                                <div class="beaver-item"><img src="img/bobri/12.png" alt="Hasič" loading="lazy"><p class="beaver-name">Hasič</p></div>
+                                <div class="beaver-item"><img src="img/bobri/13.png" alt="Voják" loading="lazy"><p class="beaver-name">Voják</p></div>
+                                <div class="beaver-item"><img src="img/bobri/14.png" alt="Šerif" loading="lazy"><p class="beaver-name">Šerif</p></div>
+                                <div class="beaver-item"><img src="img/bobri/15.png" alt="Lovec" loading="lazy"><p class="beaver-name">Lovec</p></div>
+                                <div class="beaver-item"><img src="img/bobri/16.png" alt="Strážce" loading="lazy"><p class="beaver-name">Strážce</p></div>
+                                <div class="beaver-item"><img src="img/bobri/17.png" alt="Šaman" loading="lazy"><p class="beaver-name">Šaman</p></div>
+                                <div class="beaver-item"><img src="img/bobri/18.png" alt="Pirát" loading="lazy"><p class="beaver-name">Pirát</p></div>
+                                <div class="beaver-item"><img src="img/bobri/19.png" alt="Gladiátor" loading="lazy"><p class="beaver-name">Gladiátor</p></div>
+                                <div class="beaver-item"><img src="img/bobri/20.png" alt="Pilot" loading="lazy"><p class="beaver-name">Pilot</p></div>
+                                <div class="beaver-item"><img src="img/bobri/21.png" alt="Elektrikář" loading="lazy"><p class="beaver-name">Elektrikář</p></div>
+                                <div class="beaver-item"><img src="img/bobri/22.png" alt="Astronaut" loading="lazy"><p class="beaver-name">Astronaut</p></div>
+                                <div class="beaver-item"><img src="img/bobri/23.png" alt="Šermíř" loading="lazy"><p class="beaver-name">Šermíř</p></div>
+                                <div class="beaver-item"><img src="img/bobri/24.png" alt="Rytíř" loading="lazy"><p class="beaver-name">Rytíř</p></div>
+                                <div class="beaver-item"><img src="img/bobri/25.png" alt="Vězeňský dozorce" loading="lazy"><p class="beaver-name">Vězeňský dozorce</p></div>
+                                <div class="beaver-item"><img src="img/bobri/26.png" alt="Viking" loading="lazy"><p class="beaver-name">Viking</p></div>
+                                <div class="beaver-item"><img src="img/bobri/27.png" alt="Chemik" loading="lazy"><p class="beaver-name">Chemik</p></div>
+                                <div class="beaver-item"><img src="img/bobri/28.png" alt="Ninja" loading="lazy"><p class="beaver-name">Ninja</p></div>
+                                <div class="beaver-item"><img src="img/bobri/29.png" alt="Demoliční expert" loading="lazy"><p class="beaver-name">Demoliční expert</p></div>
+                                <div class="beaver-item"><img src="img/bobri/30.png" alt="Lovec zombií" loading="lazy"><p class="beaver-name">Lovec zombií</p></div>
+                                <div class="beaver-item"><img src="img/bobri/31.png" alt="Včelař" loading="lazy"><p class="beaver-name">Včelař</p></div>
+                                <div class="beaver-item"><img src="img/bobri/32.png" alt="Lovec duchů" loading="lazy"><p class="beaver-name">Lovec duchů</p></div>
+                                <div class="beaver-item"><img src="img/bobri/33.png" alt="Samuraj" loading="lazy"><p class="beaver-name">Samuraj</p></div>
+                                <div class="beaver-item"><img src="img/bobri/34.png" alt="Pyrotechnik" loading="lazy"><p class="beaver-name">Pyrotechnik</p></div>
+                                <div class="beaver-item"><img src="img/bobri/35.png" alt="Vesmírný voják" loading="lazy"><p class="beaver-name">Vesmírný voják</p></div>
+                                <div class="beaver-item"><img src="img/bobri/36.png" alt="Vesmírný dobyvatel" loading="lazy"><p class="beaver-name">Vesmírný dobyvatel</p></div>
+                                <div class="beaver-item"><img src="img/bobri/37.png" alt="Nekromant" loading="lazy"><p class="beaver-name">Nekromant</p></div>
+                                <div class="beaver-item"><img src="img/bobri/38.png" alt="Alchymista" loading="lazy"><p class="beaver-name">Alchymista</p></div>
+                                <div class="beaver-item"><img src="img/bobri/39.png" alt="Kouzelník" loading="lazy"><p class="beaver-name">Kouzelník</p></div>
+                                <div class="beaver-item"><img src="img/bobri/40.png" alt="Těžkooděnec" loading="lazy"><p class="beaver-name">Těžkooděnec</p></div>
+                                <div class="beaver-item"><img src="img/bobri/41.png" alt="Kyborg" loading="lazy"><p class="beaver-name">Kyborg</p></div>
+                                <div class="beaver-item"><img src="img/bobri/42.png" alt="Kybernetický samuraj" loading="lazy"><p class="beaver-name">Kybernetický samuraj</p></div>
+                                <div class="beaver-item"><img src="img/bobri/43.png" alt="Démon" loading="lazy"><p class="beaver-name">Démon</p></div>
+                                <div class="beaver-item"><img src="img/bobri/44.png" alt="Hacker" loading="lazy"><p class="beaver-name">Hacker</p></div>
+                                <div class="beaver-item"><img src="img/bobri/45.png" alt="King Kong" loading="lazy"><p class="beaver-name">King Kong</p></div>
+                                <div class="beaver-item"><img src="img/bobri/46.png" alt="Godzilla" loading="lazy"><p class="beaver-name">Godzilla</p></div>
+                            </div>
                         </div>
 
                         <div id="navic" class="content-panel hidden">
-                            <h3>Co přijde?</h3>
-                            <p>Sekce pro budoucí plány, jako jsou speciální eventy, turnaje, nové hry nebo další rozšíření komunity.</p>
+                            <h3>🖥️ Můj Setup</h3>
+                            
+                            <h4>🎮 Herní PC</h4>
+                            <ul class="setup-list">
+                                <li><strong>CPU:</strong> AMD Ryzen 7 7800X3D</li>
+                                <li><strong>Motherboard:</strong> ASUS ROG STRIX B850-A GAMING WIFI</li>
+                                <li><strong>RAM:</strong> Kingston Fury Beast RGB 2x16GB DDR5 6000 CL36, AMD EXPO</li>
+                                <li><strong>GPU:</strong> MSI GeForce RTX 4080 SUPER 16G VENTUS 3X OC</li>
+                            </ul>
+
+                            <h4>📡 Stream PC</h4>
+                            <ul class="setup-list">
+                                <li><strong>CPU:</strong> AMD Ryzen 5 8500G</li>
+                                <li><strong>Motherboard:</strong> ROG STRIX B650E-F GAMING WIFI</li>
+                                <li><strong>RAM:</strong> Kingston Fury Beast RGB 2x16GB DDR5 6000 CL36, AMD EXPO</li>
+                                <li><strong>GPU:</strong> ASUS DUAL GeForce RTX 4060 O8G EVO</li>
+                            </ul>
+
+                            <h4>🎧 Další vybavení</h4>
+                            <ul class="setup-list">
+                                <li><strong>Monitory:</strong> 27" LG UltraGear 27GP850-B a 2x BenQ GW2480</li>
+                                <li><strong>Sluchátka:</strong> Dell Alienware 7.1 Headset AW510H „Dark Side of the Moon“</li>
+                                <li><strong>Kamera:</strong> Logitech Brio 4K Ultra HD</li>
+                                <li><strong>Mikrofon:</strong> Shure MV7 + Shure RK 345</li>
+                                <li><strong>XLR:</strong> TC-Helicon GO XLR MINI</li>
+                                <li><strong>Stream Deck:</strong> Elgato Stream Deck Mini</li>
+                                <li><strong>Střihové karty:</strong> Elgato HD60 X</li>
+                            </ul>
                         </div>
 
                         <div id="tts-kody" class="content-panel hidden">
                             <h3>📢 Zvukové Alerty a TTS</h3>
                             
                             <h4>⭐ Zvukové Alerty za Donaty</h4>
-                            <p>Zde si můžete poslechnout ukázky zvukových alertů, které se přehrají na streamu po odeslání Donatu v dané výši:</p>
-                            <ul class="tts-list-grid wide-grid">
-                                <li><label>25 Kč – Deam</label><audio controls><source src="audio/alert_25.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>50 Kč – Ber to pozitivně</label><audio controls><source src="audio/alert_50.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>100 Kč – Borat pes</label><audio controls><source src="audio/alert_100.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>200 Kč – Tornádo siréna</label><audio controls><source src="audio/alert_200.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>400 Kč – Levantense</label><audio controls><source src="audio/alert_400.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>750 Kč – SK Přátelé</label><audio controls><source src="audio/alert_750.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>1000 Kč – Ahoj holoubku</label><audio controls><source src="audio/alert_1000.mp3" type="audio/mpeg"></audio></li>
-                            </ul>
-                            <p>Nezapomeňte nahrát všechny MP3 soubory pro alerty (např. alert_25.mp3) do složky **`audio`**!</p>
+                            <p>Zde si můžete poslechnout ukázky zvukových alertů, které se na streamu spustí po odeslání donatu – každý z nich se přehrává od určité částky.</p>
                             
+                            <ul class="tts-list-grid wide-grid">
+                                <li><label>25 Kč – Deam</label><audio controls preload="auto"><source src="audio/alert25.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>50 Kč – Ber to pozitivně</label><audio controls preload="auto"><source src="audio/alert50.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>100 Kč – Borat pes</label><audio controls preload="auto"><source src="audio/alert100.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>200 Kč – Tornádo siréna</label><audio controls preload="auto"><source src="audio/alert200.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>400 Kč – Levantense</label><audio controls preload="auto"><source src="audio/alert400.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>750 Kč – SK Přátelé</label><audio controls preload="auto"><source src="audio/alert750.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>1000 Kč – Ahoj holoubku</label><audio controls preload="auto"><source src="audio/alert1000.mp3" type="audio/mpeg"></audio></li>
+                            </ul>
+                            
+                            <hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+                        
                             <h4>🎙️ Hlasové Kódy (TTS) a Ukázky</h4>
                             <p class="tts-explanation">
                                 Vylepši svůj donate hlasem nebo zvukem! Na začátek části textu napiš kód hlasu (např. <code>!h1</code>) a zbytek se přečte vybraným hlasem. Hlasy můžeš kombinovat a opakovat.
                             </p>
                             <p>Příklad: <code>!h1</code> Kdo vypnul server? <code>!h2</code> Určitě ty. <code>!h3</code> Ne, to byl on! <code>!h4</code> Ehm… myslel jsem, že je to vypínač světla.</p>
                             
-                            <h5>Hlavní hlasy:</h5>
+                            <h5>Hlavní hlasy</h5>
                             <ul class="tts-list-grid wide-grid">
-                                <li><label>!h1 Mimon</label><audio controls><source src="audio/h1.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h2 Elektrický</label><audio controls><source src="audio/h2.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h3 Kočka</label><audio controls><source src="audio/h3.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h4 Pan kočka</label><audio controls><source src="audio/h4.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h5 Pan pes</label><audio controls><source src="audio/h5.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h6 Čikámnek</label><audio controls><source src="audio/h6.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h7 Démonka</label><audio controls><source src="audio/h7.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h8 Zombie</label><audio controls><source src="audio/h8.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h9 Ogr</label><audio controls><source src="audio/h9.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h10 Děsivý tel.</label><audio controls><source src="audio/h10.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h11 Děsivá panenka</label><audio controls><source src="audio/h11.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h12 Démon</label><audio controls><source src="audio/h12.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h13 Bitevní droid</label><audio controls><source src="audio/h13.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h14 Robot</label><audio controls><source src="audio/h14.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h15 Cyberpunk</label><audio controls><source src="audio/h15.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h16 Rytíř</label><audio controls><source src="audio/h16.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h17 Pirát</label><audio controls><source src="audio/h17.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h18 Anime dívka</label><audio controls><source src="audio/h18.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h19 Crime vypravěč</label><audio controls><source src="audio/h19.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h20 Sci-fi vypravěč</label><audio controls><source src="audio/h20.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h21 Božský vypravěč</label><audio controls><source src="audio/h21.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h22 Demonické rádio</label><audio controls><source src="audio/h22.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h23 Policejní hlášení</label><audio controls><source src="audio/h23.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h24 Párty vypravěč</label><audio controls><source src="audio/h24.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h1 Mimon</label><audio controls preload="metadata"><source src="audio/h1.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h2 Elektrický</label><audio controls preload="metadata"><source src="audio/h2.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h3 Kočka</label><audio controls preload="metadata"><source src="audio/h3.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h4 Pan kočka</label><audio controls preload="metadata"><source src="audio/h4.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h5 Pan pes</label><audio controls preload="metadata"><source src="audio/h5.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h6 Čikámnek</label><audio controls preload="metadata"><source src="audio/h6.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h7 Démonka</label><audio controls preload="metadata"><source src="audio/h7.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h8 Zombie</label><audio controls preload="metadata"><source src="audio/h8.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h9 Ogr</label><audio controls preload="metadata"><source src="audio/h9.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h10 Děsivý tel.</label><audio controls preload="metadata"><source src="audio/h10.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h11 Děsivá panenka</label><audio controls preload="metadata"><source src="audio/h11.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h12 Démon</label><audio controls preload="metadata"><source src="audio/h12.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h13 Bitevní droid</label><audio controls preload="metadata"><source src="audio/h13.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h14 Robot</label><audio controls preload="metadata"><source src="audio/h14.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h15 Cyberpunk</label><audio controls preload="metadata"><source src="audio/h15.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h16 Rytíř</label><audio controls preload="metadata"><source src="audio/h16.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h17 Pirát</label><audio controls preload="metadata"><source src="audio/h17.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h18 Anime dívka</label><audio controls preload="metadata"><source src="audio/h18.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h19 Crime vypravěč</label><audio controls preload="metadata"><source src="audio/h19.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h20 Sci-fi vypravěč</label><audio controls preload="metadata"><source src="audio/h20.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h21 Božský vypravěč</label><audio controls preload="metadata"><source src="audio/h21.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h22 Demonické rádio</label><audio controls preload="metadata"><source src="audio/h22.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h23 Policejní hlášení</label><audio controls preload="metadata"><source src="audio/h23.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h24 Párty vypravěč</label><audio controls preload="metadata"><source src="audio/h24.mp3" type="audio/mpeg"></audio></li>
                             </ul>
                             
-                            <h5>Tématické / Zvukové efekty:</h5>
+                            <h5>Tématické</h5>
                             <ul class="tts-list-grid wide-grid">
-                                <li><label>!h25 Vánoční</label><audio controls><source src="audio/h25.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h26 Párty</label><audio controls><source src="audio/h26.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h27 Narozeniny</label><audio controls><source src="audio/h27.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h28 Pospěš si</label><audio controls><source src="audio/h28.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h29 Zvuky příšery</label><audio controls><source src="audio/h29.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h30 Zvuky myšáka</label><audio controls><source src="audio/h30.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h31 Zvuk děsu</label><audio controls><source src="audio/h31.mp3" type="audio/mpeg"></audio></li>
-                                <li><label>!h32 Zvuk prasete</label><audio controls><source src="audio/h32.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h25 Vánoční</label><audio controls preload="metadata"><source src="audio/h25.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h26 Párty</label><audio controls preload="metadata"><source src="audio/h26.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h27 Narozeniny</label><audio controls preload="metadata"><source src="audio/h27.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h28 Pospěš si</label><audio controls preload="metadata"><source src="audio/h28.mp3" type="audio/mpeg"></audio></li>
+                            </ul>
+                        
+                            <h5>Zvukové efekty</h5>
+                            <ul class="tts-list-grid wide-grid">
+                                <li><label>!h29 Zvuky příšery</label><audio controls preload="metadata"><source src="audio/h29.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h30 Zvuky myšáka</label><audio controls preload="metadata"><source src="audio/h30.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h31 Zvuk děsu</label><audio controls preload="metadata"><source src="audio/h31.mp3" type="audio/mpeg"></audio></li>
+                                <li><label>!h32 Zvuk prasete</label><audio controls preload="metadata"><source src="audio/h32.mp3" type="audio/mpeg"></audio></li>
                             </ul>
                         </div>
+
+                        <div id="hra" class="content-panel hidden">
+                            <h3>Bobří Útěk</h3>
+                            
+                            <div class="record-banner">
+                                🏆 NEJDÁLE UTEKL: <span id="externalHighScore" style="color:white;">Načítání...</span>
+                            </div>
+
+                            <p>Pomoz bobrovi utéct před lovci! Skákej přes pasti a vyhýbej se sekerám. Sbírej jídlo pro body.</p>
+                            <p><strong>Ovládání:</strong> Mezerník nebo kliknutí myší = SKOK. <strong>Esc</strong> = Zrušit zvětšení.</p>
+                            
+                            <div class="game-container" id="gameContainer">
+                                <canvas id="gameCanvas" width="800" height="400"></canvas>
+                                
+                                <div id="gameOverlay">
+                                    <h2 id="gameTitle">Bobří Útěk</h2>
+                                    
+                                    <div class="score-info">
+                                        <span id="champScoreWrapper">🏆 Rekord: <b id="champName" style="color: #fff;">...</b> (<span id="champScore">0</span>)</span>
+                                    </div>
+
+                                    <p id="gameScoreDisplay">Skóre: 0</p>
+                                    
+                                    <input type="text" id="playerNick" placeholder="Tvoje přezdívka" maxlength="15">
+
+                                    <button id="startGameBtn">HRÁT</button>
+
+                                    <button id="fullscreenBtn" title="Zvětšit okno">🔍</button>
+
+                                    <div class="volume-control">
+                                        <label for="volumeSlider" style="color: white; font-weight: bold; font-size: 14px;">🔊</label>
+                                        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.4" style="width: 80px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="faq" class="content-panel hidden">
+                            <h3>Často Kladené Dotazy (FAQ)</h3>
+                            
+                            <h4>Proč si říkám zrovna Holispider?</h4>
+                            <p>Tahle přezdívka vznikla v době, kdy jsem hrával WoW. Chtěl jsem hrát za holy paladina, takže jsem hledal něco, co by se k tomu hodilo. Napadlo mě přidat k ‘holy’ nějaké zvíře, které bude znít dobře. Vybral jsem ‘spidera’, ale ‘Holyspider’ už byl zabraný a navíc to ‘y’ vizuálně nevypadalo nejlíp. Tak jsem zvolil variantu ‘Holispider’.</p>
+                            
+                            <h4>V kolik hodin streamuješ?</h4>
+                            <p>Stream je na všech platformách PO-PÁ od 17:30. O víkendu se ve stejný čas vidíme také, ale ne vždy. Sleduj oznámení na Discordu!</p>
+                            
+                            <h4>Jaké hry hraješ nejčastěji?</h4>
+                            <p>Snažím se vždy vybírat něco zajímavého a ideálně i hry, které třeba ještě neznáte. Nejčastěji sahám po různých survival titulech, jako je třeba Green Hell. Docela často se ale vracíme i k retro klasikám, například k LOTR: Battle for Middle-earth nebo Vietcongu. Všechny hry, které jsme hráli, najdete přehledně v playlistech na YouTube.</p>
+                            
+                            <h4>Můžu se tě na něco zeptat? A případně kde a jak?</h4>
+                            <p>Pokud máš nějaký dotaz, nejlepší je zeptat se přímo v chatu na streamu. Pokud je to ale něco, co nechceš psát veřejně, můžeš využít i e-mail.</p>
+
+                            <h4>Jak se stanu největším donátorem / skoro největším donátorem?</h4>
+                            <p>Na webu je zobrazen nick dvou největších podporovatelů streamu za celou dobu — počítá se to kumulativně.
+                            Pozor: započítávají se pouze <strong><a href="https://streamelements.com/holispider/tip" target="_blank" style="color: gold; text-decoration: none;">doneity</a></strong>, jiné formy podpory se do žebříčku nepočítají (technicky by to nebylo možné).
+                            Pokud tedy chceš získat jejich místo, musíš celkově poslat vyšší částku právě pomocí doneitů.</p>
+                        </div>
+
                     </div>
                 </section>
 
             </div>
             
             <div class="sidebar-right">
+
+                <div class="mobile-only se-banner-mobile">
+                    <div class="banner-scaler">
+                        <iframe 
+                            src="https://streamelements.com/overlay/69343b11ce2a54169763261d/tT9_qHc1ClpXqOm1Lnh1wAWvY10zYBRb-maVWO7-w8suHXH5" 
+                            width="100%" 
+                            height="100%" 
+                            frameborder="0" 
+                            allowtransparency="true"
+                            style="background: transparent;">
+                        </iframe>
+                    </div>
+                </div>
+
                 <section class="support-banner black-bg">
                     <h2>💰 Podpoř Stream</h2>
                     
                     <div class="support-info">
-                        <p>Nejlepší způsob podpory mé tvorby je <strong>likovat, komentovat</strong> a co nejdéle sledovat <strong>streamy a videa</strong>.</p>
+                        <p>Nejlepší způsob podpory mé tvorby je <strong>lajkovat, komentovat</strong> a co nejdéle a nejčastěji sledovat <strong>streamy a videa</strong>.</p>
+                        
                         <p>Pokud chceš ale podpořit moji tvorbu ještě více, nejlepší je to formou <strong>Donatu</strong>.</p>
                         
                         <a href="https://streamelements.com/holispider/tip" target="_blank" class="donate-link">
-                            ➡️ POŠLI DONATE ZDE ⬅️
+                              POŠLI DONATE ZDE 
                         </a>
-                        <p class="donate-note">U Donatu můžeš poslat i hlasovou zprávu.</p>
+                        
+                        <p class="donate-note">
+                            Do donatu můžeš přidat i hlasovou zprávu s různými efekty a nastaveními, takže nás můžeš krásně potrollit nebo pořádně rozesmát.
+                            <a href="#tts-kody" onclick="handleTTSLinkClick(event)" style="font-weight: bold; font-style: normal; cursor: pointer;">➡️ Jak vylepšit donate? ⬅️</a>
+                        </p>
                     </div>
-
-                    <h3 class="tts-header">📢 Zvukové Alerty</h3>
                     
-                    <a href="#tts-kody" class="tts-proklik-link" onclick="handleTTSLinkClick(event)">
-                        ➡️ ZOBRAZIT VŠECHNY TTS KÓDY ⬅️
-                    </a>
-                    
-                    <h3 class="subs-header">🔗 Subscribce / Členství</h3>
+                    <h3 class="subs-header">🔗 Subscription / Členství</h3>
                     <div class="subscription-info">
                         <p>Pokud chceš zvolit <strong>Suba</strong> nebo <strong>člena</strong>, na každé platformě to je trochu jinak:</p>
                         <ul class="platform-subs">
@@ -237,16 +486,21 @@
                             <li><strong>YouTube</strong> (<a href="https://www.youtube.com/channel/UCFUvfLQBXpSfaSODzzszgmA/join" target="_blank">připojit se</a>): Dostanu <strong>70%</strong> (od T2 máš videa s předstihem).</li>
                             <li><strong>Twitch:</strong> Dostanu <strong>30%</strong> (ale nemáš reklamy).</li>
                         </ul>
+                        <p style="margin-top: 15px; text-align: center; font-size: 0.9em; color: #aaa; font-style: italic;">
+                            Stejná procenta jsou i při posílání Bitů, Superchatů a podobně.
+                        </p>
                     </div>
                 </section>
             </div>
 
-        </div> </main>
+        </div> 
+    </main>
 
     <footer>
         <p>&copy; 2025 Holispider. Vytvořeno pro komunitu.</p>
     </footer>
 
     <script src="script.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>

@@ -1,4 +1,52 @@
 // ==========================================================
+// 1. FIREBASE KONFIGURACE A INICIALIZACE
+// ==========================================================
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCG86336uqHVxmv3f95ES41hZsGbuBnz1A",
+    authDomain: "web-holispider.firebaseapp.com",
+    databaseURL: "https://web-holispider-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "web-holispider",
+    storageBucket: "web-holispider.firebasestorage.app",
+    messagingSenderId: "671733150466",
+    appId: "1:671733150466:web:fcca9298f31f0d4e9bc81b",
+    measurementId: "G-2FB2WM14T6"
+};
+
+// Inicializace (ošetřeno proti vícenásobnému spuštění)
+try {
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+} catch (e) {
+    console.error("Chyba inicializace Firebase ve script.js:", e);
+}
+
+// Funkce pro načítání rekordu do banneru nad hrou
+function initHighScoreListener() {
+    const db = firebase.database();
+    const externalRecordEl = document.getElementById('externalHighScore');
+    
+    // Odkaz na databázi
+    const scoreRef = db.ref('bobri_utek_rekord');
+    
+    // Posloucháme změny v reálném čase
+    scoreRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (externalRecordEl) {
+            if (data) {
+                // ZMĚNA TEXTU ZDE: "Jméno a měl skóre (číslo)"
+                externalRecordEl.innerText = `${data.name} a měl skóre (${data.score})`;
+                externalRecordEl.style.color = "#00ff00"; // Zelená barva pro zvýraznění
+            } else {
+                externalRecordEl.innerText = "Nikdo (zatím)";
+            }
+        }
+    });
+}
+
+
+// ==========================================================
 // LOGIKA PRO PŘEPÍNÁNÍ STREAMŮ A OBSAHU (TABULÁTORY)
 // ==========================================================
 
@@ -8,6 +56,7 @@
  * @param {string} contentSelector CSS selektor pro všechny panely obsahu v dané skupině.
  */
 function setupTabs(buttonSelector, contentSelector) {
+    // JS teď cílí přímo na tlačítka uvnitř tabů, což je správné
     const buttons = document.querySelectorAll(buttonSelector);
     const contents = document.querySelectorAll(contentSelector);
 
@@ -28,6 +77,11 @@ function setupTabs(buttonSelector, contentSelector) {
             const targetContent = document.getElementById(targetId);
             if (targetContent) {
                 targetContent.classList.remove('hidden');
+                
+                // Pokud přepneme na záložku "Hra", ujistíme se, že se canvas správně vykreslí
+                if (targetId === 'hra') {
+                    window.dispatchEvent(new Event('resize'));
+                }
             } else {
                 console.error(`Cílový prvek s ID "${targetId}" nebyl nalezen.`);
             }
@@ -51,8 +105,8 @@ function handleTTSLinkClick(event) {
     const mainInfoSection = document.querySelector('.main-info');
     
     if (mainInfoSection) {
-        // 1. Najde a aktivuje tlačítko TTS
-        const ttsButton = mainInfoSection.querySelector(`.content-button[data-content="${targetTabId}"]`);
+        // 1. Najde a aktivuje tlačítko TTS (cílí přímo v content-tabs)
+        const ttsButton = mainInfoSection.querySelector(`.content-tabs .content-button[data-content="${targetTabId}"]`);
         
         if (ttsButton) {
             // Simuluje kliknutí na tlačítko (vyvolá logiku přepínání)
@@ -121,11 +175,32 @@ function setupInstagramRotation(iframeId, containerHeight, totalIframeHeight, st
 // ==========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Spuštění Firebase Listeneru pro High Score
+    initHighScoreListener();
+
     // Nastavení přepínání pro Streamy a Detaily
     setupTabs('.stream-tabs .tab-button', '.stream-content .tab-content');
     setupTabs('.content-tabs .content-button', '.content-area .content-panel');
     
     // Nastavení rotace pro Instagram banner
-    // Hodnoty: ID, Výška výřezu (CSS: 550px), Celková výška iframe (HTML: 10780px), Krok, Interval (ms)
-    setupInstagramRotation('instagram-iframe', 550, 10780, 350, 4000); 
+    setupInstagramRotation('instagram-iframe', 600, 10780, 350, 4000); 
+
+    // FIX: Vynucení načtení metadat (délky) pro všechny audio elementy
+    const audios = document.querySelectorAll('audio');
+    audios.forEach(audio => {
+        audio.volume = 0.5;
+        if (audio.readyState === 0) {
+            audio.load();
+        }
+
+        audio.addEventListener('loadedmetadata', function() {
+            if (this.duration === Infinity) {
+                this.currentTime = 1e101;
+                this.ontimeupdate = function() {
+                    this.currentTime = 0;
+                    this.ontimeupdate = function() {};
+                }
+            }
+        });
+    });
 });

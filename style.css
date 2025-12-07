@@ -1,539 +1,890 @@
 /* ========================================================== */
-/* GLOBÁLNÍ ZÁKLAD A TYPOGRAFIE */
+/* GLOBÁLNÍ ZÁKLAD A TYPOGRAFIE - TMAVÝ MOD */
 /* ========================================================== */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
+    font-size: 16px;
     margin: 0;
     padding: 0;
     background-image: url('img/background.jpg?v=5');
     background-size: cover;
     background-attachment: fixed;
-    background-color: #333;
-    color: #333;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
 }
 
 header {
-    background: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
     color: white;
-    padding: 20px 0;
+    padding: 30px 0;
     text-align: center;
 }
 
 h1 {
-    font-size: 3.5em;
+    font-size: 4em;
     margin: 0;
     padding: 10px 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-/* ÚPRAVA: HLAVNÍ KONTEJNER PRO GRID (Mírně zvětšen pro širší střed) */
+/* ========================================================== */
+/* NASTAVENÍ DESKTOPOVÝCH BANNERŮ (OPRAVENO PRO CENTROVÁNÍ V MEZEŘE) */
+/* ========================================================== */
+
+/* Společný styl kontejneru pro desktop */
+.desktop-banner {
+    position: absolute;
+    top: 170px; /* Vertikální pozice */
+    
+    /* TOTO URČUJE VELIKOST MEZERY: Od kraje obrazovky až po začátek obsahu */
+    /* 460px je "bezpečná zóna" od středu, kde začíná text/obsah */
+    width: calc(50% - 460px); 
+    height: 300px; /* Výška prostoru pro banner */
+    
+    z-index: 50;
+    pointer-events: none; /* Aby neblokovalo klikání na pozadí */
+    
+    /* FLEXBOX ZAJISTÍ, ŽE BANNER BUDE VŽDY UPROSTŘED TÉTO MEZERY */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.desktop-banner iframe {
+    width: 350px; /* Základní šířka banneru */
+    height: 200px;
+    border: none;
+    pointer-events: auto; /* Povolí klikání na banner */
+    transform-origin: top center; /* Při zmenšování zůstane nahoře uprostřed */
+}
+
+/* Specifické umístění */
+#desktop-banner-left {
+    left: 0; /* Začíná na levém kraji */
+}
+
+#desktop-banner-right {
+    right: 0; /* Začíná na pravém kraji */
+}
+
+/* ========================================================== */
+/* DYNAMICKÉ ZMENŠOVÁNÍ PRO MENŠÍ DESKTOPY */
+/* ========================================================== */
+
+/* Když se mezera zmenší (okno pod 1700px), banner se musí zmenšit, aby se vešel */
+@media (max-width: 1700px) {
+    .desktop-banner iframe {
+        transform: scale(0.85); /* Zmenšíme na 85% */
+    }
+}
+
+/* Když se mezera zmenší ještě víc (okno pod 1450px) */
+@media (max-width: 1450px) {
+    .desktop-banner iframe {
+        transform: scale(0.65); /* Zmenšíme na 65% */
+    }
+}
+
+
+/* HLAVNÍ KONTEJNER */
 main {
     padding: 20px;
-    max-width: 1500px; /* Povoluje širší layout pro Grid */
+    max-width: 1800px;
     margin: auto;
     position: relative;
 }
 
-/* Bílý box pro hlavní sekce (streamy, videa, detaily) */
+/* PROSTŘEDNÍ BOX - TMAVÝ */
 section {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    background: rgba(18, 18, 18, 0.95);
+    padding: 30px;
     margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    color: #cfcfcf;
 }
 
-h2, h3, h4 {
-    color: #333333;
-    margin-top: 10px; 
-    margin-bottom: 10px;
+section p, section li {
+    font-size: 1.05em;
+    color: #cfcfcf;
+}
+
+/* HLAVNÍ NADPISY */
+h2, h3 {
+    color: #ffffff;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+h4, h5 {
+    color: #ffffff;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 0 #000;
 }
 
 h2 {
-    border-bottom: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 10px;
+    font-size: 1.6em;
+    font-weight: 900;
 }
+
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.4em; color: #ffd700; }
+h5 { font-size: 1.3em; }
 
 .stream-switcher h2 {
     margin-top: 0;
+    border-bottom: none;
 }
 
 .hidden {
     display: none !important;
 }
 
+.main-stream-area strong {
+    color: #ffd700;
+    font-weight: 900;
+}
+
 /* ========================================================== */
 /* ODKAZY NA PLATFORMY (NAV) */
 /* ========================================================== */
 .platform-links {
-    padding: 20px 20px;
-    margin-bottom: 30px; 
-    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 40px;
     text-align: center;
 }
 
 .link-icons {
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 15px;
-    list-style: none; 
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .platform-link {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 25px;
     text-decoration: none;
-    border-radius: 20px;
+    border-radius: 50px;
     font-weight: bold;
-    transition: background-color 0.3s, filter 0.3s;
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
     font-size: 1.1em;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255,255,255,0.1);
 }
 
 .platform-link:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
-.email-link { background-color: #bb2211; color: white; }
-.instagram-link { background-color: #E1306C; color: white; }
-.discord-link { background-color: #7289da; color: white; }
+.email-link { background-color: #007bff; color: white; }
+.instagram-link { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; }
+.discord-link { background-color: #5865F2; color: white; }
 .youtube-link { background-color: #FF0000; color: white; }
 .twitch-link { background-color: #9146FF; color: white; }
 .tiktok-link { background-color: #000000; color: white; }
-.kick-link { background-color: #53ec9d; color: black; }
+.kick-link { background-color: #53FC18; color: black; }
 
 
 /* ========================================================== */
-/* ROZDĚLENÍ OBSAHU (GRID LAYOUT) */
+/* ROZDĚLENÍ OBSAHU */
 /* ========================================================== */
 .split-content {
     display: grid;
-    /* Pevné šířky pro stabilní střed 800px a bannery 330px */
-    grid-template-columns: 330px 800px 330px; 
-    gap: 20px; 
+    grid-template-columns: 380px 1fr 380px;
+    gap: 30px;
     margin-bottom: 30px;
-    
-    /* Vycentrování celého gridu */
-    width: 1500px; 
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    align-items: start;
 }
 
-/* Hlavní obsah uprostřed (Střed je stabilní) */
 .main-stream-area {
-    width: 800px; /* Pevná šířka pro širší střed (800px) */
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
-/* ========================================================== */
-/* POSTRANNÍ BANNERY (GRID A VERTKÁLNÍ POSUN) */
-/* ========================================================== */
-
-/* Bannery se posouvají s obsahem, ale začínají níže */
 .sidebar-left, .sidebar-right {
-    padding-top: 0; 
-    height: 100%; 
-    /* Používáme margin-top k posunutí dolů v toku Gridu */
-    margin-top: 150px; /* Začíná kus pod 'Aktuální Streamy' */
+    padding-top: 0;
+    margin-top: 150px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    height: auto;
 }
 
-/* Pevná výška sekce pro vyplnění prázdného prostoru */
-.sidebar-left section {
-    margin-bottom: 0;
-    height: 860px; /* Pevná výška 860px */
-}
-.sidebar-right section {
-    margin-bottom: 0;
-    height: 860px; /* Pevná výška 860px */
-}
-
-
-/* Udržujeme margin na hlavních sekcích v prostředním sloupci */
-.main-stream-area section {
-    margin-bottom: 30px;
-}
-.main-stream-area section:last-child {
-    margin-bottom: 0;
-}
-
-/* Černé pozadí pro bannery */
-.black-bg {
-    background: rgba(0, 0, 0, 0.8) !important;
-    color: #f0f0f0 !important;
-    padding: 15px;
-    height: 100%; 
-}
-
-.black-bg h2, .black-bg h3, .black-bg h4 {
-    color: white !important;
-}
-
-.black-bg a {
-    color: #53ec9d;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* --- NOVÉ/UPRAVENÉ STYLY PRO SEKCI PODPORY --- */
-
-.donate-link {
-    display: block;
-    text-align: center;
-    background-color: #FF0000;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin: 10px 0 5px 0;
-    font-weight: bold;
-    transition: background-color 0.2s;
-}
-.donate-link:hover {
-    background-color: #cc0000;
-}
-
-.donate-note {
-    font-size: 0.9em;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-/* NOVÉ: Tlačítko pro proklik na TTS kódy v banneru */
-.tts-proklik-link {
-    display: block;
-    text-align: center;
-    background-color: #53ec9d; 
-    color: #000000; /* KONTRAST: Černý text na zeleném pozadí */
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin: 10px 0 15px 0;
-    font-weight: bold;
-    transition: background-color 0.2s;
-}
-.tts-proklik-link:hover {
-    background-color: #33c77d;
-}
-
-.subs-header {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-/* VYNUCENÍ TUČNÉHO PÍSMA A ZALOMENÍ V BANNERU */
-.support-info p, .subscription-info p, .platform-subs li, .donation-tiers li {
-    word-wrap: break-word; 
-    line-height: 1.4; 
-}
-.support-info strong, .subscription-info strong, .platform-subs strong, .donation-tiers strong {
-    font-weight: 900 !important; /* Vynucení tučného písma */
-    color: #53ec9d; 
-}
-
-/* SEZNAMY V ČERNÉM BANNERU */
-.donation-tiers { /* Nový styl pro Alerty */
-    list-style: none;
-    padding-left: 0;
-    margin-top: 5px;
-    padding-left: 10px; 
-}
-.donation-tiers li {
-    margin-bottom: 5px;
-    color: #ccc;
-    font-size: 0.95em;
-    list-style-type: none; 
-}
-
-.platform-subs {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 5px;
-}
-
-.platform-subs li {
-    margin-bottom: 5px;
-    color: #ccc;
-    font-size: 0.95em;
-    word-wrap: break-word; 
-}
-/* ------------------------------------- */
-
-
-/* ========================================================== */
-/* STYLY PRO TTS KÓDY V HLAVNÍ SEKCI (main-info) */
-/* ========================================================== */
-
-.tts-explanation code {
-    background-color: #f0f0f0; 
-    color: #1a1a1a;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-weight: bold;
-}
-
-/* NOVÝ FLEXIBILNÍ GRID PRO SEZNAM TTS HLASŮ (v hlavním obsahu) */
-.tts-list-grid {
-    display: grid;
-    grid-template-columns: 1fr; 
-    gap: 15px;
-    list-style: none;
-    padding: 0;
-    margin-top: 15px;
-}
-
-/* Pro širší obsah se roztáhneme na dva sloupce */
-.tts-list-grid.wide-grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-}
-
-.tts-list-grid li {
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
+.sidebar-left section, .sidebar-right section {
+    width: 100%;
+    height: auto;
+    min-height: 850px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
-}
-.tts-list-grid label {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
+    justify-content: flex-start;
+    padding: 25px;
+    box-sizing: border-box;
+    position: relative;
+    margin-bottom: 0;
+    overflow: visible;
+    background: rgba(18, 18, 18, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
 }
 
-/* Audio přehrávače */
-.tts-list-grid audio {
+.sidebar-left section {
+    overflow: hidden;
+    max-height: 850px;
+}
+
+.black-bg { color: #e0e0e0 !important; }
+.black-bg h2 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    font-size: 1.4em;
+    white-space: normal;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.black-bg h3, .black-bg h4 { color: #ffffff !important; font-size: 1.2em; text-align: center; }
+.black-bg p, .black-bg li { font-size: 0.95em; color: #cccccc; }
+.black-bg strong, .black-bg b { color: #ffd700 !important; font-weight: 700; }
+.black-bg a { color: #ffd700; text-decoration: underline; font-weight: bold; }
+.black-bg a:hover { color: #fff; text-decoration: none; }
+
+/* ========================================================== */
+/* STYLY PRO HRU (KONTEJNER) */
+/* ========================================================== */
+.game-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    
+    /* Pevný poměr stran 2:1 - Hra se nedeformuje */
+    aspect-ratio: 2 / 1; 
+    
+    margin: 0 auto;
+    border: 4px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    background: transparent;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+    box-sizing: content-box;
+}
+
+.game-container canvas {
     display: block;
     width: 100%;
-    margin-top: 5px;
+    height: 100%;
+    background-color: #87CEEB; 
 }
-/* ------------------------------------- */
 
+/* === FULLSCREEN REŽIM === */
+.game-container.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-shadow: 0 0 100px rgba(0,0,0,0.9);
+    border-color: #ffd700; 
+    
+    /* Logika pro maximální roztažení při zachování poměru 2:1 */
+    width: min(95vw, 190vh);
+    height: auto;
+    aspect-ratio: 2 / 1;
+    max-width: none;
+}
+
+.game-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 9998;
+    backdrop-filter: blur(5px);
+}
+.game-backdrop.active { display: block; }
 
 /* ========================================================== */
-/* INSTAGRAM WIDGET (PŘÍPRAVA NA ROTACI BEZ SCROLLU) */
+/* STYLY PRO HRU (KONTEJNER) */
 /* ========================================================== */
-.instagram-widget-container {
-    padding: 0;
-    min-height: 400px; 
-    /* SKRYJE PŘESAHUJÍCÍ OBSAH (ODSTRANĚNÍ SCROLL BARU) */
-    overflow-y: hidden;
-    /* ZMĚNA: Pevná výška, která bude sloužit jako výřez pro rotující obsah */
-    height: 760px; 
-    max-height: 760px;
-    position: relative; 
+.game-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Původní maximální šířka pro standardní zobrazení */
+    
+    /* Pevný poměr stran 2:1 - Hra se nikdy nedeformuje */
+    aspect-ratio: 2 / 1; 
+    
+    margin: 0 auto;
+    border: 4px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    background: transparent;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+    box-sizing: content-box;
+    
+    /* Aktivace container queries pro škálování vnitřku */
+    container-type: inline-size;
 }
 
-.instagram-widget-container iframe.snapwidget-widget {
-    width: 330px !important; 
-    height: 10780px !important; 
-    border: none;
+.game-container canvas {
     display: block;
-    transform: translateY(0); 
-    transition: transform 1s ease-in-out; 
+    width: 100%;
+    height: 100%;
+    background-color: #87CEEB; 
 }
 
-/* Odkaz "Zobrazit vše" */
-.instagram-all-posts-link {
-    display: block;
+/* === FULLSCREEN REŽIM === */
+.game-container.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-shadow: 0 0 100px rgba(0,0,0,0.9);
+    border-color: #ffd700; 
+    
+    /* ZDE JE OPRAVA PRO VELKÁ OKNA: */
+    /* Hra se roztáhne, ale MAXIMÁLNĚ na 1200px šířky. */
+    /* Tím se zachová kvalita grafiky a nebudou to "rozmazané čtverečky". */
+    width: min(95vw, 1200px); 
+    
+    height: auto;
+    aspect-ratio: 2 / 1;
+    max-width: none; /* Zrušíme limit 800px, ale držíme limit 1200px z width výše */
+}
+
+.game-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 9998;
+    backdrop-filter: blur(5px);
+}
+.game-backdrop.active { display: block; }
+
+/* ========================================================== */
+/* GAME OVERLAY - PROPORCIONÁLNÍ ZMENŠOVÁNÍ */
+/* ========================================================== */
+#gameOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 10;
+    /* Původně 20px, ale na mobilu max 2.5% šířky */
+    padding: min(20px, 2.5cqi);
+    box-sizing: border-box;
+}
+
+#gameOverlay h2 { 
+    margin: min(5px, 1cqi) 0 min(15px, 2cqi) 0; 
+    padding: 0; 
+    border: none; 
+    text-align: center; 
+    line-height: 1.2; 
+}
+
+#gameTitle { 
+    /* Původně 2.8em. Na mobilu 10% šířky hry */
+    font-size: min(2.8em, 10cqi); 
+    color: #ffd700; 
+    text-shadow: min(3px, 0.4cqi) min(3px, 0.4cqi) 0 #000; 
+    margin-bottom: min(5px, 1cqi); 
+}
+
+.score-info { 
+    /* Původně 1.2em */
+    font-size: min(1.2em, 4.5cqi); 
+    margin-bottom: min(15px, 2cqi); 
+    text-shadow: 1px 1px 2px black; 
+    text-align: center; 
+}
+
+#gameScoreDisplay { 
+    /* Původně 1.8em */
+    font-size: min(1.8em, 6.5cqi); 
+    margin-bottom: min(20px, 2.5cqi); 
+    color: #fff; 
+    font-weight: bold; 
+    display: none; 
+}
+
+/* Vstupní pole */
+#playerNick {
+    display: block; 
+    margin: min(10px, 1.5cqi) auto min(20px, 2.5cqi) auto;
+    
+    /* ZDE JE TO KOUZLO: Buď 250px, nebo 31.25% šířky (což je stejný poměr) */
+    width: min(250px, 31.25cqi); 
+    
+    padding: min(12px, 1.5cqi);
+    font-size: min(1.2em, 4.5cqi);
+    
     text-align: center;
-    margin-top: 15px;
-    padding: 5px;
-    border: 1px solid #E1306C;
-    border-radius: 5px;
-    background-color: #333;
+    border-radius: min(8px, 1cqi);
+    border: min(3px, 0.4cqi) solid #fff;
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    outline: none;
+}
+#playerNick:focus { border-color: #ffd700; transform: scale(1.05); }
+
+/* Tlačítko start */
+#startGameBtn {
+    font-size: min(1.4em, 5cqi); 
+    padding: min(12px, 1.5cqi) min(40px, 5cqi); 
+    
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    background-color: #53FC18; 
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 min(4px, 0.5cqi) min(15px, 2cqi) rgba(0,0,0,0.5);
+    transition: transform 0.1s;
+    margin-top: min(5px, 1cqi);
+}
+#startGameBtn:hover { transform: scale(1.05); background-color: #40c912; }
+
+/* Křížek / Lupa */
+#fullscreenBtn {
+    position: absolute;
+    top: min(15px, 2cqi);
+    right: min(15px, 2cqi);
+    background: rgba(255,255,255,0.2);
+    border: min(2px, 0.3cqi) solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    
+    /* Fixní velikost 40px, zmenší se na mobilu */
+    width: min(40px, 5cqi);
+    height: min(40px, 5cqi);
+    font-size: min(20px, 2.5cqi);
+    
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
 }
-.instagram-all-posts-link:hover {
-    background-color: #E1306C;
-}
+#fullscreenBtn:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
 
-
-/* ========================================================== */
-/* RESPONSIVITA (ÚPRAVA PRO NOVÝ GRID) */
-/* ========================================================== */
-
-@media (min-width: 1201px) {
-    /* Ujistíme se, že ve velkém obsahu je TTS grid ve dvou sloupcích */
-    .main-info #tts-kody .tts-list-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 1550px) { /* Když se monitor zmenší, zmenšujeme mezery a šířky */
-    .split-content {
-        grid-template-columns: 330px 800px 330px; 
-        width: 1400px;
-    }
-}
-
-@media (max-width: 1450px) {
-    .split-content {
-        grid-template-columns: 250px 750px 250px; 
-        width: 1300px; 
-    }
-}
-
-@media (max-width: 1350px) {
-    .split-content {
-        grid-template-columns: 200px 700px 200px; 
-        width: 1140px; 
-    }
-}
-
-
-@media (max-width: 1200px) {
-    .split-content {
-        grid-template-columns: 1fr; /* Přejdeme na jeden sloupec */
-        width: 100%;
-    }
-    .sidebar-left, .sidebar-right {
-        margin-top: 0; /* Zrušit vertikální posun */
-        padding-top: 0;
-    }
-    .sidebar-left section, .sidebar-right section {
-        height: auto; /* Zrušit pevnou výšku */
-        margin-bottom: 30px;
-    }
-    
-    /* Na mobilu, kde je TTS v hlavním sloupci, se roztáhne na 100% */
-    .main-info #tts-kody .tts-list-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ... (zbytek mobilních stylů pro 900px dolů beze změny) ... */
-
-@media (max-width: 900px) {
-    main {
-        max-width: 600px;
-    }
-
-    .split-content {
-        grid-template-columns: 1fr;
-        gap: 0; 
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    .sidebar-left, .sidebar-right {
-        padding-top: 0; 
-    }
-    .sidebar-left section, 
-    .sidebar-right section {
-        margin-bottom: 30px;
-        height: auto;
-    }
-    
-    .instagram-widget-container {
-        overflow-y: visible; 
-        max-height: none;
-        height: auto;
-    }
-    .instagram-widget-container iframe.snapwidget-widget {
-        width: 100% !important; 
-        transform: none; 
-    }
-}
-
-
-/* ========================================================== */
-/* ZBYTEK STYLŮ (TABULÁTORY, STREAMY, WIDGETY) */
-/* ========================================================== */
-
-.stream-schedule {
-    font-weight: bold;
-    color: #333;
-    font-size: 1.0em;
-    margin-top: 0; 
-    margin-bottom: 15px;
-    border-left: 5px solid #FF0000; 
-    padding-left: 10px; 
-}
-
-.stream-recommendation {
-    background-color: #f0f0f0; 
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-size: 0.95em;
-    margin-top: 5px; 
-    margin-bottom: 20px; 
-}
-
-.stream-recommendation strong {
-    color: #FF0000;
-}
-
-/* OPRAVA ROZBITÝCH TLAČÍTEK - ZNOVU PŘIDÁVÁM ZÁKLADNÍ STYLY */
-.stream-tabs, .content-tabs {
+/* Ovládání hlasitosti */
+.volume-control {
+    position: absolute;
+    bottom: min(15px, 2cqi);
+    right: min(15px, 2cqi);
     display: flex;
-    margin-bottom: 15px;
-    border-bottom: none;     
-    overflow-x: auto;
+    align-items: center;
+    gap: min(10px, 1.5cqi);
+    background: rgba(0,0,0,0.5);
+    padding: min(5px, 1cqi) min(10px, 1.5cqi);
+    border-radius: 20px;
+    
+    /* Celý ovladač se zmenší, pokud je okno velmi malé */
+    transform-origin: bottom right;
 }
 
+/* Pokud je hra užší než 500px, zmenši volume control, aby nepřekážel */
+@container (max-width: 500px) {
+    .volume-control { transform: scale(0.8); }
+}
+
+.volume-control label { 
+    font-size: 14px; 
+    font-weight: bold; 
+    color: white; 
+}
+.volume-control input { 
+    width: 80px; 
+    cursor: pointer;
+}
+
+/* Banner s rekordem */
+.record-banner {
+    background: #222; 
+    color: #ffd700; 
+    text-align: center; 
+    padding: min(10px, 1.5cqi);
+    border: min(2px, 0.3cqi) solid #ffd700; 
+    margin-bottom: min(20px, 2.5cqi); 
+    text-transform: uppercase; 
+    font-weight: bold;
+    font-size: min(1.3em, 4.5cqi);
+    letter-spacing: 1px;
+}
+
+/* ========================================================== */
+/* WIDGETY A ZBYTEK */
+/* ========================================================== */
+.instagram-banner h2 { margin-top: 0; margin-bottom: 10px; flex-shrink: 0; }
+.banner-info { margin-top: 0; margin-bottom: 15px; flex-shrink: 0; text-align: center; }
+
+.instagram-widget-container {
+    flex: 1;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    background: #000;
+}
+.instagram-widget-container iframe.snapwidget-widget {
+    width: 100% !important;
+    min-width: 100%;
+    height: 10780px !important;
+    border: none;
+    display: block;
+    transform: translateY(0);
+    transition: transform 1s ease-in-out;
+    filter: brightness(0.85) contrast(1.1);
+}
+.full-link-overlay {
+    display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10; background: transparent; cursor: pointer; transition: background-color 0.2s;
+}
+.full-link-overlay:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+.donate-link, .tts-proklik-link {
+    display: block; text-align: center; padding: 12px 15px; border-radius: 8px; margin: 15px 0;
+    font-weight: 800; font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.5px;
+    text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 0 rgba(0,0,0,0.3);
+    position: relative; top: 0; border-bottom: none !important;
+}
+.donate-link { background: linear-gradient(to bottom, #ff3333, #cc0000); color: white !important; border: 1px solid #aa0000; }
+.donate-link:hover { background: linear-gradient(to bottom, #ff4d4d, #e60000); box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); transform: translateY(-2px); }
+.donate-link:active { top: 4px; box-shadow: none; }
+
+.tts-proklik-link { background: linear-gradient(to bottom, #ffd700, #d4b106); color: #000000 !important; border: 1px solid #b39500; }
+.tts-proklik-link:hover { background: linear-gradient(to bottom, #ffea70, #e6c200); box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); transform: translateY(-2px); }
+.tts-proklik-link:active { top: 4px; box-shadow: none; }
+
+/* OPRAVENO: Přidána mezera pod poznámku */
+.donate-note {
+    font-size: 0.85em;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #aaa;
+    font-style: italic;
+}
+.donate-note a {
+    display: block;
+    margin-top: 5px;
+}
+
+.subs-header { margin-top: 25px; margin-bottom: 15px; border-top: 1px solid #444; padding-top: 15px; }
+.platform-subs { list-style: none; padding-left: 0; margin-top: 10px; }
+.platform-subs li { margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+.platform-subs li:last-child { border-bottom: none; }
+
+.tiktok-link-box {
+    width: 100%; height: 400px; background-color: #000; color: white; border-radius: 8px; cursor: pointer;
+    display: flex; justify-content: center; align-items: center; transition: all 0.3s; border: 1px solid #333;
+}
+.tiktok-link-box:hover { background-color: #111; border-color: #fe2c55; box-shadow: 0 0 20px rgba(254, 44, 85, 0.3); }
+.tiktok-link-box p { font-size: 1.5em; font-weight: bold; text-align: center; padding: 20px; }
+
+.tts-explanation code { background-color: #333; color: #ffd700; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-family: monospace; border: 1px solid #444; }
+
+/* --- OPRAVA POSUVNÍKU TLAČÍTEK (ODSTRANĚNÍ BUTTON-WRAPPER Z CSS) --- */
+.stream-tabs, .content-tabs {
+    /* Důležité: Skryje vnější posuvník, ale nechá ho uvnitř */
+    overflow-x: hidden;
+    /* Umožňuje flexbox zarovnání */
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    padding: 0;
+
+    /* Využívá mezery */
+    gap: 5px;
+}
+
+/* Tlačítka musí být nastavená, aby se nezalamovala a flexibilně se zmenšila */
 .tab-button, .content-button {
-    flex-shrink: 0;     
-    background: none;
-    border: 1px solid #ccc; /* Vizuální oprava */
-    padding: 9px 14px; 
+    flex-shrink: 1; /* Umožní tlačítkům se zmenšit, když je úzký prostor */
+    white-space: nowrap; /* Tlačítka se nezalamují */
+    /* ZDE POUZE VIZUÁLNÍ STYLY - ŽÁDNÉ OVERFLOW */
+    background: rgba(255,255,255,0.05);
+    border: none;
+    padding: 12px 20px;
     cursor: pointer;
     font-size: 1em;
-    font-weight: bold;
-    color: #555;
-    transition: all 0.3s ease;
-    white-space: nowrap; 
+    font-weight: 600;
+    color: #888;
+    transition: all 0.2s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+/* ➡️ NOVÉ/OPRAVENÉ STYLY PRO AKTIVNÍ TLAČÍTKA */
+.tab-button:hover, .content-button:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
 }
 
 .tab-button.active, .content-button.active {
-    background-color: #ffffff;     
-    border: 2px solid #555; 
-    border-radius: 5px;
-    color: #000000;     
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);     
-    padding: 8px 13px;
-}
-/* Konec opravy tlačítek */
-
-.tab-button:hover, .content-button:hover:not(.active) {
+    background-color: #fff; /* Obecná barva aktivního tlačítka (pro sekci 'Detaily') */
     color: #000;
+    position: relative;
+    top: 2px; /* Efekt "stisknutí" */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    transform: none;
 }
 
-.stream-content, .content-area {
-    border: none;     
-    border-radius: 4px;
-    padding: 15px;
+/* ➡️ SPECIFICKÉ BARVY PRO AKTIVNÍ STREAMOVACÍ TLAČÍTKA */
+.tab-button[data-tab="kick"].active { background-color: #53FC18; color: #000; }
+.tab-button[data-tab="youtube-live"].active { background-color: #FF0000; color: #fff; }
+.tab-button[data-tab="twitch"].active { background-color: #9146FF; color: #fff; }
+.tab-button[data-tab="tiktok"].active { background-color: #000000; color: #fff; }
+/* KONEC OPRAVY */
+
+/* Skrytí posuvníku pro Chrome/Safari - cílíme přímo na tab-content */
+.stream-tabs::-webkit-scrollbar, .content-tabs::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
 }
 
-/* OPRAVA SEKCE KOUKNI I NA VIDEA */
-.youtube-vod-image-link {
-    display: block;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 4px;
-    line-height: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Skrytí posuvníku ve Firefoxu a IE/Edge */
+.stream-tabs, .content-tabs {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+/* KONEC OPRAVY POSUVNÍKU TLAČÍTEK */
 
-.youtube-vod-image-link img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-}
 
-.youtube-vod-image-link:hover img {
-    transform: scale(1.03); 
-}
-/* Konec opravy sekce videa */
+.tts-list-grid { display: grid; grid-template-columns: 1fr; gap: 15px; list-style: none; padding: 0; margin-top: 20px; }
+.tts-list-grid.wide-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.tts-list-grid li { background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 8px; display: flex; flex-direction: column; border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.2s; color: #eee; }
+.tts-list-grid li:hover { transform: translateY(-2px); border-color: #ffd700; }
+.tts-list-grid label { font-weight: bold; color: #fff; margin-bottom: 8px; font-size: 1.1em; }
+.tts-list-grid audio { display: block; width: 100%; margin-top: 5px; height: 35px; }
 
+.youtube-vod-image-link { display: block; cursor: pointer; overflow: hidden; border-radius: 8px; line-height: 0; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+.youtube-vod-image-link img { width: 100%; height: auto; display: block; transition: transform 0.3s ease; }
+.youtube-vod-image-link:hover img { transform: scale(1.03); }
+
+.beaver-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 15px; margin-top: 20px; }
+.beaver-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.beaver-item img { width: 100%; height: auto; border-radius: 8px; border: 2px solid rgba(255, 255, 255, 0.1); transition: transform 0.2s ease, border-color 0.2s; background-color: rgba(0,0,0,0.3); }
+.beaver-item:hover img { transform: scale(1.05); border-color: #ffd700; cursor: pointer; }
+.beaver-item:hover .beaver-name { color: #ffd700; }
+.beaver-name { margin-top: 8px; margin-bottom: 0; font-size: 0.85em; color: #ccc; font-weight: 600; line-height: 1.2; transition: color 0.2s ease; }
+
+.setup-list { list-style: none; padding: 0; margin: 0 0 25px 0; }
+.setup-list li { margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 8px; color: #ccc; font-size: 1.05em; }
+.setup-list li:last-child { border-bottom: none; }
+.setup-list strong { color: #ffd700; margin-right: 10px; font-weight: 700; }
+
+.stream-schedule { font-weight: 500; color: #ddd; font-size: 1.05em; margin-top: 0; margin-bottom: 20px; border-left: 5px solid #FF0000; padding-left: 15px; background: rgba(255,255,255,0.05); padding: 10px 15px; border-radius: 0 4px 4px 0; }
+.stream-recommendation { background-color: rgba(255, 255, 255, 0.05); color: #ccc; padding: 20px; border-radius: 8px; font-size: 1.1em; font-weight: 500; margin-top: 10px; margin-bottom: 25px; border-left: 5px solid #ffd700; }
+.stream-recommendation strong { color: #ffd700; font-weight: 900; }
+
+.stream-content, .content-area { border: 1px solid rgba(255,255,255,0.1); border-top: none; border-radius: 0 0 8px 8px; padding: 20px; }
+
+/* OPRAVA BARVY FOOTERU */
 footer {
     text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    color: #777;
-    border-top: none;
+    padding: 30px;
+    margin-top: 40px;
+    color: #ffffff;
+    border-top: 1px solid #333;
+    font-size: 0.9em;
+}
+
+@media (min-width: 1201px) { .main-info #tts-kody .tts-list-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); } }
+@media (max-width: 1650px) { .split-content { grid-template-columns: 350px 1fr 350px; } }
+@media (max-width: 1450px) { .split-content { grid-template-columns: 300px 1fr 300px; } .sidebar-left section, .sidebar-right section { padding: 15px; } }
+@media (max-width: 1200px) {
+    .split-content { grid-template-columns: 1fr; width: 100%; align-items: stretch; }
+    .sidebar-left, .sidebar-right { margin-top: 0; padding-top: 0; width: 100%; position: static; }
+    .sidebar-left section, .sidebar-right section { height: auto; max-height: none; margin-bottom: 30px; }
+    .instagram-widget-container { height: 600px; flex: none; }
+    .main-info #tts-kody .tts-list-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+    main { max-width: 600px; padding: 10px; }
+    h1 { font-size: 2.5em; }
+    .split-content { gap: 15px; }
+    .instagram-widget-container { overflow-y: visible; max-height: none; height: auto; }
+    .instagram-widget-container iframe.snapwidget-widget { width: 100% !important; transform: none; }
+}
+
+
+/* ========================================================== */
+/* PŘEPÍNAČ VERZÍ WEBU (PC vs. TABLET/MOBIL) */
+/* ========================================================== */
+
+/* 1. VÝCHOZÍ STAV (PC) - Skryjeme mobilní prvky */
+.mobile-only {
+    display: none !important;
+}
+
+/* NASTAVENÍ ABSOLUTNÍHO CENTROVÁNÍ PRO BANNERY
+   Toto je kontejner ("okno"), ve kterém se banner pohybuje.
+*/
+.se-banner-mobile {
+    position: relative; /* Důležité pro absolutní pozici dítěte */
+    width: 100%;
+    height: 200px; /* Pevná výška, aby nevznikaly díry */
+    overflow: hidden; /* Skryje oříznuté části banneru */
+    margin-bottom: 0 !important;
+}
+
+/* NASTAVENÍ SAMOTNÉHO BANNERU (IFRAMU)
+   Zde používáme absolutní centrování, které je 100% spolehlivé.
+*/
+.banner-scaler {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px; /* Pevná velikost banneru */
+    height: 200px;
+    
+    /* MAGIE: Posune levý horní roh do středu a pak vrátí o 50% vlastní šířky zpět */
+    /* Tím pádem je střed banneru VŽDY přesně na středu rodiče */
+    transform: translate(-50%, -50%);
+}
+
+.banner-scaler iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+
+/* ========================================================== */
+/* 2. STAV PRO MENŠÍ OBRAZOVKY (Tablet/Mobil - pod 1650px) */
+/* ========================================================== */
+/* ZMĚNĚNO NA 1650px - TADY SE PŘEPÍNÁME DO MOBILNÍHO REŽIMU (1 SLOUPEC) */
+@media (max-width: 1650px) { 
+
+    /* A) PŘEPNUTÍ VERZÍ */
+    .desktop-only { display: none !important; }
+    .mobile-only { display: block !important; }
+
+    /* B) ROZLOŽENÍ 1/3 (panely) a 2/3 (obsah) */
+    .split-content {
+        display: grid !important;
+        grid-template-columns: 1fr 2fr !important; 
+        gap: 30px; 
+        align-items: start;
+        width: 100%;
+    }
+
+    /* Reset obalů */
+    .sidebar-left, .sidebar-right {
+        display: contents;
+        margin-top: 0;
+        position: static;
+    }
+
+    /* C) SJEDNOCENÍ MEZER a POZICE */
+    .instagram-banner,
+    .support-banner,
+    .se-banner-mobile {
+        margin-bottom: 0 !important;
+        grid-column: 1; 
+        width: 100%;
+    }
+
+    /* === DYNAMICKÉ ZMENŠENÍ PŘI ÚZKÉM SLOUPCI === */
+    /* Pokud chceš, aby se banner zmenšoval a neutíkal text, použij toto. */
+    /* Díky translate(-50%, -50%) zůstane stále perfektně ve středu. */
+    .banner-scaler {
+        transform: translate(-50%, -50%) scale(0.75); /* Zmenšení na 75% */
+    }
+
+    /* D) OPRAVA VÝŠKY INSTAGRAMU */
+    .instagram-widget-container {
+        height: 500px !important; 
+        flex: none; 
+    }
+
+    /* Reset výšek sekcí */
+    .sidebar-left section, .sidebar-right section {
+        min-height: auto;
+        max-height: none;
+    }
+
+    /* === POZICE OBSAHU === */
+    .main-stream-area {
+        grid-column: 2; 
+        grid-row: 1 / span 10;
+    }
+
+    /* === POŘADÍ PRVKŮ === */
+    .support-banner { order: 1; }
+    .sidebar-left .se-banner-mobile { order: 2; }
+    .instagram-banner { order: 3; }
+    .sidebar-right .se-banner-mobile { order: 4; }
+}
+
+/* ========================================================== */
+/* 3. STAV PRO TELEFONY (Úplně malé displeje - pod 1000px) */
+/* ========================================================== */
+@media (max-width: 1000px) {
+    .split-content {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* Na mobilu je dost místa, vrátíme měřítko na 100% */
+    /* Stále ale držíme absolutní centrování, pro jistotu */
+    .banner-scaler {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .se-banner-mobile {
+        height: 200px;
+    }
+
+    /* Na mobilu obsah první, pak widgety */
+    .main-stream-area { order: 0; }
+
+    .support-banner { order: 1; }
+    .sidebar-left .se-banner-mobile { order: 2; }
+    .instagram-banner { order: 3; }
+    .sidebar-right .se-banner-mobile { order: 4; }
 }

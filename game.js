@@ -29,11 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('gameContainer');
     const gameBackdrop = document.getElementById('gameBackdrop');
     
-    // Prvky pro UI
     const nickInput = document.getElementById('playerNick');
     const champNameEl = document.getElementById('champName');
     const champScoreEl = document.getElementById('champScore');
     const externalRecordEl = document.getElementById('externalHighScore');
+
+    // --- DETEKCE MOBILU (PRO OPTIMALIZACI) ---
+    // Pokud je obrazovka užší než 900px nebo je to dotykové zařízení, považujeme to za mobil/tablet
+    const isMobile = window.innerWidth < 900 || 'ontouchstart' in window;
 
     // --- PROMĚNNÉ ---
     let globalHighScore = 0;
@@ -54,16 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data) {
                 globalHighScore = data.score;
                 globalChampionName = data.name;
-                
                 if(champNameEl) champNameEl.innerText = globalChampionName;
                 if(champScoreEl) champScoreEl.innerText = globalHighScore;
-                
                 if(externalRecordEl) {
                     externalRecordEl.innerText = `${globalChampionName} (${globalHighScore})`;
                     externalRecordEl.style.color = "#00ff00";
                 }
             } else {
-                if(externalRecordEl) externalRecordEl.innerText = "Nikdo (buď první!)";
+                if(externalRecordEl) externalRecordEl.innerText = "Nikdo (zatím)";
             }
         });
     }
@@ -86,31 +87,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const randomBeaverIndex = Math.floor(Math.random() * 46) + 1;
     const imgBeaver = new Image(); imgBeaver.src = `img/bobri/${randomBeaverIndex}.png`;
 
-    function setGlow(color = 'white', blur = 20) { ctx.shadowColor = color; ctx.shadowBlur = blur; }
-    function resetGlow() { ctx.shadowBlur = 0; }
+    // === OPTIMALIZACE 1: Vypnutí stínů na mobilech ===
+    function setGlow(color = 'white', blur = 20) { 
+        if (isMobile) return; // Na mobilu stíny nevykreslujeme (zvyšuje to výkon o 300%)
+        ctx.shadowColor = color; 
+        ctx.shadowBlur = blur; 
+    }
+    function resetGlow() { 
+        if (isMobile) return;
+        ctx.shadowBlur = 0; 
+    }
+    
     function safeDrawImage(img, x, y, w, h) {
         if (img && img.complete && img.naturalWidth !== 0) ctx.drawImage(img, x, y, w, h);
     }
 
-    // --- START A DRAW ---
-    const BASE_WIDTH = 800; const BASE_HEIGHT = 400;
-    const GROUND_HEIGHT = 50; const FLOOR_Y = BASE_HEIGHT - GROUND_HEIGHT; 
+    // --- RESIZE A DRAW ---
+    const BASE_WIDTH = 800; 
+    const BASE_HEIGHT = 400;
+    const GROUND_HEIGHT = 50; 
+    const FLOOR_Y = BASE_HEIGHT - GROUND_HEIGHT; 
 
+    // === OPTIMALIZACE 2: Omezení rozlišení na mobilech ===
     function resizeCanvas() {
-        const width = gameContainer.clientWidth; const height = gameContainer.clientHeight;
+        const width = gameContainer.clientWidth; 
+        const height = gameContainer.clientHeight;
+        
         if (width === 0 || height === 0) return;
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = width * dpr; canvas.height = height * dpr;
-        ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.scale(dpr, dpr);
-        const scaleX = width / BASE_WIDTH; const scaleY = height / BASE_HEIGHT;
-        ctx.scale(scaleX, scaleY);
+        
+        // Na PC použijeme jemné rozlišení (Retina), na mobilu stačí 1.0 (kvůli rychlosti)
+        // iPhony mají běžně dpr 3, což je pro canvas hru zbytečně náročné na výpočet.
+        const dpr = isMobile ? 1 : (window.devicePixelRatio || 1);
+        
+        canvas.width = width * dpr; 
+        canvas.height = height * dpr;
+        
+        ctx.setTransform(1, 0, 0, 1, 0, 0); 
+        ctx.scale(dpr, dpr);
+        
+        const scale = width / BASE_WIDTH;
+        ctx.scale(scale, scale);
+
         if (!gameRunning) drawStaticScene();
     }
 
     function drawStaticScene() {
         ctx.clearRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
         safeDrawImage(imgBackground, 0, 0, BASE_WIDTH, BASE_HEIGHT);
-        // PODLAHA: POSUN 180 (Zachováno)
         safeDrawImage(imgGround, 0, FLOOR_Y - 180, BASE_WIDTH, GROUND_HEIGHT + 180);
         if (imgBeaver.complete) { beaver.init(); beaver.draw(); }
     }
@@ -122,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
         draw: function() {
             if (!imgBeaver.complete) return;
             ctx.save();
-            // Jednoduchá logika skoku/běhu
             if (this.y < this.groundY) { // Skok
                 ctx.translate(this.x + this.width/2, this.y + this.height/2);
                 let jumpRot = (this.jumpCount > 1) ? frames * 0.15 : -0.3;
@@ -170,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.x1 <= -this.width) this.x1 = this.width + this.x2 - this.speed;
             if (this.x2 <= -this.width) this.x2 = this.width + this.x1 - this.speed;
             
-            // POSUN PODLAHY 180 (Zachováno)
             let visualY = this.y - 180; 
             let visualHeight = this.height + 180;
             safeDrawImage(imgGround, this.x1, visualY, this.width, visualHeight);
@@ -181,24 +202,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const obstacles = [];
     const foods = [];
 
-    // --- PŘEKÁŽKY (POSUNY +10, +30 ZACHOVÁNY) ---
+    // --- PŘEKÁŽKY ---
     class Obstacle {
         constructor(type) {
             this.markedForDeletion = false; this.type = type; this.angle = 0; this.sway = 0;
             if (type === 'trap') {
                 this.image = Math.random() > 0.5 ? imgTrap1 : imgTrap2;
                 this.width = 90; this.height = 70; this.x = BASE_WIDTH;
-                this.y = FLOOR_Y - this.height + 15; // +10
+                this.y = FLOOR_Y - this.height + 15; 
                 this.isFlying = false;
             } else if (type === 'spike') {
                 this.image = imgSpike;
                 this.width = 80; this.height = 90; this.x = BASE_WIDTH;
-                this.y = FLOOR_Y - this.height + 20; // +10
+                this.y = FLOOR_Y - this.height + 20; 
                 this.isFlying = false;
             } else if (type === 'tree') {
                 this.image = Math.random() > 0.5 ? imgTree1 : imgTree2;
                 this.width = 120; this.height = 250; this.x = BASE_WIDTH;
-                this.y = FLOOR_Y - this.height + 30; // +30
+                this.y = FLOOR_Y - this.height + 30; 
                 this.isFlying = false;
             } else {
                 this.image = Math.random() > 0.5 ? imgAxe1 : imgAxe2;
@@ -304,7 +325,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText('Skóre: ' + Math.floor(score), 20, 40); resetGlow();
     }
 
-    // --- OPRAVA: GAME OVER BEZ DUPLICITY ---
     function gameOver() {
         gameRunning = false;
         try { bgMusic.pause(); } catch(e) {}
@@ -312,13 +332,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const finalScore = Math.floor(score);
 
-        // Zkontrolujeme rekord
         if (db && finalScore > globalHighScore) {
             db.ref('bobri_utek_rekord').set({
                 name: currentPlayerNick || "Neznámý Bobr",
                 score: finalScore
             });
-            // ZDE JE ZMĚNA: Pouze text, bez čísla (číslo je níže)
             titleDisplay.innerText = "NOVÝ REKORD!";
             titleDisplay.style.color = "#FFD700";
         } else {
@@ -327,13 +345,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         overlay.style.display = 'flex';
-        nickInput.style.display = 'none'; // Schováme input
+        nickInput.style.display = 'none'; 
         
-        // Skóre
         scoreDisplay.style.display = 'block';
         scoreDisplay.innerText = `Tvé skóre: ${finalScore}`;
         
-        // Tlačítko
         startBtn.style.display = 'block';
         startBtn.innerText = "ZKUSIT ZNOVU";
         

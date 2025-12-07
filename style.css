@@ -394,7 +394,7 @@ h5 { font-size: 1.3em; }
 .game-backdrop.active { display: block; }
 
 /* ========================================================== */
-/* GAME OVERLAY - PROPORCIONÁLNÍ ZMENŠOVÁNÍ */
+/* GAME OVERLAY - MATEMATICKY PŘESNÉ ZMENŠOVÁNÍ */
 /* ========================================================== */
 #gameOverlay {
     position: absolute;
@@ -402,75 +402,79 @@ h5 { font-size: 1.3em; }
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.85); 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
     z-index: 10;
-    /* Původně 20px, ale na mobilu max 2.5% šířky */
-    padding: min(20px, 2.5cqi);
+    /* Padding se zmenší, pokud je okno malé */
+    padding: min(20px, 3cqi);
     box-sizing: border-box;
+    /* Zajištění, aby se prvky neslepily k sobě */
+    gap: min(10px, 1.5cqi);
 }
 
 #gameOverlay h2 { 
-    margin: min(5px, 1cqi) 0 min(15px, 2cqi) 0; 
+    margin: 0; 
     padding: 0; 
     border: none; 
     text-align: center; 
-    line-height: 1.2; 
+    line-height: 1.1; 
 }
 
 #gameTitle { 
-    /* Původně 2.8em. Na mobilu 10% šířky hry */
-    font-size: min(2.8em, 10cqi); 
+    /* Původně cca 45px. Na mobilu to bude 7% šířky hry. */
+    /* min() vybere to menší -> na PC 45px, na mobilu se zmenší */
+    font-size: min(45px, 7cqi); 
     color: #ffd700; 
-    text-shadow: min(3px, 0.4cqi) min(3px, 0.4cqi) 0 #000; 
-    margin-bottom: min(5px, 1cqi); 
+    text-shadow: min(3px, 0.5cqi) min(3px, 0.5cqi) 0 #000; 
+    
+    /* Aby se dlouhý text "Bobr je v pasti..." zalomil a neutekl */
+    max-width: 95%;
+    word-wrap: break-word;
 }
 
 .score-info { 
-    /* Původně 1.2em */
-    font-size: min(1.2em, 4.5cqi); 
-    margin-bottom: min(15px, 2cqi); 
+    /* Původně cca 20px */
+    font-size: min(20px, 4cqi); 
     text-shadow: 1px 1px 2px black; 
     text-align: center; 
+    margin: 0;
 }
 
 #gameScoreDisplay { 
-    /* Původně 1.8em */
-    font-size: min(1.8em, 6.5cqi); 
-    margin-bottom: min(20px, 2.5cqi); 
+    /* Původně cca 28px */
+    font-size: min(28px, 5cqi); 
     color: #fff; 
     font-weight: bold; 
     display: none; 
+    margin: 0;
 }
 
-/* Vstupní pole */
 #playerNick {
     display: block; 
-    margin: min(10px, 1.5cqi) auto min(20px, 2.5cqi) auto;
+    /* Input má fixně 250px. To je 32% z 800px. */
+    width: min(250px, 32cqi);
     
-    /* ZDE JE TO KOUZLO: Buď 250px, nebo 31.25% šířky (což je stejný poměr) */
-    width: min(250px, 31.25cqi); 
-    
-    padding: min(12px, 1.5cqi);
-    font-size: min(1.2em, 4.5cqi);
+    padding: min(12px, 2cqi);
+    font-size: min(20px, 4cqi);
     
     text-align: center;
-    border-radius: min(8px, 1cqi);
-    border: min(3px, 0.4cqi) solid #fff;
+    border-radius: 8px;
+    border: min(3px, 0.5cqi) solid #fff;
     background: rgba(255, 255, 255, 0.95);
     color: #000;
     outline: none;
+    margin: min(10px, 2cqi) 0;
 }
 #playerNick:focus { border-color: #ffd700; transform: scale(1.05); }
 
-/* Tlačítko start */
 #startGameBtn {
-    font-size: min(1.4em, 5cqi); 
-    padding: min(12px, 1.5cqi) min(40px, 5cqi); 
+    /* Původně cca 22px */
+    font-size: min(22px, 4.5cqi);
+    padding: min(12px, 2cqi) min(40px, 6cqi);
     
     cursor: pointer;
     border: none;
@@ -478,25 +482,26 @@ h5 { font-size: 1.3em; }
     background-color: #53FC18; 
     color: black;
     font-weight: bold;
-    box-shadow: 0 min(4px, 0.5cqi) min(15px, 2cqi) rgba(0,0,0,0.5);
+    box-shadow: 0 min(4px, 1cqi) min(15px, 3cqi) rgba(0,0,0,0.5);
     transition: transform 0.1s;
+    
+    /* Odsazení od prvků nad ním */
     margin-top: min(5px, 1cqi);
 }
 #startGameBtn:hover { transform: scale(1.05); background-color: #40c912; }
 
-/* Křížek / Lupa */
 #fullscreenBtn {
     position: absolute;
-    top: min(15px, 2cqi);
-    right: min(15px, 2cqi);
+    top: min(15px, 3cqi);
+    right: min(15px, 3cqi);
     background: rgba(255,255,255,0.2);
-    border: min(2px, 0.3cqi) solid rgba(255,255,255,0.5);
+    border: 2px solid rgba(255,255,255,0.5);
     border-radius: 50%;
     
-    /* Fixní velikost 40px, zmenší se na mobilu */
-    width: min(40px, 5cqi);
-    height: min(40px, 5cqi);
-    font-size: min(20px, 2.5cqi);
+    /* Fixní 40px, nebo 8% šířky na mobilu */
+    width: min(40px, 8cqi);
+    height: min(40px, 8cqi);
+    font-size: min(20px, 4cqi);
     
     cursor: pointer;
     display: flex;
@@ -506,49 +511,47 @@ h5 { font-size: 1.3em; }
 }
 #fullscreenBtn:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
 
-/* Ovládání hlasitosti */
 .volume-control {
     position: absolute;
-    bottom: min(15px, 2cqi);
-    right: min(15px, 2cqi);
+    bottom: min(15px, 3cqi);
+    right: min(15px, 3cqi);
     display: flex;
     align-items: center;
-    gap: min(10px, 1.5cqi);
+    gap: min(10px, 2cqi);
     background: rgba(0,0,0,0.5);
-    padding: min(5px, 1cqi) min(10px, 1.5cqi);
+    padding: min(5px, 1cqi) min(10px, 2cqi);
     border-radius: 20px;
     
-    /* Celý ovladač se zmenší, pokud je okno velmi malé */
+    /* Zmenšení celého ovladače, pokud je obrazovka malá */
     transform-origin: bottom right;
 }
-
-/* Pokud je hra užší než 500px, zmenši volume control, aby nepřekážel */
+/* Pokud je hra velmi malá (mobil), zmenši volume control na 70% */
 @container (max-width: 500px) {
-    .volume-control { transform: scale(0.8); }
+    .volume-control { transform: scale(0.7); }
 }
 
 .volume-control label { 
-    font-size: 14px; 
+    font-size: min(14px, 3.5cqi); 
     font-weight: bold; 
     color: white; 
 }
 .volume-control input { 
-    width: 80px; 
-    cursor: pointer;
+    width: min(80px, 15cqi); 
 }
 
-/* Banner s rekordem */
 .record-banner {
     background: #222; 
     color: #ffd700; 
     text-align: center; 
     padding: min(10px, 1.5cqi);
-    border: min(2px, 0.3cqi) solid #ffd700; 
-    margin-bottom: min(20px, 2.5cqi); 
+    border: 2px solid #ffd700; 
+    
+    /* Font cca 20px */
+    font-size: min(20px, 4cqi);
     text-transform: uppercase; 
     font-weight: bold;
-    font-size: min(1.3em, 4.5cqi);
     letter-spacing: 1px;
+    margin-bottom: min(15px, 3cqi);
 }
 
 /* ========================================================== */
